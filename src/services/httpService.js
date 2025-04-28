@@ -1,0 +1,70 @@
+import axios from "axios";
+import Cookies from "js-cookie";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+export const TOKEN = `Bearer ${Cookies.get("BAEDY")}`
+
+
+const timeoutConfig = {
+  timeout: 30000,
+  timeoutErrorMessage: "Server taking too long to respond. Try again.",
+};
+
+export const apiWithOutAuth = axios.create({
+  baseURL: API_BASE_URL,
+  withCredentials: true,
+  headers: {
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache',
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+  ...timeoutConfig,
+});
+
+export const apiWithAuth = axios.create({
+  baseURL: API_BASE_URL,
+  withCredentials: true,
+  headers: {
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache',
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: TOKEN,
+  },
+  ...timeoutConfig,
+});
+
+
+apiWithAuth.interceptors.request.use(
+  async (config) => {
+    const msisdn = Cookies.get("MSISDN");
+    if (msisdn) {
+      config.headers['msisdn'] = msisdn;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+
+export const getApiResponse = (data) => {
+  return {
+    status: true,
+    data: data.data,
+  };
+};
+
+export const getErrorResponse = (error) => {
+  if (error?.response?.status === 401) {
+    Cookies.remove('BAEDY')
+    // window !== "undefined" && window.location.reload()
+  }
+
+  return {
+    statusCode: error?.response?.status,
+    status: false,
+    data: error?.response?.data,
+  };
+};
