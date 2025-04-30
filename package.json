@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.9",
     "embla-carousel-react": "^8.5.2",
     "apexcharts": "^4.5.0",
