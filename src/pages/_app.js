@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from 'redux-persist/integration/react'
+import 'remixicon/fonts/remixicon.css'
 
 export default function App({ Component, pageProps }) {
 

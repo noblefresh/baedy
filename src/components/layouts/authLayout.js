@@ -90,7 +90,7 @@ function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, er
                         e.preventDefault(), onSubmit(serialize(e.target));
                       }} >
                       <div className="space-y-4">
-                        <div className="text-danger text-sm">{errMsg}</div>
+                        <div className="text-red-500 text-xs">{errMsg}</div>
                         <div className="space-y-5">{children}</div>
                       </div>
                     </form>

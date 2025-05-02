@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SignOut } from "@/hooks/Auth";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +15,15 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+
+  const logout = () => {
+    SignOut(dispatch)
+    router.push("/")
+  }
+
   return (
     <div
       className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
@@ -62,6 +74,11 @@ export default function Home() {
             Read our docs
           </a>
         </div>
+
+
+        <div onClick={logout} className="cursor-pointer">Logout</div>
+
+
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
