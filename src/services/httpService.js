@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://bd.literesults.net/api/";
 export const TOKEN = `Bearer ${Cookies.get("BAEDY")}`
 
 
@@ -33,20 +33,6 @@ export const apiWithAuth = axios.create({
   },
   ...timeoutConfig,
 });
-
-
-apiWithAuth.interceptors.request.use(
-  async (config) => {
-    const msisdn = Cookies.get("MSISDN");
-    if (msisdn) {
-      config.headers['msisdn'] = msisdn;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 
 export const getApiResponse = (data) => {

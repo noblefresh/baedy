@@ -30,29 +30,24 @@ function Page() {
 
 
     return (
-        <AuthLayout errMsg={errMsg} onSubmit={(e) => login(e)} title={"Welcome Back"} subText={"We're so glad to see you again 🎈"}>
+        <AuthLayout errMsg={errMsg} onSubmit={(e) => login(e)} formTitle="login" formDes="Please log in to continue celebrating your moments" title={"Welcome Back"} subText={"We're so glad to see you again 🎈"}>
             <AppInput name="email" required label="email" />
             <AppInput name="password" required label="Enter your password" type="password" />
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <div className="flex-grow">
                     <AppInput type="checkbox" name="remember" label="remember me" />
                 </div>
-                <Link href="forgotten-password" className="text-sm text-black hidden sm:block">Forgot Password ?</Link>
+                <Link href="forgotten-password" className="text-sm underline text-amber-600 hidden sm:block">Forgot Password?</Link>
             </div>
             <div className="space-y-4">
                 <div className="space-y-2">
                     <div className="flex gap-3">
-                        <button disabled={proccessing} className="flex-grow disabled:bg-opacity-35 shadow-md bg-black text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Log In"}</button>
+                        <button disabled={proccessing} className="flex-grow disabled:bg-opacity-35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Log In"}</button>
                     </div>
-                    <div className=""><Link href="forgotten-password" className="text-sm text-black sm:hidden">Forgot Password ?</Link></div>
-                </div>
-                <div className="flex items-center gap-3">
-                    <hr className="flex-grow" />
-                    <div className="">or</div>
-                    <hr className="flex-grow" />
+                    <div className=""><Link href="forgotten-password" className="text-sm underline text-amber-600 sm:hidden">Forgot Password?</Link></div>
                 </div>
             </div>
-            <div className="text-center">Don&apos;t have an account? <Link href="register" className="font-extrabold">sign Up</Link> </div>
+            <div className="">New User? <Link href="register" className="text-amber-500 capitalize underline">sign Up</Link> </div>
         </AuthLayout>
     )
 }
