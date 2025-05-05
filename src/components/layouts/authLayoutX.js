@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import authImage from "./../../../public/images/authImage.png"
-import appLogo from "./../../../public/images/logo.png"
+import authImage from "../../../public/images/authImage.png"
+import appLogo from "../../../public/images/logo.png"
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Session } from "@/hooks/Auth";
