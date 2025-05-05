@@ -30,7 +30,7 @@ function Page() {
         <AuthLayout errMsg={errMsg} onSubmit={(e) => sendMail(e)} title={"Forgotten Password"} subText={"Don’t worry you can reset it at ease."} formTitle="Reset Password" formDes="Please reset code will be send to your registered email">
             <div className="space-y-7">
                 <div className="space-y-3">
-                    <AppInput name="email" icon={<MdMail />} required label="Email" />
+                    <AppInput placeholder="email@gmail.com" name="email" icon={<MdMail />} required label="Email" />
                 </div>
                 <div className="space-y-2">
                     <div className="flex gap-3">

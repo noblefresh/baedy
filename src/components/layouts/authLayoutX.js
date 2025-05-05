@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
-import logo from "@assets/images/viloxLogo.png"
 import Image from "next/image";
-import authImg from "@assets/images/aythImage.png"
-import { Session } from "@/app/hooks/Auth";
+import authImage from "@asset/images/authImage.png"
+import appLogo from "@asset/images/logo.png"
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { Session } from "@/hooks/Auth";
 
-function AuthLayoutX({ title, children, onSubmit, errMsg }) {
+function AuthLayoutX({ title, children, subText, formTitle, formDes, onSubmit, errMsg }) {
   const user = useSelector((state) => state.User);
   const isAuthenticated = Session(user);
   const router = useRouter();
@@ -51,82 +50,53 @@ function AuthLayoutX({ title, children, onSubmit, errMsg }) {
     return serializeToJSON(data);
   };
 
-  const [counter, setCounter] = React.useState(1);
-  useEffect(() => {
-    counter < 3 ? setTimeout(() => setCounter(counter + 1), 8000) : setTimeout(() => setCounter(1), 8000);
-  }, [counter]);
 
 
   if (isAuthenticated.status === "unauthenticated") {
     router.push("/auth/login");
   } else {
     return (
-      <div className="min-h-screen grid md:grid-cols-2">
-        <div className='max-w-sm mx-auto'>
-          <div className="bg-white min-h-screen p-4 flex flex-col">
-            <div>
-              <Image src={logo} draggable={false} className="pointer-events-none w-20 mx-auto" alt="LOGO" />
+      <div className="min-h-screen grid lg:grid-cols-2">
+        <div className='relative overflow-hidden hidden lg:block top-0'>
+          <Image src={authImage} className="h-screen w-[100%] z-0 absolute top-0 left-0" />
+          <div className="h-screen lg:flex p-20 bg-black/65 relative z-10 w-[100%] text-4xl bottom-0 hidden">
+            <div className="w-[100vh] absolute left-[84%] top-0 -bottom-0 -rotate-[90deg]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,208C640,192,800,128,960,122.7C1120,117,1280,171,1360,197.3L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
             </div>
-            <div className="flex-grow flex flex-col space-y-4 w-full justify-center">
-              <div className="space-y-1">
-                <div className="text-3xl">{title}</div>
-                <div className="text-sm text-gray-400">
-                  Log in to access the control center of your platform. Manage, monitor, and make data-driven decisions with ease.
-                </div>
-              </div>
+            <div className="space-y-40">
               <div>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault(), onSubmit(serialize(e.target));
-                  }} >
-                  <div className="space-y-4">
-                    <div className="text-danger text-sm">{errMsg}</div>
-                    <div className="space-y-5">{children}</div>
-                  </div>
-                </form>
+                <Image src={appLogo} alt="LOGO" />
+              </div>
+              <div className="text-white space-y-4 max-w-md">
+                <div className="font-bold text-7xl">{title}</div>
+                <div className="text-xs">{subText}</div>
               </div>
             </div>
-            {/* <div className="text-center mt-12 text-xs select-none pointer-events-none">Powered by Mbwoy</div> */}
           </div>
         </div>
-        <div className='relative top-0'>
-          <div className="h-screen w-full fixed text-4xl md:grid md:grid-cols-2 bottom-0 hidden p-6 pr-20">
-            <div className='bg-black flex text-center flex-col h-full w-full rounded-3xl'>
-              <div className='flex-grow'></div>
-              <div className='p-5'>
-                {
-                  counter === 1 && (
-                    <div className='py-20 space-y-4 border border-gray-800 rounded-3xl'>
-                      <div className='text-white font-extrabold text-4xl'>Welcome to Mbwoy</div>
-                      <div className='text-gray-300 text-sm max-w-sm mx-auto'>Mbwoy is your onestep solution for selling gift cards, crypto currencies and electronic funds</div>
+        <div className='w-full mx-auto relative'>
+          <div class="[clip-path:_polygon(25%_0%,_75%_0%,_100%_49%,_75%_100%,_25%_100%,_0_50%)] fixed top-0 -right-12 bg-amber-50 w-48 h-36"></div>
+          <div class="[clip-path:_polygon(25%_0%,_75%_0%,_100%_49%,_75%_100%,_25%_100%,_0_50%)] absolute z-20 bottom-5 -left-4 bg-amber-50 w-64 h-52"></div>
+          <div className="h-screen w-full overflow-y-auto flex flex-col bg-white">
+            <div className="relative z-40 h-full flex items-center justify-center">
+              <div className="w-full max-h-[90%]">
+                <div className="py-28 px-4 relative">
+                  <div className="max-w-lg space-y-8 md:space-y-12 rounded-xl mx-auto bg-white border p-6 border-amber-200 relative">
+                    <div className="space-y-1 md:space-y-3">
+                      <div className="text-2xl md:text-[40px] font-bold capitalize">{formTitle}</div>
+                      <div className="text-xs md:text-lg">{formDes}</div>
                     </div>
-                  )
-                }
-
-                {
-                  counter === 2 && (
-                    <div className='py-20 space-y-4 border border-gray-800 rounded-3xl'>
-                      <div className='text-white font-extrabold text-4xl'>Sell with Ease</div>
-                      <div className='text-gray-300 text-sm max-w-sm mx-auto'>With Mbwoy, selling is simple and secure.It&apos;s fast, convenient, and puts money back in your pocket.</div>
-                    </div>
-                  )
-                }
-
-
-                {
-                  counter === 3 && (
-                    <div className='py-20 space-y-4 border border-gray-800 rounded-3xl'>
-                      <div className='text-white font-extrabold text-4xl'>Unlock Your Assets</div>
-                      <div className='text-gray-300 text-sm max-w-sm mx-auto'>Mbwoy enables you to optimize the value of your assets. Sign up for an Mbwoy account today.</div>
-                    </div>
-                  )}
-
-              </div>
-              {/* <div></div> */}
-              <div className='flex pb-12 justify-center gap-2'>
-                <div className={`h-2 ${counter === 1 ? 'bg-white w-8' : 'w-2 bg-gray-400'} transition-all duration-500 rounded-full cursor-pointer`} onClick={() => setCounter(1)}></div>
-                <div className={`h-2 ${counter === 2 ? 'bg-white w-8' : 'w-2 bg-gray-400'} transition-all duration-500 rounded-full cursor-pointer`} onClick={() => setCounter(2)}></div>
-                <div className={`h-2 ${counter === 3 ? 'bg-white w-8' : 'w-2 bg-gray-400'} transition-all duration-500 rounded-full cursor-pointer`} onClick={() => setCounter(3)}></div>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault(), onSubmit(serialize(e.target));
+                      }} >
+                      <div className="space-y-4">
+                        <div className="text-red-500 text-xs">{errMsg}</div>
+                        <div className="space-y-5">{children}</div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 
-function AppInput({ label, maxLength, checked, type, required, name, max, icon, value, defaultValue, display, onChange }) {
+function AppInput({ label, maxLength, checked, type, required, placeholder, name, max, icon, value, defaultValue, display, onChange }) {
   const [inputType, setInputType] = useState(type);
 
   const makeid = (length) => {
@@ -79,21 +79,22 @@ function AppInput({ label, maxLength, checked, type, required, name, max, icon, 
             name={name}
             required={required}
             value={value}
+            placeholder={placeholder}
             onChange={(e) => onChange && onChange(e)}
             defaultValue={defaultValue}
             maxLength={maxLength}
-            className="w-full border resize-none focus:border-black border-black placeholder-shown:border-gray-300 p-3 peer outline-none rounded-lg placeholder:text-transparent"
-            placeholder={label}></textarea>
+            className="w-full border resize-none focus:border-black border-black p-3 peer outline-none rounded-lg"
+          ></textarea>
         ) : (
           <input
             name={name}
             required={required}
             type={inputType}
             value={value}
+            placeholder={placeholder}
             onChange={(e) => onChange && onChange(e)}
             defaultValue={defaultValue}
-            className="w-full border appearance-none focus:border-black border-black placeholder-shown:border-gray-300 p-3 pl-9 peer outline-none rounded-lg placeholder:text-transparent"
-            placeholder={label}
+            className="w-full border appearance-none focus:border-black border-black p-3 pl-9 peer outline-none rounded-lg"
             maxLength={maxLength}
             {...(maxLength ? { maxLength } : {})}
             {...(max ? { max } : {})}

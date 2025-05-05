@@ -42,7 +42,7 @@ function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, er
         .reduce(
           (acc, [key, value]) => ({
             ...acc,
-            [key]: isNaN(value) ? value : Number(value),
+            [key]: value,
           }),
           {}
         );
@@ -66,7 +66,7 @@ function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, er
               <div>
                 <Image src={appLogo} alt="LOGO" />
               </div>
-              <div className="text-white space-y-4 max-w-sm">
+              <div className="text-white space-y-4 max-w-md">
                 <div className="font-bold text-7xl">{title}</div>
                 <div className="text-xs">{subText}</div>
               </div>

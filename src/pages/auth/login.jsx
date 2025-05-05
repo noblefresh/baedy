@@ -33,8 +33,8 @@ function Page() {
 
     return (
         <AuthLayout errMsg={errMsg} onSubmit={(e) => login(e)} formTitle="login" formDes="Please log in to continue celebrating your moments" title={"Welcome Back"} subText={"We're so glad to see you again 🎈"}>
-            <AppInput name="email" icon={<MdMail />} required label="Email" />
-            <AppInput name="password" icon={<RiLockStarFill />} required label="Password" type="password" />
+            <AppInput placeholder="email@gmail.com" name="email" icon={<MdMail />} required label="Email" />
+            <AppInput placeholder="Password" name="password" icon={<RiLockStarFill />} required label="Password" type="password" />
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <div className="flex-grow">
                     <AppInput type="checkbox" name="remember" label="remember me" />
