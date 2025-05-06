@@ -19,7 +19,7 @@ function Page() {
     const dispatch = useDispatch()
     const [proccessing, setProccessing] = useState(false)
     const [errMsg, setErrMsg] = useState(false)
-    const [errArr,setErrArr] = useState([])
+    const [errArr, setErrArr] = useState([])
     const router = useRouter()
 
     const register = async (e) => {
@@ -31,7 +31,7 @@ function Page() {
             if (status) {
                 setErrMsg('')
                 SignInAuth(data, dispatch)
-                router.push(`accountverification`)
+                router.push("accountverification")
             } else {
                 setErrArr(data)
             }
@@ -53,7 +53,7 @@ function Page() {
                 <AppInput placeholder="State" name="state" icon={<MdExplore />} required label="State" />
             </div>
             <AppInput placeholder="City" name="city" icon={<FaMapLocation />} required label="City" />
-            <AppInput name="dob" icon={<FaCalendarAlt />} required label="City" type={"date"} />
+            <AppInput name="dob" icon={<FaCalendarAlt />} required label="Date of Birth" type={"date"} />
             <AppInput placeholder="Password" name="password" icon={<RiLockStarFill />} required label="Password" type="password" />
             <AppInput placeholder="Confirm Password" name="cpassword" icon={<RiLockStarFill />} required label="Confirm Password" type="password" />
             <div className="space-y-4">

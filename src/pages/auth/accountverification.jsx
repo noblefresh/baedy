@@ -31,7 +31,7 @@ function Accountverification() {
       } else {
         setErrMsg(data.message)
       }
-    }else{
+    } else {
       setErrMsg("Please enter OTP")
     }
   }
@@ -96,7 +96,7 @@ function Accountverification() {
                 />
               </div>
               <div className="space-y-3 select-none flex gap-1">
-                Didn`t receive code?
+                Didn&apos;t receive code?
                 {counter < 1 ? <div className="font-bold cursor-pointer text-amber-500" onClick={resend}>Resend OTP</div> : <div className="font-bold text-amber-600">{counter < 10 && '0'}{counter}s</div>}
               </div>
               <div className="space-y-2">
