@@ -5,6 +5,7 @@ import AppLink from '../organisms/AppLink'
 import { FaCalendarAlt, FaUserAlt, FaCog } from "react-icons/fa";
 import { PiWalletFill } from "react-icons/pi";
 import { HiMiniUserGroup } from "react-icons/hi2";
+import { BsFillGridFill } from "react-icons/bs";
 import { IoIosCard } from "react-icons/io";
 import { ImExit } from "react-icons/im";
 
@@ -16,8 +17,8 @@ function SideNav() {
                     <div className='space-y-4'>
                         <div>
                             <AppLink
-                                text={"home"}
-                                icon={<i className="ri-layout-grid-fill"></i>}
+                                text={"Home"}
+                                icon={<BsFillGridFill />}
                             />
                             <AppLink
                                 text={"Birthday Event"}
@@ -43,13 +44,13 @@ function SideNav() {
                         <div className="divition"></div>
                         <div>
                             <AppLink
-                                text={"Referral"}
+                                text={"Settings"}
                                 icon={<FaCog />}
                             />
-                            <AppLink
-                                text={"Profile"}
-                                icon={<ImExit />}
-                            />
+                            <div className='flex cursor-pointer px-3 py-2 items-center gap-1'>
+                                <ImExit />
+                                <div>Log Out</div>
+                            </div>
                         </div>
                     </div>
                 </div>
