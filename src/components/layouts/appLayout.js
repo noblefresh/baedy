@@ -7,6 +7,7 @@ import appLogo from "@asset/images/logo.png"
 import { Session } from "@/hooks/Auth";
 import { FaBell } from "react-icons/fa6";
 import Image from "next/image";
+import SideNav from "../molecules/SideNav";
 
 function AppLayout({ children, title }) {
   const user = useSelector((state) => state.User);
@@ -41,7 +42,7 @@ function AppLayout({ children, title }) {
       <div className="min-h-screen bg-amber-50/70 z-30 relative backdrop-blur-3xl">
         <div className="p-6 z-0 sticky top-0 w-full">
           <div className="flex gap-52 items-center w-full bg-gray-200/40 border border-gray-200 p-5 rounded-xl">
-            <div><Image alt="logo" src={appLogo} width={25} height={60} /></div>
+            <div><Image alt="logo" src={appLogo} width={35} height={60} /></div>
             <div className="flex-grow flex items-center w-full">
               <div className="flex-grow font-bold">Welcome Diala 👋</div>
               <div className="flex items-center gap-3">
@@ -54,12 +55,12 @@ function AppLayout({ children, title }) {
             </div>
           </div>
         </div>
-        <div className="h-screen z-0 sticky top-0 w-64 bg-amber-400">
-          {/* <SideNav user={user} /> */}
+        <div className="h-screen z-0 sticky top-0 w-64">
+          <SideNav />
         </div>
-        <div className="absolute z-10 overflow-auto top-0 h-screen w-full">
+        {/* <div className="absolute z-10 overflow-auto top-0 h-screen w-full">
           <div className="h-screen bg-amber-600 ml-64 mt-32 ">asdrf</div>
-        </div>
+        </div> */}
       </div>
       {/* <div className={`bg-gray-50 z-50 transition-all ${showNav ? "left-0" : "-left-64 md:left-0"} duration-300  relative`}>
         
