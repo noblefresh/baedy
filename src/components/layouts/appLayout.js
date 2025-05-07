@@ -55,24 +55,15 @@ function AppLayout({ children, title }) {
             </div>
           </div>
         </div>
-        <div className="h-screen z-0 sticky top-0 w-64">
+        <div className="h-screen z-20 sticky top-0 w-64">
           <SideNav />
         </div>
-        {/* <div className="absolute z-10 overflow-auto top-0 h-screen w-full">
-          <div className="h-screen bg-amber-600 ml-64 mt-32 ">asdrf</div>
-        </div> */}
+        <div className="absolute p-4 z-10 overflow-auto top-0 h-screen w-full">
+          <div className="min-h-screen ml-64 mt-32 bg-gray-200/40 border border-gray-200 rounded-xl ">
+            {children}
+          </div>
+        </div>
       </div>
-      {/* <div className={`bg-gray-50 z-50 transition-all ${showNav ? "left-0" : "-left-64 md:left-0"} duration-300  relative`}>
-        
-      </div>
-      <div className={`p-4 pb-8 md:ml-64 relative space-y-5 bg-gray-50 bg-opacity-10 transition-all duration-300 select-none min-h-screen`}>
-        {title?.length > 0 && (<div className="">
-            <div className="text-xl">Good {greetings} {user.value.user.name.split(" ")[0]}!</div>
-            <div className="text-xs text-gray-400">{title}</div>
-          </div>)}
-          <div onClick={() => setShowNav(!showNav)} className="h-8 w-8 absolute top-4 right-5 bg-black md:hidden text-white rounded-md text-xl flex items-center justify-center cursor-pointer"><i className="ri-menu-line"></i></div>
-          {children}
-      </div> */}
     </div>
   );
   // }
