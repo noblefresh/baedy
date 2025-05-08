@@ -44,7 +44,7 @@ function AppLayout({ children, title }) {
           <div className="flex gap-52 items-center w-full bg-gray-200/40 border border-gray-200 p-5 rounded-xl">
             <div><Image alt="logo" src={appLogo} width={35} height={60} /></div>
             <div className="flex-grow flex items-center w-full">
-              <div className="flex-grow font-bold">Welcome Diala 👋</div>
+              <div className="flex-grow font-bold">{title}</div>
               <div className="flex items-center gap-3">
                 <div className="text-xl text-gray-500"><FaBell /></div>
                 <div className="flex items-center gap-3">

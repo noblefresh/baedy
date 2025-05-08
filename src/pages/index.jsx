@@ -8,7 +8,7 @@ import TimeComp from '@/components/organisms/TimeComp';
 
 function Index() {
   return (
-    <AppLayout>
+    <AppLayout title="Welcome Diala 👋">
       <div className="p-3">
         <TimeComp title="Activities Overview" />
       </div>
