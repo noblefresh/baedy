@@ -4,11 +4,14 @@ import React from 'react'
 import { IoIosArrowUp } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
+import TimeComp from '@/components/organisms/TimeComp';
 
 function Index() {
   return (
     <AppLayout>
-      <div className=""></div>
+      <div className="p-3">
+        <TimeComp title="Activities Overview" />
+      </div>
       <div className="pl-4">
         <div className="flex bg-gradient-to-r from-orange-400 from-0% to-40% to-transparent border space-y-5 border-gray-50 p-3 rounded-xl">
           <div className="flex w-full">
