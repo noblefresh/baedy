@@ -25,7 +25,7 @@ function AppInput({ label, maxLength, checked, type, required, placeholder, name
       <div>
         {
           type !== "checkbox" && type !== "radio" && (
-            <label className="font-semibold text-sm">
+            <label className="font-semibold text-gray-600 text-sm">
               {label}
             </label>
           )
