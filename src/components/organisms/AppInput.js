@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 
-function AppInput({ label, maxLength, checked, type, required, placeholder, name, max, icon, value, defaultValue, display, onChange }) {
+function AppInput({ label, maxLength, checked, type, disabled, required, placeholder, name, max, icon, value, defaultValue, display, onChange }) {
   const [inputType, setInputType] = useState(type);
 
   const makeid = (length) => {
@@ -79,11 +79,12 @@ function AppInput({ label, maxLength, checked, type, required, placeholder, name
             name={name}
             required={required}
             value={value}
+            disabled={disabled}
             placeholder={placeholder}
             onChange={(e) => onChange && onChange(e)}
             defaultValue={defaultValue}
             maxLength={maxLength}
-            className="w-full border resize-none focus:border-black border-black p-3 peer outline-none rounded-lg"
+            className="w-full border appearance-none focus:border-black disabled:border-gray-100 disabled:cursor-default border-black p-3 pl-9 peer outline-none rounded-lg"
           ></textarea>
         ) : (
           <input
@@ -91,22 +92,16 @@ function AppInput({ label, maxLength, checked, type, required, placeholder, name
             required={required}
             type={inputType}
             value={value}
+            disabled={disabled}
             placeholder={placeholder}
             onChange={(e) => onChange && onChange(e)}
             defaultValue={defaultValue}
-            className="w-full border appearance-none focus:border-black border-black p-3 pl-9 peer outline-none rounded-lg"
+            className="w-full border appearance-none focus:border-black disabled:border-gray-100 disabled:cursor-default border-black p-3 pl-9 peer outline-none rounded-lg"
             maxLength={maxLength}
             {...(maxLength ? { maxLength } : {})}
             {...(max ? { max } : {})}
           />
         )}
-        {/* {
-        type !== "checkbox" && type !== "radio" && (
-          <label className="absolute text-black peer-focus:text-black pointer-events-none peer-placeholder-shown:text-gray-300 z-20 left-4 peer-placeholder-shown:left-2 peer-focus:left-4 px-1 peer-focus:text-[14px] text-[14px] -top-[9px] transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-[16px] peer-focus:-top-[9px] bg-white">
-            {label}
-          </label>
-        )
-      } */}
 
         {type === "password" && (
           <div
