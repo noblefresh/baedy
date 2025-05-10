@@ -1,5 +1,5 @@
 import React from 'react'
-import img from ""
+// import img from ""
 import Image from 'next/image'
 import AppLink from '../organisms/AppLink'
 import { FaCalendarAlt, FaUserAlt, FaCog } from "react-icons/fa";
@@ -56,7 +56,7 @@ function SideNav() {
                     </div>
                 </div>
                 <div className=''>
-                    <Image alt='img' src={img} className='w-full' />
+                    {/* <Image alt='img' src={img} className='w-full' /> */}
                 </div>
             </div>
         </div>
