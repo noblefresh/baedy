@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Session } from "@/hooks/Auth";
-import authImage from "@asset/Images/authImage.png"
+import authImage from "@/Images/authImage.png"
 import appLogo from "@asset/images/logo.png"
 import Image from "next/image";
 

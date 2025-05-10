@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import moment from 'moment'
 import { useSelector } from "react-redux";
-import appLogo from "@asset/images/logo.png"
+import appLogo from "@/images/logo.png"
 import { Session } from "@/hooks/Auth";
 import { FaBell } from "react-icons/fa6";
 import Image from "next/image";
