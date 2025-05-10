@@ -3,8 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Session } from "@/hooks/Auth";
-import authImage from "../../Images/authImage.png"
-import appLogo from "../../images/logo.png"
+import authImage from "@img/authImage.png"
+import appLogo from "@img/logo.png"
 import Image from "next/image";
 
 function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, errMsg }) {
