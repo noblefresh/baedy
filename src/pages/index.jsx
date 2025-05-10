@@ -5,8 +5,13 @@ import { IoIosArrowUp } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import TimeComp from '@/components/organisms/TimeComp';
+import { fetchDashBoardData } from '@/services/authService';
 
-function Index() {
+function Index({ dashboardData }) {
+
+  console.log(dashboardData);
+
+
   return (
     <AppLayout title="Welcome Diala 👋">
       <div className="p-3">
@@ -60,5 +65,17 @@ function Index() {
     </AppLayout>
   )
 }
+
+
+export const getServerSideProps = async (context) => {
+  const { status, data } = await fetchDashBoardData();
+
+  return {
+    props: {
+      dashboardData: status ? data : {},
+    },
+  };
+};
+
 
 export default Index

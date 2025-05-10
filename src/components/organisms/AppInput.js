@@ -21,7 +21,7 @@ function AppInput({ label, maxLength, checked, type, disabled, required, placeho
   const Fid = makeid(7)
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 select-none">
       <div>
         {
           type !== "checkbox" && type !== "radio" && (

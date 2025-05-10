@@ -49,7 +49,7 @@ function Page() {
             <AppInput placeholder="e.g 0901827464" name="phone" required icon={<ImPhone />} label="Phone" />
             <AppInput placeholder="e.g email@gmail.com" name="email" type={'mail'} icon={<MdMail />} required label="Email" />
             <div className="grid gap-4 grid-cols-2">
-                <AppInput placeholder="Country" name="country" icon={<FaMap />} required label="Country" />
+                <AppInput placeholder="Country" name="country" icon={<FaMap />} defaultValue="Nigeria" disabled required label="Country" />
                 <AppInput placeholder="State" name="state" icon={<MdExplore />} required label="State" />
             </div>
             <AppInput placeholder="City" name="city" icon={<FaMapLocation />} required label="City" />
