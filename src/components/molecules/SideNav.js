@@ -1,5 +1,5 @@
 import React from 'react'
-// import img from ""
+import img from "@asset/images/partyIcon.png"
 import Image from 'next/image'
 import AppLink from '../organisms/AppLink'
 import { FaCalendarAlt, FaUserAlt, FaCog } from "react-icons/fa";
@@ -8,9 +8,21 @@ import { HiMiniUserGroup } from "react-icons/hi2";
 import { BsFillGridFill } from "react-icons/bs";
 import { IoIosCard } from "react-icons/io";
 import { ImExit } from "react-icons/im";
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import { SignOut } from '@/hooks/Auth';
 
 
 function SideNav() {
+    const dispatch = useDispatch()
+    const router = useRouter()
+
+    const siOut = () => {
+        SignOut(dispatch)
+        router.push("/")
+    }
+
+
     return (
         <div className='px-5 py-2 h-full'>
             <div className='flex flex-col h-full  bg-gray-50/80 border border-gray-200 overflow-hidden rounded-xl'>
@@ -48,7 +60,7 @@ function SideNav() {
                                 text={"Settings"}
                                 icon={<FaCog />}
                             />
-                            <div className='flex cursor-pointer px-3 py-2 items-center gap-1'>
+                            <div onClick={siOut} className='flex cursor-pointer px-3 py-2 text-gray-500 items-center gap-1'>
                                 <ImExit />
                                 <div>Log Out</div>
                             </div>
@@ -56,7 +68,7 @@ function SideNav() {
                     </div>
                 </div>
                 <div className=''>
-                    {/* <Image alt='img' src={img} className='w-full' /> */}
+                    <Image alt='img' src={img} className='w-full' />
                 </div>
             </div>
         </div>
