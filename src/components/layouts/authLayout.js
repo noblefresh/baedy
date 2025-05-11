@@ -3,8 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Session } from "@/hooks/Auth";
-import authImage from "@asset/images/authBGImage.png"
-import appLogo from "@asset/images/appLogo.png"
+// import authImage from "@asset/images/authBGImage.png"
+// import appLogo from "@asset/images/appLogo.png"
 import Image from "next/image";
 
 function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, errMsg }) {
@@ -57,14 +57,14 @@ function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, er
     return (
       <div className="min-h-screen grid lg:grid-cols-2">
         <div className='relative overflow-hidden hidden lg:block top-0'>
-          <Image src={authImage} alt="#" className="h-screen w-[100%] z-0 absolute top-0 left-0" />
+          {/* <Image src={authImage} alt="#" className="h-screen w-[100%] z-0 absolute top-0 left-0" /> */}
           <div className="h-screen lg:flex p-20 bg-black/65 relative z-10 w-[100%] text-4xl bottom-0 hidden">
             <div className="w-[100vh] absolute left-[84%] top-0 -bottom-0 -rotate-[90deg]">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,208C640,192,800,128,960,122.7C1120,117,1280,171,1360,197.3L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
             </div>
             <div className="space-y-40">
               <div>
-                <Image src={appLogo} alt="LOGO" />
+                {/* <Image src={appLogo} alt="LOGO" /> */}
               </div>
               <div className="text-white space-y-4 max-w-md">
                 <div className="font-bold text-7xl">{title}</div>
