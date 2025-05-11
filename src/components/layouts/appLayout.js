@@ -35,9 +35,9 @@ function AppLayout({ children, title }) {
   }, [])
 
 
-  if (isAuthenticated.status === "unauthenticated") {
-    router.push("/auth/login");
-  } else {
+  // if (isAuthenticated.status === "unauthenticated") {
+  //   router.push("/auth/login");
+  // } else {
     return (
       <div className="relative">
         <div className="w-96 fixed -top-36 -right-36 h-96 rounded-full bg-orange-400"></div>
@@ -72,7 +72,7 @@ function AppLayout({ children, title }) {
         </div>
       </div>
     );
-  }
+  // }
 }
 
 export default AppLayout;
