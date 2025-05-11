@@ -1,5 +1,5 @@
 import React from 'react'
-import img from "@asset/images/partyIcon.png"
+import img from "@asset/images/pic.png"
 import Image from 'next/image'
 import AppLink from '../organisms/AppLink'
 import { FaCalendarAlt, FaUserAlt, FaCog } from "react-icons/fa";
@@ -21,7 +21,6 @@ function SideNav() {
         SignOut(dispatch)
         router.push("/")
     }
-
 
     return (
         <div className='px-5 py-2 h-full'>
