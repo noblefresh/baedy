@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import moment from 'moment'
 import { useSelector } from "react-redux";
 import appLogo from "@asset/Images/appLogo.png"
-import thanks from "@asset/images/handStar.png"
+import thanks from "@asset/images/handstar.png"
 import { Session } from "@/hooks/Auth";
 import { FaBell } from "react-icons/fa6";
 import Image from "next/image";
