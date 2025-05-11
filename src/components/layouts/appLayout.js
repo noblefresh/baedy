@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import moment from 'moment'
 import { useSelector } from "react-redux";
-// import appLogo from "./../../images/logo.png"
+import appLogo from "@asset/Images/cardSlide.png"
 import { Session } from "@/hooks/Auth";
 import { FaBell } from "react-icons/fa6";
 import Image from "next/image";
@@ -35,9 +35,9 @@ function AppLayout({ children, title }) {
   }, [])
 
 
-  // if (isAuthenticated.status === "unauthenticated") {
-  //   router.push("/auth/login");
-  // } else {
+  if (isAuthenticated.status === "unauthenticated") {
+    router.push("/auth/login");
+  } else {
     return (
       <div className="relative">
         <div className="w-96 fixed -top-36 -right-36 h-96 rounded-full bg-orange-400"></div>
@@ -46,7 +46,7 @@ function AppLayout({ children, title }) {
         <div className="min-h-screen bg-amber-50/70 z-30 relative backdrop-blur-3xl">
           <div className="p-6 z-20 sticky top-0 w-full">
             <div className="flex gap-52 items-center w-full backdrop-blur-3xl bg-gray-200/40 border border-gray-200 p-5 rounded-xl">
-              {/* <div><Image alt="logo" src={appLogo} width={35} height={60} /></div> */}
+              <div><Image alt="logo" src={appLogo} width={35} height={60} /></div>
               <div className="flex-grow flex items-center w-full">
                 <div className="flex-grow font-bold">{title}</div>
                 <div className="flex items-center gap-3">
@@ -72,7 +72,7 @@ function AppLayout({ children, title }) {
         </div>
       </div>
     );
-  // }
+  }
 }
 
 export default AppLayout;
