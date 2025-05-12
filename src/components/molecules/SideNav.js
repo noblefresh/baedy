@@ -1,5 +1,5 @@
 import React from 'react'
-import img from "@asset/Images/appLogo.png"
+import img from "@asset/Images/sideimg.png"
 import Image from 'next/image'
 import AppLink from '../organisms/AppLink'
 import { FaCalendarAlt, FaUserAlt, FaCog } from "react-icons/fa";
