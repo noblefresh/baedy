@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 // import authImage from "@asset/images/authBGImage.png"
-// import appLogo from "@asset/images/appLogo.png"
+import appLogo from "@asset/Images/appLogo.png"
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Session } from "@/hooks/Auth";
@@ -65,7 +65,7 @@ function AuthLayoutX({ title, children, subText, formTitle, formDes, onSubmit, e
             </div>
             <div className="space-y-40">
               <div>
-                {/* <Image src={appLogo} alt="LOGO" /> */}
+                <Image src={appLogo} alt="LOGO" />
               </div>
               <div className="text-white space-y-4 max-w-md">
                 <div className="font-bold text-7xl">{title}</div>
