@@ -26,7 +26,7 @@ function Page() {
             router.push("/")
             window !== "undefined" && window.location.reload()
         } else {
-            setErrMsg(data.message)
+            setErrMsg(data?.message)
         }
     }
 

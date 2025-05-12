@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import moment from 'moment'
 import { useSelector } from "react-redux";
-import thanks from "@asset/images/handstar.png"
+import thanks from "@asset/Images/sideimg.png"
 import { Session } from "@/hooks/Auth";
 import Image from "next/image";
 import SideNav from "../molecules/SideNav";
