@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Session } from "@/hooks/Auth";
 // import authImage from "@asset/images/authBGImage.png"
-// import appLogo from "@asset/images/appLogo.png"
+import appLogo from "@asset/Images/appLogo.png"
 import Image from "next/image";
 
 function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, errMsg }) {
@@ -64,7 +64,7 @@ function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, er
             </div>
             <div className="space-y-40">
               <div>
-                {/* <Image src={appLogo} alt="LOGO" /> */}
+                <Image src={appLogo} alt="LOGO" />
               </div>
               <div className="text-white space-y-4 max-w-md">
                 <div className="font-bold text-7xl">{title}</div>
