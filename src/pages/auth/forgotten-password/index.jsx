@@ -19,9 +19,9 @@ function Page() {
         setProccessing(false)
         if (status) {
             setErrMsg('')
-            router.push(`forgotten-password/otp?em=${e.email}&uid=${62345}`)
+            router.push(`forgotten-password/otp?em=${e.email}`)
         } else {
-            setErrMsg(data.message)
+            setErrMsg(data?.message)
         }
     }
 

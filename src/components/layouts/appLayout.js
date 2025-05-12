@@ -36,9 +36,9 @@ function AppLayout({ children, title }) {
   }, [])
 
 
-  if (isAuthenticated.status === "unauthenticated") {
-    router.push("/auth/login");
-  } else {
+  // if (isAuthenticated.status === "unauthenticated") {
+  //   router.push("/auth/login");
+  // } else {
     return (
       <div className="relative">
         <div className="w-96 fixed -top-36 -right-36 h-96 rounded-full bg-orange-400"></div>
@@ -59,7 +59,7 @@ function AppLayout({ children, title }) {
         </div>
 
         {
-          greetings && (
+          !greetings && (
             <div className="fixed z-50 top-0 left-0 right-0 flex items-center justify-center bottom-0 bg-black/30 h-screen w-screen">
               <div className="w-full">
                 <div className="max-w-md space-y-6 p-8 mx-auto rounded-lg border bg-white/50 border-gray-50/40 backdrop-blur-lg">
@@ -83,7 +83,7 @@ function AppLayout({ children, title }) {
 
       </div>
     );
-  }
+  // }
 }
 
 export default AppLayout;
