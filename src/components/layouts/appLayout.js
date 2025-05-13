@@ -45,14 +45,14 @@ function AppLayout({ children, title }) {
         <div className="w-96 fixed  top-72 -left-36 h-96 rounded-full bg-orange-400"></div>
         <div className="w-[60vh] h-[60vh] fixed -bottom-52 right-12 rounded-full bg-orange-400"></div>
         <div className="min-h-screen bg-amber-50/70 z-30 relative backdrop-blur-3xl">
-          <div className="p-6 z-20 sticky top-0 w-full">
-            <TopBar title={title} />
+          <div className="p-2 md:p-6 z-20 sticky top-0 w-full">
+            <TopBar toggleNaav={() => setShowNav(!showNav)} title={title} />
           </div>
-          <div className="h-screen z-20 fixed pt-32 top-0 w-64">
+          <div className={`h-screen z-20 fixed md:pt-32 top-0 ${showNav ? "":"-ml-72 md:m-0"} w-64`}>
             <SideNav />
           </div>
-          <div className="absolute p-4 z-10 overflow-auto top-0 h-screen w-full">
-            <div className="min-h-screen ml-64 mt-32 bg-gray-200/40 border border-gray-200 rounded-xl ">
+          <div className="absolute px-2 md:p-4 z-10 overflow-auto top-0 h-screen w-full">
+            <div className="min-h-screen md:ml-64 mt-20 md:mt-32 bg-gray-200/40 border border-gray-200 rounded-xl ">
               {children}
             </div>
           </div>

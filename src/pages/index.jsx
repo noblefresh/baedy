@@ -6,14 +6,15 @@ import { FaCopy } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import TimeComp from '@/components/organisms/TimeComp';
 import { fetchDashBoardData } from '@/services/authService';
+import { useSelector } from 'react-redux';
 
 function Index({ dashboardData }) {
 
-  console.log(dashboardData);
+  const user = useSelector((state) => state.User);
 
 
   return (
-    <AppLayout title="Welcome Diala 👋">
+    <AppLayout title={`Welcome ${user?.value?.user?.fname} 👋`}>
       <div className="p-3">
         <TimeComp title="Activities Overview" />
       </div>

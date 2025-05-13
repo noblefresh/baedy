@@ -33,7 +33,7 @@ function SubscriptionPlan() {
                                         <div>▪ Birthday: Sponsored birthday party (venue, cake, entertainment) OR dinner date for two.</div>
                                         <div>▪ Wedding: #1,000,000 naira toward wedding expenses + a romantic getaway voucher.</div>
                                         <div>▪ Graduation: #1,000,000 naira tech bundle (laptop, tablet, etc.) + career coaching session.</div>
-                                        <div>▪ Anniversary: #1,000,000 luxury gift basket + couple’s spa day.</div>
+                                        <div>▪ Anniversary: #1,000,000 luxury gift basket + couple&apos;s spa day.</div>
                                     </div>
                                 </div>
                             </div>
