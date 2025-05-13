@@ -1,8 +1,7 @@
 import AppLayout from '@/components/layouts/appLayout'
+import ReferralChip from '@/components/organisms/ReferralChip';
 import TimeComp from '@/components/organisms/TimeComp';
 import React from 'react'
-import { FaCopy } from "react-icons/fa";
-import { FaRegShareFromSquare } from "react-icons/fa6";
 
 function Referral() {
   return (
@@ -12,21 +11,9 @@ function Referral() {
         <TimeComp title="Invite others and get more rewards." />
       </div>
       <div className="px-4">
-        <div className="flex bg-gradient-to-r from-orange-400 from-0% to-40% to-transparent border space-y-5 border-gray-50 p-3 rounded-xl">
-          <div className="flex w-full">
-            <div className="flex-grow relative top-1">Refer your friends to earn amazing reward through your referral link.</div>
-            <div className="flex w-96 bg-gray-200/40 border border-gray-50 rounded-lg overflow-hidden">
-              <div className="flex-grow gap-4 text-xs flex items-center">
-                <div className="text-amber-600 px-3 font-bold">Referral link:</div>
-                <div className="">https//www.baedy.com/diala</div>
-              </div>
-              <div className="text-amber-600 cursor-pointer bg-amber-200 p-2"><FaCopy /></div>
-              <div className="text-amber-600 cursor-pointer bg-amber-200 p-2"><FaRegShareFromSquare /></div>
-            </div>
-          </div>
-        </div>
+        <ReferralChip />
       </div>
-      <div className="p-3 grid-cols-2 grid gap-4">
+      <div className="p-3 lg:grid-cols-2 grid gap-4">
         <div className="">
           <div className="bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
             <div className="font-bold">Referral Rewards</div>

@@ -19,7 +19,7 @@ function BirthdayMateAccord({ data }) {
                 </div>
                 {
                     show && (
-                        <div className="grid grid-cols-4 gap-6">
+                        <div className="grid  sm:grid-cols-2 xl:grid-cols-4 gap-6">
                             {
                                 ["", "", "", ""].map((e, i) => <BirthdayCard key={i} />)
                             }

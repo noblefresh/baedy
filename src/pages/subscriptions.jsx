@@ -15,7 +15,7 @@ function Subscriptions() {
         <div className="p-3">
           <TimeComp title="Manage your celebration access plan." />
         </div>
-        <div className="">
+        <div className="px-3">
           <div className="max-w-3xl mx-auto border bg-gray-50/50 space-y-5 border-gray-50 p-3 rounded-xl">
             <div className="h-96 overflow-hidden relative bg-gradient-to-br rounded-xl from-amber-950 from-30% via-amber-500 to-amber-300">
               <Image alt='card' src={cardImg} className='absolute bottom-24 -right-40' width={500} height={500} />
@@ -40,15 +40,15 @@ function Subscriptions() {
           <div className="p-5">
             <div className=" border bg-gray-50/50 space-y-5 border-gray-50 p-3 rounded-xl">
               <div className="font-bold">Subscription History</div>
-              <div className="">
+              <div className=" overflow-x-auto">
                 <table className='w-full gap-2 text-left'>
                   <tr>
-                    <th>Events</th>
-                    <th>Amount</th>
-                    <th>Payment Method</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
+                    <th><div className="w-44">Events</div></th>
+                    <th><div className="w-32">Amount</div></th>
+                    <th><div className="w-44">Payment Method</div></th>
+                    <th><div className="w-24">Date</div></th>
+                    <th><div className="w-24">Time</div></th>
+                    <th><div className="">Status</div></th>
                   </tr>
 
                   <tr className="text-xs">

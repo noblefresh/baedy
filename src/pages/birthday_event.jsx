@@ -13,7 +13,7 @@ function BirthdayEvent() {
       <div className="p-3 space-y-4">
         <div className="p-3 border space-y-5 bg-gray-50/40 border-gray-50 rounded-xl">
           <div className="font-bold text-sm">Birthday Events</div>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid  sm:grid-cols-2 xl:grid-cols-4 gap-4">
             {
               ["", "", "", ""].map((e, i) => <BirthdayEventChip key={i} />)
             }

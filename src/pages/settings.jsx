@@ -16,8 +16,8 @@ function Settings() {
       <div className="p-3">
         <TimeComp title="Manage account and security." />
       </div>
-      <div className="grid grid-cols-5">
-        <div className="p-3 col-span-4 space-y-16">
+      <div className="">
+        <div className="p-3 space-y-16">
           <div className="">
             <div className="">
               <div className="">
@@ -38,7 +38,7 @@ function Settings() {
             <AppInput placeholder="Password" name="password" icon={<RiLockStarFill />} required label="New Password" type="password" />
             <AppInput placeholder="Confirm Password" name="cpassword" icon={<RiLockStarFill />} required label="Confirm Password" type="password" />
             <div className="flex gap-3">
-              <button disabled={proccessing} className="px-7 cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Change Password"}</button>
+              <button disabled={proccessing} className="px-7 w-full sm:w-auto cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Change Password"}</button>
             </div>
           </form>
         </div>

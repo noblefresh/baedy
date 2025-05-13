@@ -55,7 +55,7 @@ function Wallet() {
         <div className="p-3">
           <TimeComp title="Manage balances, view rewards, and fund your celebration experience." />
         </div>
-        <div className="">
+        <div className="px-3">
           <div className="max-w-3xl mx-auto border bg-gray-50/50 space-y-5 border-gray-50 p-3 rounded-xl">
             <div className="h-72 overflow-hidden relative bg-gradient-to-bl rounded-xl from-amber-600 via-amber-500 to-amber-500">
               <Image alt='card' src={cardImg} className='absolute bottom-20 -right-40' width={300} height={300} />
@@ -86,60 +86,62 @@ function Wallet() {
           <div className="p-5">
             <div className=" border bg-gray-50/50 space-y-5 border-gray-50 p-3 rounded-xl">
               <div className="font-bold">Transactions</div>
-              <div className="">
+              <div className="overflow-x-auto">
                 <table className='w-full gap-2 text-left'>
-                  <tr>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                  </tr>
+                  <thead>
+                    <th> <div  className='w-32'> Type</div></th>
+                    <th> <div  className='w-32 lg:w-52'> Amount</div></th>
+                    <th> <div  className='w-32 lg:w-52'> Date</div></th>
+                    <th> <div  className='w-32 lg:w-52'> Time</div></th>
+                    <th> <div  className='w-24 lg:w-44'> Status</div></th>
+                  </thead>
 
-                  <tr className="text-xs">
-                    <td className='pt-4'>
-                      <div>
-                        <div className="font-bold">Withdrawal</div>
-                        <div className="">ID: 1234567</div>
-                      </div>
-                    </td>
-                    <td>&#8358;50,000</td>
-                    <td>16-04-2025</td>
-                    <td>10:47 am</td>
-                    <td>
-                      <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr className="text-xs">
+                      <td className='pt-4'>
+                        <div className=''>
+                          <div className="font-bold">Withdrawal</div>
+                          <div className="">ID: 1234567</div>
+                        </div>
+                      </td>
+                      <td>&#8358;50,000</td>
+                      <td>16-04-2025</td>
+                      <td>10:47 am</td>
+                      <td>
+                        <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
+                      </td>
+                    </tr>
 
-                  <tr className="text-xs">
-                    <td className='pt-4'>
-                      <div>
-                        <div className="font-bold">Withdrawal</div>
-                        <div className="">ID: 1234567</div>
-                      </div>
-                    </td>
-                    <td>&#8358;50,000</td>
-                    <td>16-04-2025</td>
-                    <td>10:47 am</td>
-                    <td>
-                      <div className="text-xs text-green-500 px-3 py-1 inline rounded-md bg-green-300/30">Completed</div>
-                    </td>
-                  </tr>
+                    <tr className="text-xs">
+                      <td className='pt-4'>
+                        <div>
+                          <div className="font-bold">Withdrawal</div>
+                          <div className="">ID: 1234567</div>
+                        </div>
+                      </td>
+                      <td>&#8358;50,000</td>
+                      <td>16-04-2025</td>
+                      <td>10:47 am</td>
+                      <td>
+                        <div className="text-xs text-green-500 px-3 py-1 inline rounded-md bg-green-300/30">Completed</div>
+                      </td>
+                    </tr>
 
-                  <tr className="text-xs">
-                    <td className='pt-4'>
-                      <div>
-                        <div className="font-bold">Withdrawal</div>
-                        <div className="">ID: 1234567</div>
-                      </div>
-                    </td>
-                    <td>&#8358;50,000</td>
-                    <td>16-04-2025</td>
-                    <td>10:47 am</td>
-                    <td>
-                      <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
-                    </td>
-                  </tr>
+                    <tr className="text-xs">
+                      <td className='pt-4'>
+                        <div>
+                          <div className="font-bold">Withdrawal</div>
+                          <div className="">ID: 1234567</div>
+                        </div>
+                      </td>
+                      <td>&#8358;50,000</td>
+                      <td>16-04-2025</td>
+                      <td>10:47 am</td>
+                      <td>
+                        <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>

@@ -10,6 +10,10 @@ import SideNav from "../molecules/SideNav";
 import Link from "next/link";
 import TopBar from "../organisms/TopBar";
 
+
+// TODO: add page mata title
+
+
 function AppLayout({ children, title }) {
   const user = useSelector((state) => state.User);
   const isAuthenticated = Session(user);

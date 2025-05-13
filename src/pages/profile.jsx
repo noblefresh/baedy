@@ -28,7 +28,7 @@ function Profile() {
         </div>
         <div className="space-y-3 bg-white/60 border border-gray-200 p-5 rounded-xl">
           <div className="font-bold">Personal Info</div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             <AppInput disabled={!editMode} placeholder="e.g Chisomaga" name="fname" required icon={<HiUser />} label="First Name" />
             <AppInput disabled={!editMode} placeholder="e.g Diala" name="lname" required icon={<HiUser />} label="Last Name" />
             <AppInput disabled={!editMode} placeholder="e.g 0901827464" name="phone" required icon={<ImPhone />} label="Phone" />
@@ -39,7 +39,7 @@ function Profile() {
             <AppInput disabled={!editMode} name="dob" icon={<FaCalendarAlt />} required label="Date of Birth" type={"date"} />
             {
               editMode && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="">
                     <div className="flex">
                       <div onClick={() => setEditMode(false)} className="px-4 cursor-pointer w-full text-center border border-amber-500 text-amber-500 rounded-lg py-3">Cancel</div>
