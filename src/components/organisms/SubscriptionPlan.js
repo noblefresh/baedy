@@ -4,7 +4,7 @@ import thanks from "@asset/Images/thankshand.png"
 
 function SubscriptionPlan() {
     return (
-        <div className="max-w-7xl mx-auto bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
+        <div className="max-w-[85%] mx-auto bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
             <div>
                 <Image alt="Thank" src={thanks} width={100} height={100} className="w-44 mx-auto pointer-events-none" />
             </div>
