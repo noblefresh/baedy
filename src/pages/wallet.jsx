@@ -3,18 +3,34 @@ import TimeComp from '@/components/organisms/TimeComp'
 import Image from 'next/image'
 import cardImg from "@asset/Images/cards.png"
 import wallet from "@asset/Images/wallet.png"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsPlusCircleFill } from "react-icons/bs";
 import { IoCashOutline } from "react-icons/io5";
 import AppModal from '@/components/organisms/AppModal'
 import AppInput from '@/components/organisms/AppInput'
 import { IoMail } from "react-icons/io5";
+import { fetchWallet } from '@/services/authService'
+import { FaRegFolderOpen } from "react-icons/fa";
 
 function Wallet() {
 
+  const [walletInfo, setWalletInfo] = useState({})
   const [showModal, setShowModal] = useState(false)
   const [addForm, setAddForm] = useState(false)
   const [proccessing, setProccessing] = useState(false)
+
+  const fetchdata = async () => {
+    const { data, status } = await fetchWallet()
+    setWalletInfo(data?.data);
+  }
+
+
+  useEffect(() => {
+    fetchdata()
+  }, [])
+
+
+
 
   return (
     <>
@@ -67,7 +83,14 @@ function Wallet() {
                   </div>
                 </div>
                 <div className="text-white text-lg font-extralight">Balance</div>
-                <div className="font-extrabold text-5xl text-white">&#8358;200,000</div>
+                <div className="font-extrabold text-5xl text-white">&#8358;{
+                  walletInfo?.wallet?.balance != null
+                    ? new Intl.NumberFormat('en-US', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }).format(walletInfo?.wallet.balance)
+                    : '0.00'
+                }</div>
               </div>
             </div>
             <div className="flex items-center justify-center">
@@ -87,62 +110,49 @@ function Wallet() {
             <div className=" border bg-gray-50/50 space-y-5 border-gray-50 p-3 rounded-xl">
               <div className="font-bold">Transactions</div>
               <div className="overflow-x-auto">
-                <table className='w-full gap-2 text-left'>
-                  <thead>
-                    <th> <div  className='w-32'> Type</div></th>
-                    <th> <div  className='w-32 lg:w-52'> Amount</div></th>
-                    <th> <div  className='w-32 lg:w-52'> Date</div></th>
-                    <th> <div  className='w-32 lg:w-52'> Time</div></th>
-                    <th> <div  className='w-24 lg:w-44'> Status</div></th>
-                  </thead>
+                {
+                  walletInfo?.transactions?.length > 0 ? (
+                    <table className='w-full gap-2 text-left'>
+                      <thead>
+                        <tr>
+                          <th> <div className='w-32'> Type</div></th>
+                          <th> <div className='w-32 lg:w-52'> Amount</div></th>
+                          <th> <div className='w-32 lg:w-52'> Date</div></th>
+                          <th> <div className='w-32 lg:w-52'> Time</div></th>
+                          <th> <div className='w-24 lg:w-44'> Status</div></th>
+                        </tr>
+                      </thead>
 
-                  <tbody>
-                    <tr className="text-xs">
-                      <td className='pt-4'>
-                        <div className=''>
-                          <div className="font-bold">Withdrawal</div>
-                          <div className="">ID: 1234567</div>
-                        </div>
-                      </td>
-                      <td>&#8358;50,000</td>
-                      <td>16-04-2025</td>
-                      <td>10:47 am</td>
-                      <td>
-                        <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
-                      </td>
-                    </tr>
+                      <tbody>
+                        {
+                          walletInfo?.transactions?.map(ex => (
+                            <tr key={ex.id} className="text-xs">
+                              <td className='pt-4'>
+                                <div className=''>
+                                  <div className="font-bold">Withdrawal</div>
+                                  <div className="">ID: 1234567</div>
+                                </div>
+                              </td>
+                              <td>&#8358;50,000</td>
+                              <td>16-04-2025</td>
+                              <td>10:47 am</td>
+                              <td>
+                                {/* <div className="text-xs text-green-500 px-3 py-1 inline rounded-md bg-green-300/30">Completed</div> */}
+                                <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
+                              </td>
+                            </tr>
+                          ))
+                        }
+                      </tbody>
+                    </table>
+                  ) : (
+                    <div className="text-gray-400 flex flex-col items-center justify-center h-52">
+                      <div className="text-2xl"><FaRegFolderOpen /></div>
+                      <div className="">No transactions yet</div>
+                    </div>
+                  )
+                }
 
-                    <tr className="text-xs">
-                      <td className='pt-4'>
-                        <div>
-                          <div className="font-bold">Withdrawal</div>
-                          <div className="">ID: 1234567</div>
-                        </div>
-                      </td>
-                      <td>&#8358;50,000</td>
-                      <td>16-04-2025</td>
-                      <td>10:47 am</td>
-                      <td>
-                        <div className="text-xs text-green-500 px-3 py-1 inline rounded-md bg-green-300/30">Completed</div>
-                      </td>
-                    </tr>
-
-                    <tr className="text-xs">
-                      <td className='pt-4'>
-                        <div>
-                          <div className="font-bold">Withdrawal</div>
-                          <div className="">ID: 1234567</div>
-                        </div>
-                      </td>
-                      <td>&#8358;50,000</td>
-                      <td>16-04-2025</td>
-                      <td>10:47 am</td>
-                      <td>
-                        <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </div>
           </div>
