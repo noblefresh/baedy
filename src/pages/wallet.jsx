@@ -9,11 +9,12 @@ import { IoCashOutline } from "react-icons/io5";
 import AppModal from '@/components/organisms/AppModal'
 import AppInput from '@/components/organisms/AppInput'
 import { IoMail } from "react-icons/io5";
-import { fetchWallet, payment } from '@/services/authService'
+import { fetchBank, fetchWallet, payment } from '@/services/authService'
 import { FaRegFolderOpen } from "react-icons/fa";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import serialize from '@/hooks/Serialize'
 import { useRouter } from 'next/navigation'
+import { convertToAmPm } from '@/hooks/utils'
 
 function Wallet() {
 
@@ -32,32 +33,25 @@ function Wallet() {
   }
 
 
+  const fetcBankList = async () => {
+    const { data, status } = await fetchBank()
+    console.log(data);
+    
+  }
+
+
   const pay = async (e) => {
     e.preventDefault()
     setProccessingFund(true)
     const payload = serialize(e.target)
-
     const { data, status } = await payment(payload)
-
     router.push(data.data.data.authorization_url, '_blank', 'noopener,noreferrer')
-
     setProccessingFund(false)
-
   }
-
-
-  function convertToAmPm(timeStr) {
-    const [hourStr, minute, second] = timeStr.split(":");
-    let hour = parseInt(hourStr, 10);
-    const ampm = hour >= 12 ? "pm" : "am";
-    hour = hour % 12;
-    hour = hour === 0 ? 12 : hour;
-    return `${hour}:${minute} ${ampm}`;
-  }
-
 
   useEffect(() => {
     fetchdata()
+    fetcBankList()
   }, [])
 
 

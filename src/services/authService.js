@@ -17,7 +17,7 @@ export const fetchDashBoardData = () => apiWithAuth.post("/app/dashboard/fetch")
 export const payment = (payload) => apiWithAuth.post("/app/wallet/initialize-paystack",payload).then(getApiResponse).catch(getErrorResponse)
 export const fetchWallet = () => apiWithAuth.get("/app/wallet/fetch").then(getApiResponse).catch(getErrorResponse)
 export const addBank = () => apiWithAuth.post("/app/wallet/add_bank_account").then(getApiResponse).catch(getErrorResponse)
-export const fetchBank = () => apiWithAuth.post("/app/wallet/fetch_bank").then(getApiResponse).catch(getErrorResponse)
+export const fetchBank = () => apiWithAuth.post("/app/profile/fetch_bank").then(getApiResponse).catch(getErrorResponse)
 export const withdrawal = () => apiWithAuth.post("/app/wallet/withdraw").then(getApiResponse).catch(getErrorResponse)
 export const giftUser = () => apiWithAuth.post("/app/wallet/gift_user").then(getApiResponse).catch(getErrorResponse)
 
@@ -26,12 +26,9 @@ export const subscribeUser = () => apiWithAuth.post("/app/subscription/subscribe
 export const fetchSubscribtions = () => apiWithAuth.post("/app/subscription/fetch").then(getApiResponse).catch(getErrorResponse)
 
 
-
 export const fetchReferral = () => apiWithAuth.post("/app/referral/fetch").then(getApiResponse).catch(getErrorResponse)
 
-
 export const fetchBirthdays = () => apiWithAuth.post("/app/birthday/fetch_birthdays").then(getApiResponse).catch(getErrorResponse)
-
 
 
 export const fetchProfile = () => apiWithAuth.post("/app/profile/fetch").then(getApiResponse).catch(getErrorResponse)

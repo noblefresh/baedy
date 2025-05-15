@@ -7,22 +7,17 @@ import React, { useEffect, useState } from 'react'
 
 function BirthdayEvent() {
 
-  const [list, setList] = useState({})
+  const [list, setList] = useState([])
 
   const fetchBirthdayList = async () => {
     const { data, status } = await fetchBirthdays()
-
-    
-
-    // setList(data)
+    const newArr = status && Object.entries(data)
+    setList(newArr)
   }
 
   useEffect(() => {
     fetchBirthdayList()
   }, [])
-
-
-  // fetchBirthdays
 
 
   return (

@@ -5,4 +5,15 @@ function convertMinutesToHours(minutes) {
 }
 
 
-export { convertMinutesToHours };
+
+function convertToAmPm(timeStr) {
+    const [hourStr, minute, second] = timeStr.split(":");
+    let hour = parseInt(hourStr, 10);
+    const ampm = hour >= 12 ? "pm" : "am";
+    hour = hour % 12;
+    hour = hour === 0 ? 12 : hour;
+    return `${hour}:${minute} ${ampm}`;
+}
+
+
+export { convertMinutesToHours, convertToAmPm };
