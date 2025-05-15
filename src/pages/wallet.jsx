@@ -9,12 +9,17 @@ import { IoCashOutline } from "react-icons/io5";
 import AppModal from '@/components/organisms/AppModal'
 import AppInput from '@/components/organisms/AppInput'
 import { IoMail } from "react-icons/io5";
-import { fetchBank, fetchWallet, payment } from '@/services/authService'
+import { fetchBank, fetchpayStack, fetchWallet, payment } from '@/services/authService'
 import { FaRegFolderOpen } from "react-icons/fa";
 import { BiMoneyWithdraw } from "react-icons/bi";
+import { TbNumber123 } from "react-icons/tb";
 import serialize from '@/hooks/Serialize'
 import { useRouter } from 'next/navigation'
 import { convertToAmPm } from '@/hooks/utils'
+import { PiBankDuotone } from 'react-icons/pi'
+import AppSelect from '@/components/organisms/AppSelect'
+import { FaCircleUser } from 'react-icons/fa6'
+import { RiBankLine } from 'react-icons/ri'
 
 function Wallet() {
 
@@ -24,19 +29,32 @@ function Wallet() {
   const [proccessing, setProccessing] = useState(false)
   const [proccessingFund, setProccessingFund] = useState(false)
   const [showFundModal, setShowFundModal] = useState(false)
+  const [bankList, setBankList] = useState([])
+  const [bank, setBank] = useState('')
+
+
 
   const router = useRouter()
 
   const fetchdata = async () => {
     const { data, status } = await fetchWallet()
     setWalletInfo(data?.data);
+
+    const { data: banks, status: bankStatus } = await fetchpayStack()
+
+    const result = []
+
+    bankStatus && banks?.data?.forEach(el => {
+      result.push({ label: el.name, value: el.code })
+    });
+
+    setBank(result)
   }
 
 
   const fetcBankList = async () => {
     const { data, status } = await fetchBank()
-    console.log(data);
-    
+    status && setBankList(data?.data);
   }
 
 
@@ -58,36 +76,87 @@ function Wallet() {
   return (
     <>
       <AppModal mode={showModal} withClose={() => { setShowModal(false); setAddForm(false) }}>
-        <form className="space-y-7">
-          <div className="font-extrabold text-center text-2xl">Withdraw Funds</div>
-          <div className="space-y-5">
-            <div className="flex">
-              <div onClick={() => setAddForm(true)} className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Add Account</div>
-            </div>
-            <div className="text-xs text-center">Please enter the amount and bank details below to withdraw funds.</div>
-            <div className="">
-              <AppInput placeholder="Min. 1000" name="amount" icon={<IoMail />} required label="Withdrawal Amount" />
-            </div>
-            {
-              addForm && (
-                <div className="grid grid-cols-2 gap-4">
-                  <AppInput placeholder="902920819" name="amount" icon={<IoMail />} required label="Bank Account Number" />
-                  <AppInput placeholder="John Doe" name="amount" icon={<IoMail />} required label="Account Name" />
-                  <AppInput placeholder="Savings Account" name="amount" icon={<IoMail />} required label="Account Type" />
-                  <AppInput placeholder="Opay" name="amount" icon={<IoMail />} required label="Bank Name" />
-                </div>
-              )
-            }
 
-            <div className="">
-              <div className="space-y-4">
-                <div className="flex gap-3">
-                  <button disabled={proccessing} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Make Withdrawal"}</button>
+
+        {
+          addForm ? (
+            <form className="space-y-7">
+              <div className="font-extrabold text-center text-2xl">Add Account</div>
+              <div className="space-y-5">
+                <div className="grid grid-cols-2 gap-4">
+                  <AppSelect name="bank" label="Bank" icon={<RiBankLine />} options={[...bank]} />
+                  <AppInput placeholder="Account number" name="amount" icon={<TbNumber123 />} required label="Account Number" />
+                  <div className="col-span-2">
+                    <AppInput placeholder="John Doe" disabled name="amount" icon={<FaCircleUser />} required label="Bank Name" />
+                  </div>
+                </div>
+
+                <div className="">
+                  <div className="space-y-4">
+                    <div className="flex gap-3">
+                      <div onClick={() => { setAddForm(false) }} className="flex-grow cursor-pointer text-amber-500 border border-amber-500 text-center rounded-lg py-3"> Cancel </div>
+                      <button disabled={proccessing} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Add Account"}</button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </form>
+            </form>
+          ) : (
+            <form className="space-y-7">
+              <div className="font-extrabold text-center text-2xl">Withdraw Funds</div>
+              <div className="space-y-5">
+                {
+                  bankList[0]?.length > 0 ? (
+                    <div className="space-y-3">
+                      <div className="font-bold">Select Bank</div>
+                      <div>
+                        {
+                          bankList[0].map((data, i) => (
+                            <label key={i} className='has-[:checked]:bg-gray-50 has-[:checked]:border-gray-800 cursor-pointer flex items-center gap-3 border border-gray-300 rounded-lg p-3'>
+                              <input type="radio" value={data.id} name="bank_id" required class="opacity-0 absolute" />
+                              <div className="">
+                                <div className='bg-white shadow-md h-10 w-10 sm:h-14 sm:w-14 rounded-full flex items-center justify-center'>
+                                  <PiBankDuotone />
+                                </div>
+                              </div>
+                              <div>
+                                <div className='font-semibold text-sm sm:text-base'>{data.account_name}</div>
+                                <div className='flex flex-wrap items-center text-xs sm:text-sm gap-1'>
+                                  <div>{data.account_number}</div>
+                                  <div className='w-1 h-1 rounded-full bg-black'></div>
+                                  <div>{data.bank_name}</div>
+                                </div>
+                              </div>
+                            </label>
+                          ))
+                        }
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-5">
+                      <div className="flex">
+                        <div onClick={() => setAddForm(true)} className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Add Account</div>
+                      </div>
+                      <div className="text-xs text-center">Please enter the amount and bank details below to withdraw funds.</div>
+                    </div>
+                  )
+                }
+
+                <div className="">
+                  <AppInput placeholder="Min. 1000" name="amount" icon={<IoMail />} required label="Withdrawal Amount" />
+                </div>
+
+                <div className="">
+                  <div className="space-y-4">
+                    <div className="flex gap-3">
+                      <button disabled={proccessing} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Make Withdrawal"}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          )
+        }
       </AppModal>
 
 

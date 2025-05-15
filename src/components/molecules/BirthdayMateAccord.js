@@ -7,9 +7,6 @@ function BirthdayMateAccord({ data }) {
 
     const [show, setShow] = useState(false)
 
-    console.log(data[1]);
-
-
     return (
         <div>
             <div className="bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
