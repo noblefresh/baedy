@@ -2,9 +2,29 @@ import AppLayout from '@/components/layouts/appLayout'
 import BirthdayMateAccord from '@/components/molecules/BirthdayMateAccord'
 import BirthdayEventChip from '@/components/organisms/BirthdayEventChip'
 import TimeComp from '@/components/organisms/TimeComp'
-import React from 'react'
+import { fetchBirthdays } from '@/services/authService'
+import React, { useEffect, useState } from 'react'
 
 function BirthdayEvent() {
+
+  const [list, setList] = useState({})
+
+  const fetchBirthdayList = async () => {
+    const { data, status } = await fetchBirthdays()
+
+    
+
+    // setList(data)
+  }
+
+  useEffect(() => {
+    fetchBirthdayList()
+  }, [])
+
+
+  // fetchBirthdays
+
+
   return (
     <AppLayout title="All User Birthday Event">
       <div className="p-3">
@@ -21,7 +41,7 @@ function BirthdayEvent() {
         </div>
 
         {
-          ["May","June","July","August","September","October"].map((e) => <BirthdayMateAccord data={e} key={e} /> )
+          list.map((e) => <BirthdayMateAccord data={e} key={e} />)
         }
       </div>
     </AppLayout>

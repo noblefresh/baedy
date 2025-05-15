@@ -22,7 +22,7 @@ function SubscriptionDetails() {
                         <TfiAngleLeft /> Go Back
                     </div>
                     <div className="p-3">
-                        <SubscriptionPlan />
+                        <SubscriptionPlan text="Continue To Subscription" />
                     </div>
                 </div>
             </div>

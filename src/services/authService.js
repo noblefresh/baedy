@@ -14,7 +14,7 @@ export const fetchDashBoardData = () => apiWithAuth.post("/app/dashboard/fetch")
 
 
 
-export const payment = () => apiWithAuth.post("/app/wallet/initialize-paystack").then(getApiResponse).catch(getErrorResponse)
+export const payment = (payload) => apiWithAuth.post("/app/wallet/initialize-paystack",payload).then(getApiResponse).catch(getErrorResponse)
 export const fetchWallet = () => apiWithAuth.get("/app/wallet/fetch").then(getApiResponse).catch(getErrorResponse)
 export const addBank = () => apiWithAuth.post("/app/wallet/add_bank_account").then(getApiResponse).catch(getErrorResponse)
 export const fetchBank = () => apiWithAuth.post("/app/wallet/fetch_bank").then(getApiResponse).catch(getErrorResponse)

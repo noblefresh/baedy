@@ -15,7 +15,7 @@ function BirthdayMateAccord({ data }) {
                         <div className="font-bold">Birthday Mates -</div>
                         <div className="">This month</div>
                     </div>
-                    <div onClick={() => setShow(!show)} className="flex gap-2 cursor-pointer items-center">{data} <IoIosArrowUp /></div>
+                    {/* <div onClick={() => setShow(!show)} className="flex gap-2 cursor-pointer items-center">{data} <IoIosArrowUp /></div> */}
                 </div>
                 {
                     show && (

@@ -9,8 +9,11 @@ import { IoCashOutline } from "react-icons/io5";
 import AppModal from '@/components/organisms/AppModal'
 import AppInput from '@/components/organisms/AppInput'
 import { IoMail } from "react-icons/io5";
-import { fetchWallet } from '@/services/authService'
+import { fetchWallet, payment } from '@/services/authService'
 import { FaRegFolderOpen } from "react-icons/fa";
+import { BiMoneyWithdraw } from "react-icons/bi";
+import serialize from '@/hooks/Serialize'
+import { useRouter } from 'next/navigation'
 
 function Wallet() {
 
@@ -18,6 +21,10 @@ function Wallet() {
   const [showModal, setShowModal] = useState(false)
   const [addForm, setAddForm] = useState(false)
   const [proccessing, setProccessing] = useState(false)
+  const [proccessingFund, setProccessingFund] = useState(false)
+  const [showFundModal, setShowFundModal] = useState(false)
+
+  const router = useRouter()
 
   const fetchdata = async () => {
     const { data, status } = await fetchWallet()
@@ -25,11 +32,33 @@ function Wallet() {
   }
 
 
+  const pay = async (e) => {
+    e.preventDefault()
+    setProccessingFund(true)
+    const payload = serialize(e.target)
+
+    const { data, status } = await payment(payload)
+
+    router.push(data.data.data.authorization_url, '_blank', 'noopener,noreferrer')
+
+    setProccessingFund(false)
+
+  }
+
+
+  function convertToAmPm(timeStr) {
+    const [hourStr, minute, second] = timeStr.split(":");
+    let hour = parseInt(hourStr, 10);
+    const ampm = hour >= 12 ? "pm" : "am";
+    hour = hour % 12;
+    hour = hour === 0 ? 12 : hour;
+    return `${hour}:${minute} ${ampm}`;
+  }
+
+
   useEffect(() => {
     fetchdata()
   }, [])
-
-
 
 
   return (
@@ -66,6 +95,27 @@ function Wallet() {
           </div>
         </form>
       </AppModal>
+
+
+      <AppModal mode={showFundModal} withClose={() => { setShowFundModal(false) }}>
+        <form onSubmit={pay} className="space-y-7">
+          <div className="font-extrabold text-center text-2xl">Fund Account</div>
+          <div className="space-y-5">
+            <div className="">
+              <AppInput placeholder="Min. 1000" name="amount" icon={<BiMoneyWithdraw />} type="number" required label="Enter Amount" />
+            </div>
+            <div className="">
+              <div className="space-y-4">
+                <div className="flex gap-3">
+                  <button disabled={proccessingFund} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessingFund ? "Proccessing..." : "Make Payment"}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </AppModal>
+
+
       <AppLayout title="Wallet">
 
         <div className="p-3">
@@ -95,7 +145,7 @@ function Wallet() {
             </div>
             <div className="flex items-center justify-center">
               <div className="bg-gray-50/50 flex gap-4 border-gray-50 p-3 rounded-xl">
-                <div className="text-center flex items-center justify-center flex-col gap-2 cursor-pointer bg-amber-300/10 px-9 rounded-md py-5 ">
+                <div onClick={() => setShowFundModal(true)} className="text-center flex items-center justify-center flex-col gap-2 cursor-pointer bg-amber-300/10 px-9 rounded-md py-5 ">
                   <div className="text-amber-600 text-3xl text-center"><BsPlusCircleFill /></div>
                   <div className="">Fund Wallet</div>
                 </div>
@@ -129,16 +179,20 @@ function Wallet() {
                             <tr key={ex.id} className="text-xs">
                               <td className='pt-4'>
                                 <div className=''>
-                                  <div className="font-bold">Withdrawal</div>
-                                  <div className="">ID: 1234567</div>
+                                  <div className="font-bold capitalize">{ex.type}</div>
+                                  <div className="">ID: {ex.transaction_id}</div>
                                 </div>
                               </td>
-                              <td>&#8358;50,000</td>
-                              <td>16-04-2025</td>
-                              <td>10:47 am</td>
+                              <td>&#8358;{
+                                new Intl.NumberFormat('en-US', {
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2
+                                }).format(ex?.amount)
+                              }</td>
+                              <td>{ex.created_at.split('T')[0]}</td>
+                              <td>{convertToAmPm(ex.created_at.split('T')[1].split('.')[0])}</td>
                               <td>
-                                {/* <div className="text-xs text-green-500 px-3 py-1 inline rounded-md bg-green-300/30">Completed</div> */}
-                                <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
+                                <div className={`text-xs ${ex.status === "success" ? "text-green-500 bg-green-300/30" : "text-red-500 bg-red-300/30"} px-3 py-1 inline rounded-md`}>{ex.status}</div>
                               </td>
                             </tr>
                           ))

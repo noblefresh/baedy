@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import thanks from "@asset/Images/thankshand.png"
 import { fetchSubscribtions } from '@/services/authService'
 
-function SubscriptionPlan() {
+function SubscriptionPlan({ text }) {
 
 
     const fetchPlans = async () => {
@@ -170,7 +170,7 @@ function SubscriptionPlan() {
                         </div>
                         <div className="">
                             <div className="">
-                                <button className="px-7 w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Continue To Renew</button>
+                                <button className="px-7 w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">{text}</button>
                             </div>
                         </div>
                     </div>
