@@ -23,7 +23,7 @@ export const giftUser = () => apiWithAuth.post("/app/wallet/gift_user").then(get
 
 
 export const subscribeUser = () => apiWithAuth.post("/app/subscription/subscribe").then(getApiResponse).catch(getErrorResponse)
-export const fetchSubscribtion = () => apiWithAuth.post("/app/subscription/fetch").then(getApiResponse).catch(getErrorResponse)
+export const fetchSubscribtions = () => apiWithAuth.post("/app/subscription/fetch").then(getApiResponse).catch(getErrorResponse)
 
 
 

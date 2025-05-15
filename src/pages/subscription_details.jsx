@@ -18,7 +18,7 @@ function SubscriptionDetails() {
                     <TopBar title="Welcome Diala 👋" />
                 </div>
                 <div className="relative px-4">
-                    <div onClick={() => router.back()} className="absolute cursor-pointer flex gap-1 items-center top-0 left-12">
+                    <div onClick={() => router.back()} className="xl:absolute cursor-pointer flex gap-1 items-center top-0 left-12">
                         <TfiAngleLeft /> Go Back
                     </div>
                     <div className="p-3">

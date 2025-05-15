@@ -1,10 +1,26 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import thanks from "@asset/Images/thankshand.png"
+import { fetchSubscribtions } from '@/services/authService'
 
 function SubscriptionPlan() {
+
+
+    const fetchPlans = async () => {
+        const { data, status } = await fetchSubscribtions()
+        console.log(data);
+
+    }
+
+
+
+    useEffect(() => {
+        fetchPlans()
+    }, [])
+
+
     return (
-        <div className="max-w-[85%] mx-auto bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
+        <div className="lg:max-w-[85%] mx-auto bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
             <div>
                 <Image alt="Thank" src={thanks} width={100} height={100} className="w-44 mx-auto pointer-events-none" />
             </div>
@@ -17,7 +33,7 @@ function SubscriptionPlan() {
                     </div>
                 </div>
                 <div>
-                    <div className='bg-white grid grid-cols-2 gap-5 gap-y-8 p-4 rounded-2xl'>
+                    <div className='bg-white lg:grid grid-cols-2 gap-5 gap-y-8 p-4 rounded-2xl'>
                         <div className='relative'>
                             <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>1</div>
                             <div className='pl-16 space-y-6'>
@@ -98,15 +114,50 @@ function SubscriptionPlan() {
                         </div>
                         <div className='relative'>
                             <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>5</div>
-                            <div></div>
+                            <div className='pl-16 space-y-6'>
+                                <div>
+                                    <div className=''>11-month subscribers: #2,000,000 cash + sponsored event.</div>
+                                    <div className=''>• 6-month subscribers: #1,000,000 cash + gift haul.</div>
+                                    <div className=''>• 3-month subscribers: #500,000 cash + mystery box.</div>
+                                </div>
+
+                                <div>
+                                    <div className='font-bold'>Additional Celebration Events</div>
+                                    <div>For Weddings, Graduations, and Anniversaries, subscribers can opt into mini game show episodes or claim rewards directly.</div>
+                                </div>
+
+                                <div>
+                                    <div className='font-bold'>Reward Boost:</div>
+                                    <div>Anniversary photo proof adds a #75,000 naira bonus gift (3-month+ tiers).</div>
+                                </div>
+                            </div>
                         </div>
                         <div className='relative'>
                             <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>6</div>
-                            <div></div>
+                            <div className='pl-16 space-y-6'>
+                                <div>
+                                    <div className='font-bold'>Subscriber Perks Summary</div>
+                                    <div>• Monthly Fee: 20,000 naira</div>
+                                </div>
+                                <div>
+                                    <div className='font-bold'>What You Get:</div>
+                                    <div>◦ Access to cash/gift rewards based on subscription length.</div>
+                                    <div>◦ Chance to join the Birthday Month Reality Game Show or mini celebration episodes.</div>
+                                    <div>◦ Sponsored experiences (parties, dates, getaways, picnics) for top tiers.</div>
+                                    <div>◦ Exclusive community of celebrators with early event invites.</div>
+                                </div>
+                                <div>
+                                    <span className='font-bold'>How to Qualify:</span> Subscribe via [Our website, and App ], submit celebration proof when applicable, and opt into game shows if desired.
+                                </div>
+                            </div>
                         </div>
                         <div className='relative col-span-2'>
                             <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>7</div>
-                            <div></div>
+                            <div className='pl-16'>
+                                <div className='font-bold'>Next Steps</div>
+                                <div>• Sign Up:</div>
+                                <div>Invite your friends to join now to get monetary rewards during their celebrations. e.g When your referral subscribers that subscribed 11+ months ago before their celebrations, during any of their celebrations you will get 220,000 naira, Your 6months ago subscribers you get 110,000 naira, 3 months ago you get 55,000 naira for each person you referred you get this during their celebrations according to the length of your subscription and theirs too. maximum rewards for their next big day.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
