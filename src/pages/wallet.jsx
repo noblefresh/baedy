@@ -9,7 +9,7 @@ import { IoCashOutline } from "react-icons/io5";
 import AppModal from '@/components/organisms/AppModal'
 import AppInput from '@/components/organisms/AppInput'
 import { IoMail } from "react-icons/io5";
-import { fetchBank, fetchpayStack, fetchWallet, payment } from '@/services/authService'
+import { addBank, fetchAccountName, fetchBank, fetchpayStack, fetchWallet, payment } from '@/services/authService'
 import { FaRegFolderOpen } from "react-icons/fa";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { TbNumber123 } from "react-icons/tb";
@@ -32,6 +32,12 @@ function Wallet() {
   const [bankList, setBankList] = useState([])
   const [bank, setBank] = useState('')
 
+  const [bankForm, setBankForm] = useState({
+    name: '',
+    account_number: '',
+    bank_code: '',
+    error: ''
+  })
 
 
   const router = useRouter()
@@ -51,6 +57,16 @@ function Wallet() {
     setBank(result)
   }
 
+  const addMyBankAccount = async (e) => {
+    e.preventDefault()
+    setProccessing(true)
+    if (bankForm.error === '') {
+      const { data, status } = await addBank(bankForm)
+      status && console.log(data);
+
+    }
+    setProccessing(false)
+  }
 
   const fetcBankList = async () => {
     const { data, status } = await fetchBank()
@@ -72,29 +88,43 @@ function Wallet() {
     fetcBankList()
   }, [])
 
+  const fetchBankInfo = async () => {
+    setBankForm(prev => ({ ...prev, error: "" }))
+    const { data, status } = await fetchAccountName(bankForm)
+    data.status ? setBankForm(prev => ({ ...prev, name: data?.data?.account_name })) : setBankForm(prev => ({ ...prev, error: data?.message }));
+  }
+
+  useEffect(() => {
+    (bankForm.bank_code !== '' && bankForm.account_number.length === 10) && fetchBankInfo()
+
+  }, [bankForm.account_number, bankForm.bank_code])
+
 
   return (
     <>
       <AppModal mode={showModal} withClose={() => { setShowModal(false); setAddForm(false) }}>
-
-
         {
           addForm ? (
-            <form className="space-y-7">
+            <form onSubmit={addMyBankAccount} className="space-y-7">
               <div className="font-extrabold text-center text-2xl">Add Account</div>
               <div className="space-y-5">
-                <div className="grid grid-cols-2 gap-4">
-                  <AppSelect name="bank" label="Bank" icon={<RiBankLine />} options={[...bank]} />
-                  <AppInput placeholder="Account number" name="amount" icon={<TbNumber123 />} required label="Account Number" />
+                {
+                  bankForm.error && (
+                    <div className="text-red-500 text-xs">{bankForm.error}</div>
+                  )
+                }
+                <div className="md:grid grid-cols-2 gap-4">
+                  <AppSelect name="bank" label="Bank" icon={<RiBankLine />} onChange={(e) => setBankForm(prev => ({ ...prev, bank_code: e.target.value }))} options={[...bank]} />
+                  <AppInput placeholder="Account number" name="amount" maxLength={10} onChange={(e) => setBankForm(prev => ({ ...prev, account_number: e.target.value }))} icon={<TbNumber123 />} required label="Account Number" />
                   <div className="col-span-2">
-                    <AppInput placeholder="John Doe" disabled name="amount" icon={<FaCircleUser />} required label="Bank Name" />
+                    <AppInput placeholder="John Doe" value={bankForm.name} disabled name="amount" icon={<FaCircleUser />} required label="Bank Name" />
                   </div>
                 </div>
 
                 <div className="">
                   <div className="space-y-4">
                     <div className="flex gap-3">
-                      <div onClick={() => { setAddForm(false) }} className="flex-grow cursor-pointer text-amber-500 border border-amber-500 text-center rounded-lg py-3"> Cancel </div>
+                      <div onClick={() => { setAddForm(false); setBankForm({ name: '', account_number: '', bank_code: '' }) }} className="flex-grow cursor-pointer text-amber-500 border border-amber-500 text-center rounded-lg py-3"> Cancel </div>
                       <button disabled={proccessing} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Add Account"}</button>
                     </div>
                   </div>
