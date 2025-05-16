@@ -3,10 +3,23 @@ import TimeComp from '@/components/organisms/TimeComp'
 import Image from 'next/image'
 import cardImg from "@asset/Images/cardSlide.png"
 import wallet from "@asset/Images/money3D.png"
-import React from 'react'
-import { FaCalendarAlt } from "react-icons/fa";
+import React, { useEffect, useState } from 'react'
+import { FaCalendarAlt, FaRegFolderOpen } from "react-icons/fa";
+import { fetchSubscribtions } from '@/services/authService'
 
 function Subscriptions() {
+
+  const [subscription, setSubscription] = useState({})
+
+  const fetchSubscribtionInfo = async () => {
+    const { data, status } = await fetchSubscribtions()
+    status && setSubscription(data?.data);
+  }
+
+
+  useEffect(() => {
+    fetchSubscribtionInfo()
+  }, [])
 
 
   return (
@@ -28,9 +41,11 @@ function Subscriptions() {
                 </div>
                 <div className="text-white text-lg font-extralight">Active Subscription</div>
                 <div className="flex items-center justify-center">
-                  <div className="text-amber-400 border text-4xl border-amber-300 font-bold rounded-lg py-2 px-16">1</div>
+                  <div className="text-amber-400 border text-4xl border-amber-300 font-bold rounded-lg py-2 px-16">{subscription?.count_active_subscriptions}</div>
                 </div>
-                <div className="text-white">Expires in 23 days.</div>
+                {
+                  subscription?.expires_in > 0 ? <div className="text-white">Expires in {subscription?.expires_in} days.</div> : <div className="text-white">No Active Subscription</div>
+                }
                 <div className="flex items-center">
                   <div className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Renew Subscription</div>
                 </div>
@@ -41,70 +56,47 @@ function Subscriptions() {
             <div className=" border bg-gray-50/50 space-y-5 border-gray-50 p-3 rounded-xl">
               <div className="font-bold">Subscription History</div>
               <div className=" overflow-x-auto">
-                <table className='w-full gap-2 text-left'>
-                  <tr>
-                    <th><div className="w-44">Events</div></th>
-                    <th><div className="w-32">Amount</div></th>
-                    <th><div className="w-44">Payment Method</div></th>
-                    <th><div className="w-24">Date</div></th>
-                    <th><div className="w-24">Time</div></th>
-                    <th><div className="">Status</div></th>
-                  </tr>
+                {
+                  subscription.subscriptions.length > 0 ? (
+                    <table className='w-full gap-2 text-left'>
+                      <tr>
+                        <th><div className="w-44">Events</div></th>
+                        <th><div className="w-32">Amount</div></th>
+                        <th><div className="w-44">Payment Method</div></th>
+                        <th><div className="w-24">Date</div></th>
+                        <th><div className="w-24">Time</div></th>
+                        <th><div className="">Status</div></th>
+                      </tr>
+                      {
+                        subscription.subscriptions.map((item, index) => (
+                          <tr key={index} className="text-xs">
+                            <td className='pt-4'>
+                              <div className='flex items-center  gap-2'>
+                                <div className="">
+                                  <div className="w-9 h-9 bg-amber-400/30 text-amber-400 rounded-full flex items-center justify-center"><FaCalendarAlt /></div>
+                                </div>
+                                <div className="font-bold">Renewed Plan</div>
+                              </div>
+                            </td>
+                            <td>&#8358;50,000</td>
+                            <td>Wallet</td>
+                            <td>16-04-2025</td>
+                            <td>10:47 am</td>
+                            <td>
+                              <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
+                            </td>
+                          </tr>
+                        ))
+                      }
+                    </table>
+                  ) : (
+                    <div className="text-gray-400 flex flex-col items-center justify-center h-52">
+                      <div className="text-2xl"><FaRegFolderOpen /></div>
+                      <div className="">No subscription yet</div>
+                    </div>
+                  )
+                }
 
-                  <tr className="text-xs">
-                    <td className='pt-4'>
-                      <div className='flex items-center  gap-2'>
-                        <div className="">
-                          <div className="w-9 h-9 bg-amber-400/30 text-amber-400 rounded-full flex items-center justify-center"><FaCalendarAlt /></div>
-                        </div>
-                        <div className="font-bold">Renewed Plan</div>
-                      </div>
-                    </td>
-                    <td>&#8358;50,000</td>
-                    <td>Wallet</td>
-                    <td>16-04-2025</td>
-                    <td>10:47 am</td>
-                    <td>
-                      <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
-                    </td>
-                  </tr>
-
-                  <tr className="text-xs">
-                    <td className='pt-4'>
-                      <div className='flex items-center  gap-2'>
-                        <div className="">
-                          <div className="w-9 h-9 bg-amber-400/30 text-amber-400 rounded-full flex items-center justify-center"><FaCalendarAlt /></div>
-                        </div>
-                        <div className="font-bold">Renewed Plan</div>
-                      </div>
-                    </td>
-                    <td>&#8358;50,000</td>
-                    <td>Card payment</td>
-                    <td>16-04-2025</td>
-                    <td>10:47 am</td>
-                    <td>
-                      <div className="text-xs text-green-500 px-3 py-1 inline rounded-md bg-green-300/30">Completed</div>
-                    </td>
-                  </tr>
-
-                  <tr className="text-xs">
-                    <td className='pt-4'>
-                      <div className='flex items-center  gap-2'>
-                        <div className="">
-                          <div className="w-9 h-9 bg-amber-400/30 text-amber-400 rounded-full flex items-center justify-center"><FaCalendarAlt /></div>
-                        </div>
-                        <div className="font-bold">Renewed Plan</div>
-                      </div>
-                    </td>
-                    <td>&#8358;50,000</td>
-                    <td>Card payment</td>
-                    <td>16-04-2025</td>
-                    <td>10:47 am</td>
-                    <td>
-                      <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
-                    </td>
-                  </tr>
-                </table>
               </div>
             </div>
           </div>
