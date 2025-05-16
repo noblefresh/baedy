@@ -18,7 +18,7 @@ export const payment = (payload) => apiWithAuth.post("/app/wallet/initialize-pay
 export const fetchWallet = () => apiWithAuth.get("/app/wallet/fetch").then(getApiResponse).catch(getErrorResponse)
 export const addBank = (payload) => apiWithAuth.post("/app/wallet/add_bank_account",payload).then(getApiResponse).catch(getErrorResponse)
 export const fetchBank = () => apiWithAuth.post("/app/wallet/fetch_bank").then(getApiResponse).catch(getErrorResponse)
-export const withdrawal = () => apiWithAuth.post("/app/wallet/withdraw").then(getApiResponse).catch(getErrorResponse)
+export const withdrawal = (payload) => apiWithAuth.post("/app/wallet/withdraw",payload).then(getApiResponse).catch(getErrorResponse)
 export const fetchpayStack = () => apiWithAuth.post("/app/wallet/paystack_banks").then(getApiResponse).catch(getErrorResponse)
 export const fetchAccountName = (payload) => apiWithAuth.post("/app/wallet/fetch_account_name", payload).then(getApiResponse).catch(getErrorResponse)
 

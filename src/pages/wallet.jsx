@@ -7,9 +7,10 @@ import React, { useEffect, useState } from 'react'
 import { BsPlusCircleFill } from "react-icons/bs";
 import { IoCashOutline } from "react-icons/io5";
 import AppModal from '@/components/organisms/AppModal'
+import OtpInput from 'react-otp-input';
 import AppInput from '@/components/organisms/AppInput'
 import { IoMail } from "react-icons/io5";
-import { addBank, fetchAccountName, fetchBank, fetchpayStack, fetchWallet, payment } from '@/services/authService'
+import { addBank, fetchAccountName, fetchBank, fetchpayStack, fetchWallet, payment, resendOTP, sendOTP, withdrawal } from '@/services/authService'
 import { FaRegFolderOpen } from "react-icons/fa";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { TbNumber123 } from "react-icons/tb";
@@ -20,9 +21,12 @@ import { PiBankDuotone } from 'react-icons/pi'
 import AppSelect from '@/components/organisms/AppSelect'
 import { FaCircleUser } from 'react-icons/fa6'
 import { RiBankLine } from 'react-icons/ri'
+import { useSelector } from 'react-redux'
 
 function Wallet() {
 
+
+  const user = useSelector((state) => state.User);
   const [walletInfo, setWalletInfo] = useState({})
   const [showModal, setShowModal] = useState(false)
   const [addForm, setAddForm] = useState(false)
@@ -30,6 +34,8 @@ function Wallet() {
   const [proccessingFund, setProccessingFund] = useState(false)
   const [showFundModal, setShowFundModal] = useState(false)
   const [bankList, setBankList] = useState([])
+  const [showOTP, setShowOTP] = useState(false)
+  const [otp, setOtp] = useState('');
   const [bank, setBank] = useState('')
 
   const [bankForm, setBankForm] = useState({
@@ -41,6 +47,7 @@ function Wallet() {
 
 
   const router = useRouter()
+
 
   const fetchdata = async () => {
     const { data, status } = await fetchWallet()
@@ -72,6 +79,24 @@ function Wallet() {
   const fetcBankList = async () => {
     const { data, status } = await fetchBank()
     status && setBankList(data?.data);
+  }
+
+
+  const withdraw = async (e) => {
+    e.preventDefault()
+    setProccessing(true)
+
+    if (showOTP) {
+      const payload = serialize(e.target)
+      payload.otp = otp
+      const { data, status } = await withdrawal(payload)
+      status && fetchdata() && setShowOTP(false) && setShowModal(false) && setAddForm(false);;
+    } else {
+      const { data, status } = await sendOTP({ email: user?.value?.user?.email })
+      status && setShowOTP(true);
+    }
+
+    setProccessing(false)
   }
 
 
@@ -133,54 +158,87 @@ function Wallet() {
               </div>
             </form>
           ) : (
-            <form className="space-y-7">
+            <form onSubmit={withdraw} className="space-y-7">
               <div className="font-extrabold text-center text-2xl">Withdraw Funds</div>
               <div className="space-y-5">
-                {
-                  bankList[0]?.length > 0 ? (
-                    <div className="space-y-3">
-                      <div className="font-bold">Select Bank</div>
-                      <div>
-                        {
-                          bankList[0].map((data, i) => (
-                            <label key={i} className='has-[:checked]:bg-gray-50 has-[:checked]:border-gray-800 cursor-pointer flex items-center gap-3 border border-gray-300 rounded-lg p-3'>
-                              <input type="radio" value={data.id} name="bank_id" required class="opacity-0 absolute" />
-                              <div className="">
-                                <div className='bg-white shadow-md h-10 w-10 sm:h-14 sm:w-14 rounded-full flex items-center justify-center'>
-                                  <PiBankDuotone />
-                                </div>
-                              </div>
-                              <div>
-                                <div className='font-semibold text-sm sm:text-base'>{data.account_name}</div>
-                                <div className='flex flex-wrap items-center text-xs sm:text-sm gap-1'>
-                                  <div>{data.account_number}</div>
-                                  <div className='w-1 h-1 rounded-full bg-black'></div>
-                                  <div>{data.bank_name}</div>
-                                </div>
-                              </div>
-                            </label>
-                          ))
-                        }
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="space-y-5">
-                      <div className="flex">
-                        <div onClick={() => setAddForm(true)} className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Add Account</div>
-                      </div>
-                      <div className="text-xs text-center">Please enter the amount and bank details below to withdraw funds.</div>
-                    </div>
-                  )
-                }
-
                 <div className="">
-                  <AppInput placeholder="Min. 1000" name="amount" icon={<IoMail />} required label="Withdrawal Amount" />
-                </div>
+                  <div className={`${showOTP ? 'block' : 'hidden'}`}>
+                    <div className="justify-center flex *:gap-4 ">
+                      <OtpInput
+                        value={otp}
+                        onChange={setOtp}
+                        numInputs={4}
+                        isInputNum={true}
+                        shouldAutoFocus={true}
+                        inputType='tel'
+                        inputStyle={{
+                          border: "1px solid transparent",
+                          borderRadius: "8px",
+                          appearance: "none",
+                          width: "54px",
+                          height: "54px",
+                          fontSize: "18px",
+                          color: "#000",
+                          fontWeight: "400",
+                          caretColor: "gray",
+                          outline: "none",
+                          background: "#f3f4fa"
+                        }}
+                        focusStyle={'outline-none ring-0 border border-gray-400'}
+                        renderInput={(props) => <input name='otp' {...props} />}
+                      />
+                    </div>
+                  </div>
 
+                  <div className={`${!showOTP ? 'block' : 'hidden'}`}>
+                    {
+                      bankList[0]?.length > 0 ? (
+                        <div className="space-y-3">
+                          <div className="font-bold">Select Bank</div>
+                          <div>
+                            {
+                              bankList[0].map((data, i) => (
+                                <label key={i} className='has-[:checked]:bg-gray-50 has-[:checked]:border-gray-800 cursor-pointer flex items-center gap-3 border border-gray-300/50 backdrop-blur-md rounded-lg p-3'>
+                                  <input type="radio" value={data.id} name="bank_id" required class="opacity-0 absolute" />
+                                  <div className="">
+                                    <div className='bg-white shadow-md h-10 w-10 sm:h-14 sm:w-14 rounded-full flex items-center justify-center'>
+                                      <PiBankDuotone />
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className='font-semibold text-sm sm:text-base'>{data.account_name}</div>
+                                    <div className='flex flex-wrap items-center text-xs sm:text-sm gap-1'>
+                                      <div>{data.account_number}</div>
+                                      <div className='w-1 h-1 rounded-full bg-black'></div>
+                                      <div>{data.bank_name}</div>
+                                    </div>
+                                  </div>
+                                </label>
+                              ))
+                            }
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-5">
+                          <div className="flex">
+                            <div onClick={() => setAddForm(true)} className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Add Account</div>
+                          </div>
+                          <div className="text-xs text-center">Please enter the amount and bank details below to withdraw funds.</div>
+                        </div>
+                      )
+                    }
+
+                    <div className="">
+                      <AppInput placeholder="Min. 1000" name="amount" icon={<IoMail />} required label="Withdrawal Amount" />
+                    </div>
+
+                  </div>
+
+                </div>
                 <div className="">
                   <div className="space-y-4">
                     <div className="flex gap-3">
-                      <button disabled={proccessing} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : "Make Withdrawal"}</button>
+                      <button disabled={proccessing} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessing ? "Proccessing..." : showOTP ? "Confirm OTP" : "Make Withdrawal"}</button>
                     </div>
                   </div>
                 </div>
@@ -286,7 +344,7 @@ function Wallet() {
                               <td>{ex.created_at.split('T')[0]}</td>
                               <td>{convertToAmPm(ex.created_at.split('T')[1].split('.')[0])}</td>
                               <td>
-                                <div className={`text-xs ${ex.status === "success" ? "text-green-500 bg-green-300/30" : "text-red-500 bg-red-300/30"} px-3 py-1 inline rounded-md`}>{ex.status}</div>
+                                <div className={`text-xs ${ex.status === "success" ? "text-green-500 bg-green-300/30" : ex.status === "processing" ? "text-amber-500 bg-amber-300/30" : "text-red-500 bg-red-300/30"} px-3 py-1 inline rounded-md`}>{ex.status}</div>
                               </td>
                             </tr>
                           ))
