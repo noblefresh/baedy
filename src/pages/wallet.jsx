@@ -61,9 +61,10 @@ function Wallet() {
     e.preventDefault()
     setProccessing(true)
     if (bankForm.error === '') {
+      bankForm.bank_name = e.target[0].selectedOptions[0].innerHTML
+      bankForm.account_name = bankForm.name
       const { data, status } = await addBank(bankForm)
-      status && console.log(data);
-
+      status && fetchdata();
     }
     setProccessing(false)
   }

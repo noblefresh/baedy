@@ -21,7 +21,7 @@ function TopBar({ title, toggleNaav }) {
                             <Image alt={user?.value?.user?.fname.split("")[0]} width={100} height={100} className='w-full h-full' src={user?.value?.user?.avatar} />
                         </div>
                         <div className="hidden md:block font-bold text-xs sm:text-sm">{user?.value?.user?.fname} {user?.value?.user?.lname}</div>
-                        <div onClick={() => toggleNaav()} className='h-8 w-8 border md:hidden border-gray-300 rounded-sm cursor-pointer'>
+                        <div onClick={() => toggleNaav()} className='h-8 w-8 border md:hidden flex items-center justify-center text-xl border-gray-300 rounded-sm cursor-pointer'>
                             <HiBars3BottomRight />
                         </div>
                     </div>

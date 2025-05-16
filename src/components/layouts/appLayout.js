@@ -52,7 +52,7 @@ function AppLayout({ children, title }) {
           <div className="p-2 md:p-6 z-20 sticky top-0 w-full">
             <TopBar toggleNaav={() => setShowNav(!showNav)} title={title} />
           </div>
-          <div className={`h-screen z-20 fixed md:pt-32 top-0 ${showNav ? "":"-ml-72 md:m-0"} w-64`}>
+          <div className={`h-screen z-20 fixed md:pt-32 transition-all duration-500 top-0 ${showNav ? "":"-ml-72 md:m-0"} w-64`}>
             <SideNav />
           </div>
           <div className="absolute px-2 md:p-4 z-10 overflow-auto top-0 h-screen w-full">
