@@ -24,7 +24,7 @@ function SideNav() {
 
     return (
         <div className='md:px-5 md:py-2 h-full'>
-            <div className='flex flex-col h-full bg-gray-50/80 border border-gray-200 overflow-hidden rounded-xl'>
+            <div className='flex flex-col h-full bg-gray-50/80 border backdrop-blur-lg border-gray-200 overflow-hidden rounded-xl'>
                 <div className='flex-grow'>
                     <div className='space-y-4'>
                         <div>

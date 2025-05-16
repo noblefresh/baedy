@@ -3,6 +3,7 @@ import React from 'react'
 import { FaBell } from "react-icons/fa6";
 import appLogo from "@asset/Images/appLogo.png"
 import { useSelector } from 'react-redux';
+import { HiBars3BottomRight } from "react-icons/hi2";
 
 function TopBar({ title, toggleNaav }) {
 
@@ -20,7 +21,9 @@ function TopBar({ title, toggleNaav }) {
                             <Image alt={user?.value?.user?.fname.split("")[0]} width={100} height={100} className='w-full h-full' src={user?.value?.user?.avatar} />
                         </div>
                         <div className="hidden md:block font-bold text-xs sm:text-sm">{user?.value?.user?.fname} {user?.value?.user?.lname}</div>
-                        <div onClick={() => toggleNaav()} className='h-8 w-8 border md:hidden border-gray-300 rounded-sm cursor-pointer'></div>
+                        <div onClick={() => toggleNaav()} className='h-8 w-8 border md:hidden border-gray-300 rounded-sm cursor-pointer'>
+                            <HiBars3BottomRight />
+                        </div>
                     </div>
                 </div>
             </div>
