@@ -1,9 +1,22 @@
 import AppLayout from '@/components/layouts/appLayout'
 import ReferralChip from '@/components/organisms/ReferralChip';
 import TimeComp from '@/components/organisms/TimeComp';
-import React from 'react'
+import { fetchReferral } from '@/services/authService';
+import React, { useEffect, useState } from 'react'
 
 function Referral() {
+
+  const [list, setList] = useState([])
+
+  const fetchList = async () => {
+    const { data } = await fetchReferral()
+    setList(data?.data);
+  }
+
+  useEffect(() => {
+    fetchList()
+  }, [])
+
   return (
 
     <AppLayout title="Referral">
@@ -18,28 +31,25 @@ function Referral() {
           <div className="bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
             <div className="font-bold">Referral Rewards</div>
             <div className="">
-              <table className='w-full text-left'>
-                <tr>
-                  <th>Reward Earned</th>
-                  <th>Reward Date</th>
-                </tr>
-                <tr>
-                  <td><div className="pt-3">&#8358;1,000</div></td>
-                  <td>05-04-2025</td>
-                </tr>
-                <tr>
-                  <td><div className="pt-3">&#8358;1,000</div></td>
-                  <td>05-04-2025</td>
-                </tr>
-                <tr>
-                  <td><div className="pt-3">&#8358;1,000</div></td>
-                  <td>05-04-2025</td>
-                </tr>
-                <tr>
-                  <td><div className="pt-3">&#8358;1,000</div></td>
-                  <td>05-04-2025</td>
-                </tr>
-              </table>
+              {
+                list?.refferral_earnings?.length > 0 ? (
+                  <table className='w-full text-left'>
+                    <tr>
+                      <th>Reward Earned</th>
+                      <th>Reward Date</th>
+                    </tr>
+                    {
+                      list?.refferral_earnings.map((item, index) => (
+                        <tr key={index}>
+                          <td><div className="pt-3">&#8358;1,000</div></td>
+                          <td>05-04-2025</td>
+                        </tr>
+                      ))
+                    }
+                  </table>
+                ) : (<div>No rewards yet</div>)
+              }
+
             </div>
           </div>
         </div>
@@ -47,45 +57,27 @@ function Referral() {
           <div className="bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
             <div className="font-bold">My referrals</div>
             <div className="">
-              <table className='w-full text-left'>
-                <tr>
-                  <th>Referred User</th>
-                  <th>Date Joined</th>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="pt-3 flex items-center gap-1">
-                      <div className="">
-                        <div className="w-8 h-8 rounded-full bg-amber-50"></div>
-                      </div>
-                      <div className="font-bold text-sm">Tunde Balogun</div>
-                    </div>
-                  </td>
-                  <td>05-04-2025</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="pt-3 flex items-center gap-1">
-                      <div className="">
-                        <div className="w-8 h-8 rounded-full bg-amber-50"></div>
-                      </div>
-                      <div className="font-bold text-sm">Tunde Balogun</div>
-                    </div>
-                  </td>
-                  <td>05-04-2025</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="pt-3 flex items-center gap-1">
-                      <div className="">
-                        <div className="w-8 h-8 rounded-full bg-amber-50"></div>
-                      </div>
-                      <div className="font-bold text-sm">Tunde Balogun</div>
-                    </div>
-                  </td>
-                  <td>05-04-2025</td>
-                </tr>
-              </table>
+              {
+                list?.referrals?.length > 0 ? (
+                  <table className='w-full text-left'>
+                    <tr>
+                      <th>Referred User</th>
+                      <th>Date Joined</th>
+                    </tr>
+                    {
+                      list?.referrals.map((item, index) => (
+                        <tr key={index}>
+                          <td><div className="pt-3">{item?.fname} {item?.lname}</div></td>
+                          <td>05-04-2025</td>
+                        </tr>
+                      ))
+                    }
+                  </table>
+                ) : (
+                  <div className="">No referrals</div>
+                )
+              }
+
             </div>
           </div>
         </div>

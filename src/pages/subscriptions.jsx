@@ -43,9 +43,7 @@ function Subscriptions() {
                 <div className="flex items-center justify-center">
                   <div className="text-amber-400 border text-4xl border-amber-300 font-bold rounded-lg py-2 px-16">{subscription?.count_active_subscriptions}</div>
                 </div>
-                {
-                  subscription?.expires_in > 0 ? <div className="text-white">Expires in {subscription?.expires_in} days.</div> : <div className="text-white">No Active Subscription</div>
-                }
+                { subscription?.expires_in > 0 ? <div className="text-white">Expires in {subscription?.expires_in} days.</div> : <div className="text-white">No Active Subscription</div>}
                 <div className="flex items-center">
                   <div className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Renew Subscription</div>
                 </div>
