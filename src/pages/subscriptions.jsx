@@ -6,13 +6,16 @@ import wallet from "@asset/Images/money3D.png"
 import React, { useEffect, useState } from 'react'
 import { FaCalendarAlt, FaRegFolderOpen } from "react-icons/fa";
 import { fetchSubscribtions } from '@/services/authService'
+import Link from 'next/link'
 
 function Subscriptions() {
 
-  const [subscription, setSubscription] = useState({})
+  const [subscription, setSubscription] = useState(null)
 
   const fetchSubscribtionInfo = async () => {
     const { data, status } = await fetchSubscribtions()
+    console.log(data);
+
     status && setSubscription(data?.data);
   }
 
@@ -43,9 +46,11 @@ function Subscriptions() {
                 <div className="flex items-center justify-center">
                   <div className="text-amber-400 border text-4xl border-amber-300 font-bold rounded-lg py-2 px-16">{subscription?.count_active_subscriptions}</div>
                 </div>
-                { subscription?.expires_in > 0 ? <div className="text-white">Expires in {subscription?.expires_in} days.</div> : <div className="text-white">No Active Subscription</div>}
+                {subscription?.expires_in > 0 ? <div className="text-white">Expires in {subscription?.expires_in} days.</div> : <div className="text-white">No Active Subscription</div>}
                 <div className="flex items-center">
-                  <div className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Renew Subscription</div>
+                  <Link href="/subscription_details">
+                    <div className="px-4 text-xs cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Renew Subscription</div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -55,33 +60,37 @@ function Subscriptions() {
               <div className="font-bold">Subscription History</div>
               <div className=" overflow-x-auto">
                 {
-                  subscription.subscriptions.length > 0 ? (
+                  subscription?.subscriptions.length > 0 ? (
                     <table className='w-full gap-2 text-left'>
                       <tr>
                         <th><div className="w-44">Events</div></th>
                         <th><div className="w-32">Amount</div></th>
                         <th><div className="w-44">Payment Method</div></th>
-                        <th><div className="w-24">Date</div></th>
-                        <th><div className="w-24">Time</div></th>
+                        <th><div className="w-24">Start Date</div></th>
+                        <th><div className="w-24">End Date</div></th>
                         <th><div className="">Status</div></th>
                       </tr>
                       {
-                        subscription.subscriptions.map((item, index) => (
-                          <tr key={index} className="text-xs">
+                        subscription?.subscriptions.map((item) => (
+                          <tr key={item?.id} className="text-xs">
                             <td className='pt-4'>
                               <div className='flex items-center  gap-2'>
                                 <div className="">
                                   <div className="w-9 h-9 bg-amber-400/30 text-amber-400 rounded-full flex items-center justify-center"><FaCalendarAlt /></div>
                                 </div>
-                                <div className="font-bold">Renewed Plan</div>
+                                <div className="font-bold">Subscription</div>
                               </div>
                             </td>
-                            <td>&#8358;50,000</td>
+                            <td>&#8358;{
+                              new Intl.NumberFormat('en-US', {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                              }).format(item?.amount)}</td>
                             <td>Wallet</td>
-                            <td>16-04-2025</td>
-                            <td>10:47 am</td>
+                            <td>{item?.start_date}</td>
+                            <td>{item?.end_date}</td>
                             <td>
-                              <div className="text-xs text-red-500 px-3 py-1 inline rounded-md bg-red-300/30">Pending</div>
+                              <div className="text-xs text-green-500 px-3 py-1 inline rounded-md bg-green-300/30">success</div>
                             </td>
                           </tr>
                         ))

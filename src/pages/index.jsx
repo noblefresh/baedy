@@ -39,10 +39,10 @@ function Index({ dashboardData }) {
         </div>
       </div>
       <div className="p-4">
-        
-          {
-            ["April"].map((e) => <BirthdayMateAccord data={e} key={e} />)
-          }
+
+        {
+          ["April"].map((e) => <BirthdayMateAccord data={e} key={e} />)
+        }
       </div>
     </AppLayout>
   )
@@ -51,6 +51,9 @@ function Index({ dashboardData }) {
 
 export const getServerSideProps = async (context) => {
   const { status, data } = await fetchDashBoardData();
+
+  console.log(data);
+
 
   return {
     props: {
