@@ -13,8 +13,14 @@ import TopBar from "../organisms/TopBar";
 
 // TODO: add page mata title
 
+// export const metadata = {
+//   title: 'Home Page',
+//   description: 'Welcome to the home page',
+// };
 
 function AppLayout({ children, title }) {
+
+  
   const user = useSelector((state) => state.User);
   const isAuthenticated = Session(user);
   const [greetings, setTime] = useState(false)
@@ -84,7 +90,6 @@ function AppLayout({ children, title }) {
             </div>
           )
         }
-
       </div>
     );
   }

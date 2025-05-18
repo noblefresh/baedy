@@ -19,6 +19,12 @@
   }
 }
 
+.bgImg{
+  background-image: url('/Images/sub_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 
 .divition {

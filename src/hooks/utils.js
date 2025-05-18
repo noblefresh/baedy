@@ -4,7 +4,9 @@ function convertMinutesToHours(minutes) {
     return `${hours}${hours > 1 ? "hrs" : "hr"} ${remainingMinutes}${remainingMinutes > 1 ? "mins" : "min"}`;
 }
 
-
+function copyToClipboard(params) {
+    navigator.clipboard.writeText(params);
+}
 
 function convertToAmPm(timeStr) {
     const [hourStr, minute, second] = timeStr.split(":");
@@ -16,4 +18,4 @@ function convertToAmPm(timeStr) {
 }
 
 
-export { convertMinutesToHours, convertToAmPm };
+export { convertMinutesToHours, convertToAmPm, copyToClipboard };
