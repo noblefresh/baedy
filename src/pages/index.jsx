@@ -53,10 +53,10 @@ function Index() {
                 <div className="flex justify-between items-center">
                   <div className="">
                     <div className="font-bold">Your Birthday Countdown</div>
-                    <div className="text-lg">Only 12 days until your special day! 🎈</div>
+                    <div className="text-lg">Only {dashboardData?.user_birthday} days until your special day! 🎈</div>
                   </div>
                   <div className="font-extrabold text-lg md:text-xl lg:text-3xl xl:text-5xl text-amber-100">
-                    12 days
+                    {dashboardData?.user_birthday} day{dashboardData?.user_birthday > 1 && "s"}
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@ function Index() {
       </div>
       <div className="p-4">
         {
-          [["May", dashboardData?.this_month_birthday_users]].map((e) => <BirthdayMateAccord data={e} key={e} />)
+          [[dashboardData?.current_month, dashboardData?.this_month_birthday_users]].map((e) => <BirthdayMateAccord data={e} key={e} />)
         }
       </div>
     </AppLayout>

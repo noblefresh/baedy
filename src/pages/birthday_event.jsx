@@ -8,10 +8,12 @@ import React, { useEffect, useState } from 'react'
 function BirthdayEvent() {
 
   const [list, setList] = useState([])
+  const [eventData, setEventData] = useState({})
 
   const fetchBirthdayList = async () => {
     const { data, status } = await fetchBirthdays()
-    const newArr = status && Object.entries(data)
+    const newArr = status && Object.entries(data?.data?.birthdays)
+    setEventData(data?.data)
     setList(newArr)
   }
 
@@ -26,14 +28,19 @@ function BirthdayEvent() {
         <TimeComp title="Let’s celebrate the moments that matter most." />
       </div>
       <div className="p-3 space-y-4">
-        <div className="p-3 border space-y-5 bg-gray-50/40 border-gray-50 rounded-xl">
-          <div className="font-bold text-sm">Birthday Events</div>
-          <div className="grid  sm:grid-cols-2 xl:grid-cols-4 gap-4">
-            {
-              ["", "", "", ""].map((e, i) => <BirthdayEventChip key={i} />)
-            }
+        {
+          eventData?.events > 0 && (<div className="p-3 border space-y-5 bg-gray-50/40 border-gray-50 rounded-xl">
+            <div className="font-bold text-sm">Birthday Events</div>
+
+            <div className="grid  sm:grid-cols-2 xl:grid-cols-4 gap-4">
+              {
+                data?.data?.events?.map((e, i) => <BirthdayEventChip key={i} />)
+              }
+            </div>
+
           </div>
-        </div>
+          )
+        }
 
         {
           list.map((e) => <BirthdayMateAccord data={e} key={e} />)
