@@ -21,8 +21,6 @@ function Index() {
 
   const fetchData = async () => {
     const { status, data } = await fetchDashBoardData();
-    console.log(data?.data);
-
     status && setDashboardData(data?.data);
   }
 
@@ -92,7 +90,7 @@ function Index() {
         }
 
       </div>
-      <div className="p-4">
+      <div className="p-4 relative z-50">
         {
           [[dashboardData?.current_month, dashboardData?.this_month_birthday_users]].map((e) => <BirthdayMateAccord data={e} key={e} />)
         }

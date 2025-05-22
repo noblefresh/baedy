@@ -25,9 +25,9 @@ function ReferralChip() {
             <div className="xl:flex space-y-3 xl:space-y-0 w-full">
                 <div className="flex-grow relative text-sm lg:text-base top-1">Refer your friends to earn amazing reward through your referral link.</div>
                 <div className="flex  sm:w-96 bg-gray-200/40 border border-gray-50 rounded-lg overflow-hidden">
-                    <div className="flex-grow gap-4 text-xs flex items-center">
+                    <div className="flex-grow w-full text-xs flex items-center">
                         <div className="text-amber-600 hidden sm:block px-3 font-bold">Referral link:</div>
-                        <div className="px-2 sm:px-0 truncate w-48">{ref_link}</div>
+                        <div className="px-2 w-48 sm:px-0 truncate">{ref_link}</div>
                     </div>
                     <div onClick={() => copyToClipboard(ref_link)} className={`text-amber-600 cursor-pointer bg-amber-200 p-2 ${copied  && "text-xs"}`}>{copied ? "Copied" : <FaCopy />} </div>
                     <div className="text-amber-600 cursor-pointer bg-amber-200 p-2"><FaRegShareFromSquare /></div>
