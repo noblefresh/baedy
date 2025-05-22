@@ -90,7 +90,7 @@ function Index() {
         }
 
       </div>
-      <div className="p-4 relative z-50">
+      <div className="p-4 relative">
         {
           [[dashboardData?.current_month, dashboardData?.this_month_birthday_users]].map((e) => <BirthdayMateAccord data={e} key={e} />)
         }
