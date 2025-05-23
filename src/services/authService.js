@@ -37,6 +37,6 @@ export const fetchBirthdays = () => apiWithAuth.post("/app/birthday/fetch_birthd
 export const fetchProfile = () => apiWithAuth.post("/app/profile/fetch").then(getApiResponse).catch(getErrorResponse)
 export const updateProfile = () => apiWithAuth.post("/app/profile/update").then(getApiResponse).catch(getErrorResponse)
 export const changeAvatar = () => apiWithAuth.post("/app/profile/change_avatar").then(getApiResponse).catch(getErrorResponse)
-export const updatePassword = () => apiWithAuth.post("/app/profile/update_password").then(getApiResponse).catch(getErrorResponse)
+export const updatePassword = (payload) => apiWithAuth.post("/app/profile/update_password",payload).then(getApiResponse).catch(getErrorResponse)
 
 export const deleteAccount = () => apiWithAuth.post("/app/profile/delete_account").then(getApiResponse).catch(getErrorResponse)
