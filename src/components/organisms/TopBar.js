@@ -4,6 +4,7 @@ import { FaBell } from "react-icons/fa6";
 import appLogo from "@asset/Images/appLogo.png"
 import { useSelector } from 'react-redux';
 import { HiBars3BottomRight } from "react-icons/hi2";
+import Link from 'next/link';
 
 function TopBar({ title, toggleNaav }) {
 
@@ -17,9 +18,11 @@ function TopBar({ title, toggleNaav }) {
                 <div className="flex items-center gap-3">
                     <div className="text-xl text-gray-500"><FaBell /></div>
                     <div className="flex items-center gap-3">
-                        <div className="w-7 sm:w-10 h-7 sm:h-10 overflow-hidden bg-amber-200 rounded-full">
-                            <Image alt={user?.value?.user?.fname.split("")[0]} width={100} height={100} className='w-full h-full' src={user?.value?.user?.avatar} />
-                        </div>
+                        <Link href="/profile">
+                            <div className="w-7 sm:w-10 h-7 sm:h-10 overflow-hidden bg-amber-200 rounded-full">
+                                <Image alt={user?.value?.user?.fname.split("")[0]} width={100} height={100} className='w-full h-full' src={user?.value?.user?.avatar} />
+                            </div>
+                        </Link>
                         <div className="hidden md:block font-bold text-xs sm:text-sm">{user?.value?.user?.fname} {user?.value?.user?.lname}</div>
                         <div onClick={() => toggleNaav()} className='h-8 w-8 border md:hidden flex items-center justify-center text-xl border-gray-300 rounded-sm cursor-pointer'>
                             <HiBars3BottomRight />
