@@ -26,6 +26,13 @@
 }
 
 
+.profilebg{
+  background-image: url('/Images/profilebanner.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 
 .divition {
   height: 2px;

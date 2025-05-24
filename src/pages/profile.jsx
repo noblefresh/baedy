@@ -52,7 +52,7 @@ function Profile() {
         <div className="">
           {editMode && <div onClick={() => setEditMode(false)} className="flex items-center gap-2 pb-3 cursor-pointer"><TfiAngleLeft /> Go Back</div>}
           <div className="">
-            <div className="h-56 bg-amber-50 rounded-lg relative">
+            <div className="h-56 profilebg rounded-lg relative">
               <div className="w-8 h-8 cursor-pointer bg-amber-500 rounded-full absolute bottom-4 right-4"></div>
             </div>
             <div className="py-6 space-y-7 lg:space-y-0 lg:flex pl-4 md:pl-16">
