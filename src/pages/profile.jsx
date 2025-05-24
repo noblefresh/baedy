@@ -8,20 +8,37 @@ import { FaMap, FaCalendarAlt } from "react-icons/fa";
 import { FaMapLocation } from "react-icons/fa6";
 import { TfiAngleLeft } from "react-icons/tfi";
 import { IoCameraOutline } from "react-icons/io5";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import serialize from '@/hooks/Serialize';
+import { updateProfile } from '@/services/authService';
+import { SignInAuth } from '@/hooks/Auth';
 
 function Profile() {
-
+  const dispatch = useDispatch()
   const [editMode, setEditMode] = useState(false)
   const [proccessing, setProccessing] = useState(false)
-  const user = useSelector((state) => state.User.value?.user)
+  const uzer = useSelector((state) => state.User.value)
+  const user = uzer?.user
+
 
 
   const update = async (e) => {
     e.preventDefault()
     const payload = serialize(e.target)
-    console.log(payload);
+    setProccessing(true)
+    const { status, data:res } = await updateProfile(payload)
+
+
+    const data = {
+      bearer_token: uzer?.bearer_token,
+      user:res?.data[0]
+    }
+
+    status && (
+      SignInAuth({data}, dispatch)
+    )
+
+    setProccessing(false)
   }
 
 
