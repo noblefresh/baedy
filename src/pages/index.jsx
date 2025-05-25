@@ -31,7 +31,7 @@ function Index() {
 
 
   return (
-    <AppLayout title={`Welcome ${user?.value?.user?.fname} 👋`}>
+    <AppLayout active="home" title={`Welcome ${user?.value?.user?.fname} 👋`}>
       <div className="p-3">
         <TimeComp title="Activities Overview" />
       </div>

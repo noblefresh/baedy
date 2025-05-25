@@ -88,7 +88,7 @@ function Profile() {
 
   return (
 
-    <AppLayout title="Profile">
+    <AppLayout active="profile" title="Profile">
       <div className="p-3 space-y-4">
         <div className="">
           {editMode && <div onClick={() => setEditMode(false)} className="flex items-center gap-2 pb-3 cursor-pointer"><TfiAngleLeft /> Go Back</div>}

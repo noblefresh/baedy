@@ -19,7 +19,7 @@ function Referral() {
 
   return (
 
-    <AppLayout title="Referral">
+    <AppLayout active="referral" title="Referral">
       <div className="p-3">
         <TimeComp title="Invite others and get more rewards." />
       </div>

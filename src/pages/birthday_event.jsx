@@ -23,7 +23,7 @@ function BirthdayEvent() {
 
 
   return (
-    <AppLayout title="All User Birthday Event">
+    <AppLayout active="birthday_event" title="All User Birthday Event">
       <div className="p-3">
         <TimeComp title="Let’s celebrate the moments that matter most." />
       </div>

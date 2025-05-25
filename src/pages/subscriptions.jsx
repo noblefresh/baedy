@@ -27,7 +27,7 @@ function Subscriptions() {
 
   return (
     <>
-      <AppLayout title="Subscriptions">
+      <AppLayout active="subscriptions" title="Subscriptions">
         <div className="p-3">
           <TimeComp title="Manage your celebration access plan." />
         </div>

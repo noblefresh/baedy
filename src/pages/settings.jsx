@@ -106,7 +106,7 @@ function Settings() {
 
   return (
 
-    <AppLayout title="Settings">
+    <AppLayout active="settings" title="Settings">
       <div className="p-3">
         <TimeComp title="Manage account and security." />
       </div>

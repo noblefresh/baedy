@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import { SignOut } from '@/hooks/Auth';
 
 
-function SideNav() {
+function SideNav({ active }) {
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -29,26 +29,32 @@ function SideNav() {
                     <div className='space-y-4'>
                         <div>
                             <AppLink
+                                active={active}
                                 text={"Home"}
                                 icon={<BsFillGridFill />}
                             />
                             <AppLink
+                                active={active}
                                 text={"Birthday Event"}
                                 icon={<FaCalendarAlt />}
                             />
                             <AppLink
+                                active={active}
                                 text={"Wallet"}
                                 icon={<PiWalletFill />}
                             />
                             <AppLink
+                                active={active}
                                 text={"Subscriptions"}
                                 icon={<IoIosCard />}
                             />
                             <AppLink
+                                active={active}
                                 text={"Referral"}
                                 icon={<HiMiniUserGroup />}
                             />
                             <AppLink
+                                active={active}
                                 text={"Profile"}
                                 icon={<FaUserAlt />}
                             />
@@ -56,6 +62,7 @@ function SideNav() {
                         <div className="divition"></div>
                         <div>
                             <AppLink
+                                active={active}
                                 text={"Settings"}
                                 icon={<FaCog />}
                             />

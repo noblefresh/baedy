@@ -268,7 +268,7 @@ function Wallet() {
       </AppModal>
 
 
-      <AppLayout title="Wallet">
+      <AppLayout active="wallet" title="Wallet">
 
         <div className="p-3">
           <TimeComp title="Manage balances, view rewards, and fund your celebration experience." />

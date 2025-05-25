@@ -18,7 +18,7 @@ import TopBar from "../organisms/TopBar";
 //   description: 'Welcome to the home page',
 // };
 
-function AppLayout({ children, title }) {
+function AppLayout({ children, title, active }) {
   const user = useSelector((state) => state.User);
   const isAuthenticated = Session(user);
   const [greetings, setTime] = useState(false)
@@ -61,7 +61,7 @@ function AppLayout({ children, title }) {
               {children}
             </div>
             <div className={`h-screen z-30 fixed md:pt-32 transition-all duration-500 top-0 ${showNav ? "" : "-ml-72 md:m-0"} w-64`}>
-              <SideNav />
+              <SideNav active={active} />
             </div>
           </div>
         </div>
