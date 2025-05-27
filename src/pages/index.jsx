@@ -92,7 +92,10 @@ function Index() {
       </div>
       <div className="p-4 relative">
         {
-          [[dashboardData?.current_month, dashboardData?.this_month_birthday_users]].map((e) => <BirthdayMateAccord data={e} key={e} />)
+          [[dashboardData?.current_month, dashboardData?.this_month_birthday_users]].map((e) => <BirthdayMateAccord sideText={<div className='flex items-center gap-2'>
+          <div className="font-bold">Celebrants -</div>
+          <div className="text-xs">This month</div>
+          </div>} data={e} key={e} />)
         }
       </div>
     </AppLayout>

@@ -7,7 +7,7 @@ import serialize from '@/hooks/Serialize'
 import { useSelector } from 'react-redux'
 import { FiStar } from "react-icons/fi";
 
-function BirthdayCard({ data }) {
+function BirthdayCard({ data,month }) {
 
     const [giftModal, setGiftModal] = useState(false)
     const [showAmount, setAmount] = useState(false)
@@ -63,9 +63,8 @@ function BirthdayCard({ data }) {
                         </AppModal>
                     )
                 }
-
             </div>
-            <div className='bg-gray-100 space-y-3 rounded-xl p-2.5'>
+            <div className='bg-gray-100 w-60 space-y-3 rounded-xl p-2.5'>
                 <div className='h-44 rounded-2xl overflow-hidden relative bg-amber-50/40'>
                     <Image alt='user images' src={data.avatar} layout="fill" objectFit="cover" />
                     {
@@ -79,7 +78,7 @@ function BirthdayCard({ data }) {
                     </div>
                     <div className='flex gap-3'>
                         <div>Birthday Date</div>
-                        <div className='font-bold text-black'>{data?.dob.split(" ")[0]}</div>
+                        <div className='font-bold text-black'>{month} {data?.dob.split(" ")[0].split("-")[1]}</div>
                     </div>
                 </div>
             </div>

@@ -41,9 +41,8 @@ function BirthdayEvent() {
           </div>
           )
         }
-
         {
-          list.map((e) => <BirthdayMateAccord data={e} key={e} />)
+          list.map((e) => <BirthdayMateAccord sideText={<div className='font-bold'>Birthdays</div>} data={e} key={e} />)
         }
       </div>
     </AppLayout>
