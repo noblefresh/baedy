@@ -10,8 +10,8 @@ function BirthdayMateAccord({ data, sideText }) {
 
     return (
         <div>
-            <div className="bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
-                <div onClick={() => setShow(!show)} className="flex items-center">
+            <div className="bg-gray-200/40 overflow-x-auto border space-y-5 border-gray-200 p-5 rounded-xl">
+                <div onClick={() => setShow(!show)} className="flex sticky left-0 items-center">
                     <div className="flex-grow flex text-sm gap-1">
                         {sideText}
                     </div>

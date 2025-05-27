@@ -7,7 +7,7 @@ import serialize from '@/hooks/Serialize'
 import { useSelector } from 'react-redux'
 import { FiStar } from "react-icons/fi";
 
-function BirthdayCard({ data,month }) {
+function BirthdayCard({ data, month }) {
 
     const [giftModal, setGiftModal] = useState(false)
     const [showAmount, setAmount] = useState(false)
@@ -36,7 +36,7 @@ function BirthdayCard({ data,month }) {
                                 <div className='text-8xl flex items-center justify-center text-amber-500'><FiStar /></div>
                                 <div className='text-xl font-bold'>Gift sent successfully</div>
                                 <div className='text-gray-400 text-sm'>Thank You</div>
-                                <button onClick={()=> { setGiftModal(false); setAmount(false) }} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> Done </button>
+                                <button onClick={() => { setGiftModal(false); setAmount(false) }} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> Done </button>
                             </div>
                         </AppModal>
                     ) : (
@@ -64,21 +64,23 @@ function BirthdayCard({ data,month }) {
                     )
                 }
             </div>
-            <div className='bg-gray-100 w-60 space-y-3 rounded-xl p-2.5'>
-                <div className='h-44 rounded-2xl overflow-hidden relative bg-amber-50/40'>
-                    <Image alt='user images' src={data.avatar} layout="fill" objectFit="cover" />
-                    {
-                        user?.id !== data?.id && <div onClick={() => setGiftModal(true)} className='bg-amber-400 cursor-pointer absolute bottom-0 text-xs right-0 rounded-lg text-white p-2'>Send Gift</div>
-                    }
-                </div>
-                <div className='text-gray-400 space-y-1'>
-                    <div className='flex gap-3'>
-                        <div>Celebrant</div>
-                        <div className='font-bold text-black'>{data.fname} {data.lname}</div>
+            <div>
+                <div className='bg-gray-100 w-60 space-y-3 rounded-xl p-2.5'>
+                    <div className='h-44 rounded-2xl overflow-hidden relative bg-amber-50/40'>
+                        <Image alt='user images' src={data.avatar} layout="fill" objectFit="cover" />
+                        {
+                            user?.id !== data?.id && <div onClick={() => setGiftModal(true)} className='bg-amber-400 cursor-pointer absolute bottom-0 text-xs right-0 rounded-lg text-white p-2'>Send Gift</div>
+                        }
                     </div>
-                    <div className='flex gap-3'>
-                        <div>Birthday Date</div>
-                        <div className='font-bold text-black'>{month} {data?.dob.split(" ")[0].split("-")[1]}</div>
+                    <div className='text-gray-400 space-y-1'>
+                        <div className='flex gap-3'>
+                            <div>Celebrant</div>
+                            <div className='font-bold text-black'>{data.fname} {data.lname}</div>
+                        </div>
+                        <div className='flex gap-3'>
+                            <div>Birthday Date</div>
+                            <div className='font-bold text-black'>{month} {data?.dob.split(" ")[0].split("-")[1]}</div>
+                        </div>
                     </div>
                 </div>
             </div>
