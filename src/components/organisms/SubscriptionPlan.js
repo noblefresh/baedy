@@ -14,14 +14,16 @@ function SubscriptionPlan({ text }) {
     const [showModal, setShowModal] = useState(false)
     const [proccessingFund, setProccessingFund] = useState(false)
     const [successModal, setSuccessModal] = useState(false)
+    const [errMsg,setErrmsg] = useState('')
 
     const router = useRouter()
 
     const subNow = async () => {
         setProccessingFund(true)
+        setErrmsg('')
         const { data, status } = await subscribeUser({ amount: 20000 })
-        // console.log(data);
         status && setSuccessModal(true)
+        !status && setErrmsg(data?.message)
         setShowModal(true)
         setProccessingFund(false)
     }
@@ -64,6 +66,7 @@ function SubscriptionPlan({ text }) {
                                     <div>Welcome to the ultimate subscription-based celebration experience! For just #20,000 naira/month</div>
                                     <div>Your wallet will be charged</div>
                                 </div>
+                                <div className='text-red-500'>{errMsg}</div>
                                 <div>
                                     <div className='font-bold text-4xl text-amber-950'>&#8358;20,000</div>
                                 </div>

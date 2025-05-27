@@ -29,7 +29,7 @@ function AppLayout({ children, title, active }) {
     const now = moment();
     const inputTime = moment(date);
     const minutes = now.diff(inputTime, 'minutes');
-    if (minutes < 10) {
+    if (minutes < 2) {
       setTime(true);
     } else {
       setTime(false);

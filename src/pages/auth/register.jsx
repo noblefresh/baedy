@@ -25,7 +25,6 @@ function Page() {
     const register = async (e) => {
         setProccessing(true)
         setErrMsg('')
-        const password = e.password.toString()
         if (e.cpassword === e.password) {
             const { status, data } = await registerAPI(e).catch(err => console.log(err))
             if (status) {
