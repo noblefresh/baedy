@@ -51,7 +51,7 @@ function AuthLayout({ title, children, subText, formTitle, formDes, onSubmit, er
   };
 
 
-  if (isAuthenticated.status === "authenticated" && user?.value?.user?.email_verified_at !== null) {
+  if (isAuthenticated.status === "authenticated") {
     (user?.value?.user?.email_verified_at && user?.value?.user?.email_verified_at !== null ) ? router.push("/") : router.push('/auth/accountverification')
   } else {
     return (
