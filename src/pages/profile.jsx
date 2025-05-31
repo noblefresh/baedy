@@ -156,7 +156,7 @@ function Profile() {
               <AppInput disabled placeholder="Country" defaultValue={user?.country} name="country" icon={<FaMap />} required label="Country" />
               <AppInput disabled={!editMode} placeholder="State" defaultValue={user?.state} name="state" icon={<MdExplore />} required label="State" />
               <AppInput disabled={!editMode} placeholder="City" name="city" defaultValue={user?.city} icon={<FaMapLocation />} required label="City" />
-              <AppInput disabled={!editMode} name="dob" defaultValue={user?.dob} icon={<FaCalendarAlt />} required label="Date of Birth" type="date" />
+              <AppInput disabled name="dob" defaultValue={user?.dob.split(' ')[0]} icon={<FaCalendarAlt />} required label="Date of Birth" />
               {
                 editMode && (
                   <div className="grid col-span-1 sm:col-span-2 lg:col-span-1 sm:grid-cols-2 gap-4">

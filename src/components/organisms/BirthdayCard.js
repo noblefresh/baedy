@@ -25,6 +25,37 @@ function BirthdayCard({ data, month }) {
         setProccessingFund(false)
     }
 
+    const prefix = () => {
+        switch (data?.dob.split(" ")[0].split("-")[1].split('')[1]) {
+            case '1':
+                if (data?.dob.split(" ")[0].split("-")[1].split('')[0] === '1') {
+                    return 'th'
+                } else {
+                    return 'st'
+                }
+                break;
+
+            case '2':
+                if (data?.dob.split(" ")[0].split("-")[1].split('')[0] === '1') {
+                    return 'th'
+                } else {
+                    return 'nd'
+                }
+                break;
+            case '3':
+                if (data?.dob.split(" ")[0].split("-")[1].split('')[0] === '1') {
+                    return 'th'
+                } else {
+                    return 'nd'
+                }
+                break;
+
+            default:
+                return 'th'
+                break;
+        }
+    }
+
     return (
 
         <>
@@ -79,7 +110,7 @@ function BirthdayCard({ data, month }) {
                         </div>
                         <div className='flex gap-3'>
                             <div>Birthday Date</div>
-                            <div className='font-bold text-black'>{month} {data?.dob.split(" ")[0].split("-")[1]}</div>
+                            <div className='font-bold text-black'> {data?.dob.split(" ")[0].split("-")[1]}<span className='text-xs relative bottom-1'>{prefix()}</span> {month}</div>
                         </div>
                     </div>
                 </div>
