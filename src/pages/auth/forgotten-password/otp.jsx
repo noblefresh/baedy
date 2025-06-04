@@ -54,9 +54,6 @@ function Page() {
     }, [counter]);
 
 
-
-
-
     return (
         <AuthLayout errMsg={errMsg} onSubmit={(e) => confirmOTP(e)} formTitle='Reset Password' formDes='Enter the 4 digit code sent to your email address' title="Reset Code Sent" subText="Don’t worry you can reset it at ease.">
             <div className="space-y-4">
