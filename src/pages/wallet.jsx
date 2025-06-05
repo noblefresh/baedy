@@ -35,8 +35,10 @@ function Wallet() {
   const [showFundModal, setShowFundModal] = useState(false)
   const [bankList, setBankList] = useState([])
   const [showOTP, setShowOTP] = useState(false)
+  const [selectedBank, setSelectedBank] = useState(false)
   const [otp, setOtp] = useState('');
   const [bank, setBank] = useState('')
+  const [selectedBankErr, setSelectedBankErr] = useState('')
 
   const [bankForm, setBankForm] = useState({
     name: '',
@@ -92,8 +94,13 @@ function Wallet() {
       const { data, status } = await withdrawal(payload)
       status && fetchdata() && setShowOTP(false) && setShowModal(false) && setAddForm(false);;
     } else {
-      const { data, status } = await sendOTP({ email: user?.value?.user?.email })
-      status && setShowOTP(true);
+      if (selectedBank) {
+        const { data, status } = await sendOTP({ email: user?.value?.user?.email })
+        status && setShowOTP(true);
+      } else {
+        setSelectedBankErr('Please Add Your Bank Account Details.')
+      }
+
     }
 
     setProccessing(false)
@@ -128,7 +135,7 @@ function Wallet() {
 
   return (
     <>
-      <AppModal mode={showModal} withClose={() => { setShowModal(false); setAddForm(false) }}>
+      <AppModal mode={showModal} withClose={() => { setShowModal(false); setAddForm(false);setShowOTP(false) }}>
         {
           addForm ? (
             <form onSubmit={addMyBankAccount} className="space-y-7">
@@ -198,8 +205,8 @@ function Wallet() {
                           <div>
                             {
                               bankList[0].map((data, i) => (
-                                <label key={i} className='has-[:checked]:bg-gray-50 has-[:checked]:border-gray-800 cursor-pointer flex items-center gap-3 border border-gray-300/50 backdrop-blur-md rounded-lg p-3'>
-                                  <input type="radio" value={data.id} name="bank_id" required class="opacity-0 absolute" />
+                                <label key={i} className='has-[:checked]:bg-gray-50 mt-2 has-[:checked]:border-gray-800 cursor-pointer flex items-center gap-3 border border-gray-300/50 backdrop-blur-md rounded-lg p-3'>
+                                  <input type="radio" onChange={() => setSelectedBank(true)} value={data.id} name="bank_id" required class="opacity-0 absolute" />
                                   <div className="">
                                     <div className='bg-white shadow-md h-10 w-10 sm:h-14 sm:w-14 rounded-full flex items-center justify-center'>
                                       <PiBankDuotone />
@@ -227,7 +234,7 @@ function Wallet() {
                         </div>
                       )
                     }
-
+                    {selectedBankErr && <div className='text-red-400 text-sm font-bold text-center'>{selectedBankErr}</div>}
                     <div className="">
                       <AppInput placeholder="Min. 1000" name="amount" icon={<IoMail />} required label="Withdrawal Amount" />
                     </div>
