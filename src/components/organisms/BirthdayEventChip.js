@@ -6,9 +6,6 @@ import { convertToAmPm } from '@/hooks/utils';
 function BirthdayEventChip({ data }) {
     const [showModal, setShowModal] = useState(false)
 
-    console.log(data);
-
-
     return (
         <>
             <AppModal mode={showModal} withClose={() => setShowModal(false)}>
