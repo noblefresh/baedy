@@ -6,6 +6,7 @@ import { giftUser } from '@/services/authService'
 import serialize from '@/hooks/Serialize'
 import { useSelector } from 'react-redux'
 import { FiStar } from "react-icons/fi";
+import { HiBadgeCheck } from "react-icons/hi";
 
 function BirthdayCard({ data, month }) {
 
@@ -106,7 +107,7 @@ function BirthdayCard({ data, month }) {
                     <div className='text-gray-400 space-y-1'>
                         <div className='flex gap-3'>
                             <div>Celebrant</div>
-                            <div className='font-bold text-black'>{data.fname} {data.lname}</div>
+                            <div className='font-bold text-black'>{data.fname} {data.lname} {data?.subscription.length > 0 && <span className='inline-block relative top-0.5 text-amber-400'><HiBadgeCheck size={17} /></span> }</div>
                         </div>
                         <div className='flex gap-3'>
                             <div>Birthday Date</div>
