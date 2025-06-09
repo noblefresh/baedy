@@ -10,8 +10,8 @@ function BirthdayEventChip({ data }) {
         <>
             <AppModal mode={showModal} withClose={() => setShowModal(false)}>
                 <div className='text-sm space-y-4'>
-                    <div className='h-44 rounded-lg bg-amber-50 overflow-hidden'>
-                        <Image lazyRoot lazyBoundary src={data?.image} alt='Img' width={100} height={100} className='h-full w-full' />
+                    <div className='h-44 rounded-lg overflow-hidden bg-amber-50'>
+                        <Image lazyRoot lazyBoundary src={data?.image} alt='Img' width={100} height={100} className='h-full rounded-lg w-full' />
                     </div>
                     <div className='grid grid-cols-2 gap-3'>
                         <div>
@@ -47,7 +47,7 @@ function BirthdayEventChip({ data }) {
             </AppModal>
             <div onClick={() => setShowModal(true)} className='p-1 cursor-pointer bg-amber-50/70 flex gap-2 border-gray-50 rounded-xl'>
                 <div>
-                    <div className='w-12 h-10 bg-amber-100 rounded-lg'>
+                    <div className='w-12 h-10 bg-amber-100 overflow-hidden rounded-lg'>
                         <Image lazyRoot lazyBoundary src={data?.image} alt='Img' width={100} height={100} className='h-full w-full' />
                     </div>
                 </div>
