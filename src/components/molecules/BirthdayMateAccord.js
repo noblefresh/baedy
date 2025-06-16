@@ -7,6 +7,7 @@ import EmblaCarousel from './EmblaCarousel';
 function BirthdayMateAccord({ data, sideText }) {
 
     const [show, setShow] = useState(false)
+    
 
     return (
         <div>

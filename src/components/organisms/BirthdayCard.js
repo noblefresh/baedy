@@ -27,9 +27,9 @@ function BirthdayCard({ data, month }) {
     }
 
     const prefix = () => {
-        switch (data?.dob.split(" ")[0].split("-")[1].split('')[1]) {
+        switch (data?.dob.split(" ")[0].split("-")[2].split('')[1]) {
             case '1':
-                if (data?.dob.split(" ")[0].split("-")[1].split('')[0] === '1') {
+                if (data?.dob.split(" ")[0].split("-")[2].split('')[0] === '1') {
                     return 'th'
                 } else {
                     return 'st'
@@ -37,17 +37,17 @@ function BirthdayCard({ data, month }) {
                 break;
 
             case '2':
-                if (data?.dob.split(" ")[0].split("-")[1].split('')[0] === '1') {
+                if (data?.dob.split(" ")[0].split("-")[2].split('')[0] === '1') {
                     return 'th'
                 } else {
                     return 'nd'
                 }
                 break;
             case '3':
-                if (data?.dob.split(" ")[0].split("-")[1].split('')[0] === '1') {
+                if (data?.dob.split(" ")[0].split("-")[2].split('')[0] === '1') {
                     return 'th'
                 } else {
-                    return 'nd'
+                    return 'rd'
                 }
                 break;
 
@@ -81,7 +81,7 @@ function BirthdayCard({ data, month }) {
                                     <div>Please enter the amount to send</div>
                                     <div>
                                         <div className='w-40 items-center justify-center border border-white/50 flex gap-1 rounded-lg p-2 mx-auto font-extrabold text-4xl'>
-                                            &#8358;  <input name='amount' required className='w-full outline-0 ring-0 focus-within:outline-0' placeholder='20,000' type='tel' />
+                                            &#8358;  <input name='amount' required className='w-full outline-0 ring-0 focus-within:outline-0' placeholder='50,000' type='tel' />
                                         </div>
                                     </div>
                                     <div>Receiver: {data.fname} {data.lname}</div>
@@ -101,17 +101,17 @@ function BirthdayCard({ data, month }) {
                     <div className='h-44 rounded-2xl overflow-hidden relative bg-amber-50/40'>
                         <Image alt='user images' src={data.avatar} layout="fill" objectFit="cover" />
                         {
-                            (user?.id !== data?.id && data?.subscription.length > 0 )&& <div onClick={() => setGiftModal(true)} className='bg-amber-400 cursor-pointer absolute bottom-0 text-xs right-0 rounded-lg text-white p-2'>Send Gift</div>
+                            (user?.id !== data?.id && data?.subscription?.length > 0 )&& <div onClick={() => setGiftModal(true)} className='bg-amber-400 cursor-pointer absolute bottom-0 text-xs right-0 rounded-lg text-white p-2'>Send Gift</div>
                         }
                     </div>
                     <div className='text-gray-400 space-y-1'>
                         <div className='flex gap-3'>
                             <div>Celebrant</div>
-                            <div className='font-bold text-black'>{data.fname} {data.lname} {data?.subscription.length > 0 && <span className='inline-block relative top-0.5 text-amber-400'><HiBadgeCheck size={17} /></span> }</div>
+                            <div className='font-bold text-black'>{data.fname} {data.lname} {data?.subscription?.length > 0 && <span className='inline-block relative top-0.5 text-amber-400'><HiBadgeCheck size={17} /></span> }</div>
                         </div>
                         <div className='flex gap-3'>
                             <div>Birthday Date</div>
-                            <div className='font-bold text-black'> {data?.dob.split(" ")[0].split("-")[1]}<span className='text-xs relative bottom-1'>{prefix()}</span> {month}</div>
+                            <div className='font-bold text-black'> {data?.dob.split(" ")[0].split("-")[2]}<span className='text-xs relative bottom-1'>{prefix()}</span> {month}</div>
                         </div>
                     </div>
                 </div>
