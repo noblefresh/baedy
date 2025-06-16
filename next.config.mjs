@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['img.freepik.com', "https://","bd.literesults.net","https://api.bigdaymi.com/api"]
+    domains: ['img.freepik.com', "https://","bd.literesults.net","https://api.bigdaymi.com"]
   }
 };
 
