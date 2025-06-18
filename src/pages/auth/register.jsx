@@ -32,7 +32,7 @@ function Page() {
                 SignInAuth(data, dispatch)
                 router.push("accountverification")
             } else {
-                setErrArr(data?.message)
+                setErrMsg(data?.message)
             }
         } else {
             setErrMsg('Password mis-match')
