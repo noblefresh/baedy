@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerAPI } from '@/services/authService'
 import AuthLayout from '@/components/layouts/authLayout'
@@ -19,8 +19,10 @@ function Page() {
     const dispatch = useDispatch()
     const [proccessing, setProccessing] = useState(false)
     const [errMsg, setErrMsg] = useState(false)
-    const [errArr, setErrArr] = useState([])
     const router = useRouter()
+
+    const searchParams = useSearchParams()
+
 
     const register = async (e) => {
         setProccessing(true)
@@ -51,6 +53,7 @@ function Page() {
                 <AppInput placeholder="Country" name="country" icon={<FaMap />} defaultValue="Nigeria" disabled required label="Country" />
                 <AppInput placeholder="State" name="state" icon={<MdExplore />} required label="State" />
             </div>
+            <input type="hidden" name='referral_code' value={searchParams.get('referral_code')} />
             <AppInput placeholder="City" name="city" icon={<FaMapLocation />} required label="City" />
             <AppInput name="dob" icon={<FaCalendarAlt />} required label="Date of Birth" type={"date"} />
             <AppInput placeholder="Password" name="password" icon={<RiLockStarFill />} required label="Password" type="password" />

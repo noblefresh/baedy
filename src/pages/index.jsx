@@ -77,7 +77,7 @@ function Index() {
             <div className="grid lg:grid-cols-2 items-center gap-4 bg-gray-200/40 border space-y-5 border-gray-200 p-5 rounded-xl">
               <div className="space-y-6">
                 <div className="font-extrabold sm:text-xl lg:text-2xl xl:text-5xl">You don&apos;t have any subscription</div>
-                <div className="text-xs sm:text-sm lg:text-xl xl:text-2xl">Subscribe to see your birthday mate and other amazing stuff that awaits you!  </div>
+                <div className="text-xs sm:text-sm lg:text-xl xl:text-2xl">Subscribe to earn rewards, receive gifts and other amazing things that awaits you!.  </div>
                 <Link href="subscription_details" className="">
                   <div className="px-4 py-2 rounded-lg bg-amber-400 text-white inline text-xs">Learn More</div>
                 </Link>

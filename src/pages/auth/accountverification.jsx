@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { PiShootingStarBold } from "react-icons/pi";
 import { sendOTP, verifyOTP } from '@/services/authService';
 import OtpInput from 'react-otp-input';
+import { SignInAuth } from '@/hooks/Auth';
 
 function Accountverification() {
 
@@ -27,7 +28,9 @@ function Accountverification() {
       setProccessingOTP(false)
       if (status) {
         setErrMsg('')
-        router.replace(`success`)
+        // SignInAuth(data, dispatch)
+        // router.replace(`success`)
+        console.log(data);
       } else {
         setErrMsg(data.message)
       }
@@ -49,7 +52,7 @@ function Accountverification() {
       user_id: user?.value?.user?.id,
       email: user?.value?.user?.email
     }
-    const { status, data } = await sendOTP(e).catch(err => console.log(err))
+    sendOTP(e).catch(err => console.log(err))
   }
 
 

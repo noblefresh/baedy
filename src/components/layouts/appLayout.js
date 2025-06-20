@@ -11,6 +11,7 @@ import Link from "next/link";
 import TopBar from "../organisms/TopBar";
 
 
+
 // TODO: add page mata title
 
 // export const metadata = {
@@ -24,6 +25,9 @@ function AppLayout({ children, title, active }) {
   const [greetings, setTime] = useState(false)
   const [showNav, setShowNav] = useState(false);
   const router = useRouter();
+
+  console.log(user?.value?.user);
+  
 
   const getTime = (date) => {
     const now = moment();
