@@ -18,15 +18,35 @@ function Index() {
 
   const [dashboardData, setDashboardData] = useState({});
 
+  const [shoutouts, setShouts] = useState([])
+
 
   const fetchData = async () => {
     const { status, data } = await fetchDashBoardData();
     status && setDashboardData(data?.data);
   }
 
+  const shouts = async () => {
+    fetch('https://api.bigdaymi.com/api/frontend/fetch_frontend_shoutouts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setShouts(data.data.data)
+      })
+  }
 
   useEffect(() => {
     fetchData()
+    shouts()
   }, [])
 
 
@@ -99,6 +119,26 @@ function Index() {
             <div className="text-xs">This month</div>
           </div>} data={e} key={e} />)
         }
+      </div>
+
+      <div className="space-y-2">
+        <div className="font-bold px-5">Birthday Shoutout</div>
+        <div class="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 px-4">
+          {
+            shoutouts.map(el => (
+              <div key={el.id} class="swiper-slide bg-white rounded-xl w-72 flex-shrink-0">
+                <div class="bg-[#F6F6F6] p-2.5 rounded-xl text-left">
+                  <Image src={el.user.avatar} alt="" class="rounded-xl w-full h-40 object-cover" width={100} height={100} />
+                  <p class="pt-2 text-[#6D6D6D]">Celebrant: <span class="font-semibold text-[#3D3D3D]">{el.user.fname} {el.user.lname}</span></p>
+                </div>
+                <div class="text-left p-4">
+                  <h2 class="text-[#FC9A04] font-semibold">Shoutout Message</h2>
+                  <p class="text-[#3D3D3D] text-sm">{el.message}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </AppLayout>
   )

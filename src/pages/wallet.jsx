@@ -73,7 +73,8 @@ function Wallet() {
       bankForm.bank_name = e.target[0].selectedOptions[0].innerHTML
       bankForm.account_name = bankForm.name
       const { data, status } = await addBank(bankForm)
-      status && fetchdata();
+      status && fetchdata() && fetcBankList();
+       setShowModal(false); setAddForm(false);setShowOTP(false)
     }
     setProccessing(false)
   }

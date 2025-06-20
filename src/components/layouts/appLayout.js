@@ -26,8 +26,6 @@ function AppLayout({ children, title, active }) {
   const [showNav, setShowNav] = useState(false);
   const router = useRouter();
 
-  console.log(user?.value?.user);
-
 
   const getTime = (date) => {
     const now = moment();
