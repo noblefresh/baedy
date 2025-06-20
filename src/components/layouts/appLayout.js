@@ -27,7 +27,7 @@ function AppLayout({ children, title, active }) {
   const router = useRouter();
 
   console.log(user?.value?.user);
-  
+
 
   const getTime = (date) => {
     const now = moment();
@@ -50,9 +50,9 @@ function AppLayout({ children, title, active }) {
   if (isAuthenticated.status === "unauthenticated") {
     router.push("/auth/login");
   } else {
-    // if (user?.value?.user?.email_verified_at !== null) {
-    //   router.push('/auth/accountverification')
-    // } else {
+    if (user?.value?.user?.email_verified_at === null) {
+      router.push('/auth/accountverification')
+    } else {
       return (
         <div className="relative">
           <div className="w-96 fixed -top-36 -right-36 h-96 rounded-full bg-orange-400"></div>
@@ -96,7 +96,7 @@ function AppLayout({ children, title, active }) {
           }
         </div>
       );
-    // }
+    }
 
   }
 }

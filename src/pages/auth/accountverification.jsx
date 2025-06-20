@@ -18,6 +18,8 @@ function Accountverification() {
   const [otp, setOtp] = useState('');
   const [counter, setCounter] = useState(60);
   const user = useSelector((state) => state.User);
+  console.log(user);
+  
 
   const confirmOTP = async (e) => {
     e.otp = otp
@@ -28,9 +30,8 @@ function Accountverification() {
       setProccessingOTP(false)
       if (status) {
         setErrMsg('')
-        // SignInAuth(data, dispatch)
-        // router.replace(`success`)
-        console.log(data);
+        SignInAuth({data:{bearer_token:user?.value,user:data?.data?.user}}, dispatch)
+        router.replace(`success`)
       } else {
         setErrMsg(data.message)
       }
