@@ -123,7 +123,7 @@ function Index() {
 
       <div className="space-y-2">
         <div className="font-bold px-5">Birthday Shoutout</div>
-        <div class="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 px-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 px-4">
           {
             shoutouts.map(el => (
               <div key={el.id} class="swiper-slide bg-white rounded-xl w-72 flex-shrink-0">
