@@ -27,7 +27,7 @@ function BirthdayCard({ data, month }) {
     }
 
     const prefix = () => {
-        switch (data?.dob.split(" ")[0].split("-")[2].split('')[1]) {
+        switch (data?.dob?.split(" ")[0].split("-")[2].split('')[1]) {
             case '1':
                 if (data?.dob.split(" ")[0].split("-")[2].split('')[0] === '1') {
                     return 'th'

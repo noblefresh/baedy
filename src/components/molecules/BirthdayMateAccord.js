@@ -16,7 +16,7 @@ function BirthdayMateAccord({ data, sideText }) {
                     <div className="flex-grow flex text-sm gap-1">
                         {sideText}
                     </div>
-                    <div className="flex gap-2 cursor-pointer items-center">{data[0]} <IoIosArrowUp /></div>
+                    <div className="flex gap-2 cursor-pointer items-center">{data[0] ?? data[0]} <IoIosArrowUp /></div>
                 </div>
 
                 {
@@ -26,7 +26,7 @@ function BirthdayMateAccord({ data, sideText }) {
                             options={{ align: "start", dragFree: true}}
                         >
                             {
-                                data[1].map((e) => <BirthdayCard data={e} month={data[0]} key={e.id} />)
+                                data[1].map((e) => <BirthdayCard data={e} month={data[0] ?? data[0]} key={e.id} />)
                             }
                         </EmblaCarousel>
 
