@@ -97,9 +97,10 @@ function BirthdayCard({ data, month }) {
                 }
             </div>
             <div>
+
                 <div className='bg-gray-100 w-60 space-y-3 rounded-xl p-2.5'>
                     <div className='h-44 rounded-2xl overflow-hidden relative bg-amber-50/40'>
-                        <Image alt='user images' src={data.avatar} layout="fill" objectFit="cover" />
+                        <Image alt='user images' src={data?.avatar} layout="fill" objectFit="cover" />
                         {
                             (user?.id !== data?.id && data?.subscription?.length > 0 )&& <div onClick={() => setGiftModal(true)} className='bg-amber-400 cursor-pointer absolute bottom-0 text-xs right-0 rounded-lg text-white p-2'>Send Gift</div>
                         }
@@ -107,7 +108,7 @@ function BirthdayCard({ data, month }) {
                     <div className='text-gray-400 space-y-1'>
                         <div className='flex gap-3'>
                             <div>Celebrant</div>
-                            <div className='font-bold text-black'>{data.fname} {data.lname} {data?.subscription?.length > 0 && <span className='inline-block relative top-0.5 text-amber-400'><HiBadgeCheck size={17} /></span> }</div>
+                            <div className='font-bold text-black'>{data?.fname} {data?.lname} {data?.subscription?.length > 0 && <span className='inline-block relative top-0.5 text-amber-400'><HiBadgeCheck size={17} /></span> }</div>
                         </div>
                         <div className='flex gap-3'>
                             <div>Birthday Date</div>

@@ -7,7 +7,7 @@ import EmblaCarousel from './EmblaCarousel';
 function BirthdayMateAccord({ data, sideText }) {
 
     const [show, setShow] = useState(false)
-    
+
 
     return (
         <div>
@@ -23,10 +23,10 @@ function BirthdayMateAccord({ data, sideText }) {
                     show && (
 
                         <EmblaCarousel
-                            options={{ align: "start", dragFree: true}}
+                            options={{ align: "start", dragFree: true }}
                         >
                             {
-                                data[1].map((e) => <BirthdayCard data={e} month={data[0] ?? data[0]} key={e.id} />)
+                                data[1]?.map((e) => <BirthdayCard data={e} month={data[0] ?? data[0]} key={e.id} />)
                             }
                         </EmblaCarousel>
 

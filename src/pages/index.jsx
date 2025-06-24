@@ -148,9 +148,6 @@ function Index() {
 export const getServerSideProps = async (context) => {
   const { status, data } = await fetchDashBoardData();
 
-  console.log(data);
-
-
   return {
     props: {
       dashboardData: status ? data : {},
