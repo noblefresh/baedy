@@ -53,7 +53,7 @@ function Page() {
                 <AppInput placeholder="Country" name="country" icon={<FaMap />} defaultValue="Nigeria" disabled required label="Country" />
                 <AppInput placeholder="State" name="state" icon={<MdExplore />} required label="State" />
             </div>
-            <input type="hidden" name='referral_code' value={searchParams.get('referral_code') ? searchParams.get('referral_code') : '' } />
+            <input type="hidden" name='referral_by' value={searchParams.get('referral_code') ? searchParams.get('referral_code') : '' } />
             <AppInput placeholder="City" name="city" icon={<FaMapLocation />} required label="City" />
             <AppInput name="dob" icon={<FaCalendarAlt />} required label="Date of Birth" type={"date"} />
             <AppInput placeholder="Password" name="password" icon={<RiLockStarFill />} required label="Password" type="password" />
