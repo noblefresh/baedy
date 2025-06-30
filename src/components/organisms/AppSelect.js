@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-function AppSelect({ label, required, value, name, icon, options, defaultValue, onChange }) {
+function AppSelect({ label, required, value, name, error, options, defaultValue, onChange, placeholder, icon }) {
 
     return (
         <div className='space-y-2 cursor-pointer text-green'>
@@ -19,7 +19,7 @@ function AppSelect({ label, required, value, name, icon, options, defaultValue, 
                     className="w-full border appearance-none focus:border-black disabled:border-gray-100 disabled:cursor-default border-black p-3 pl-9 peer outline-none rounded-lg"
                 >
                     <option value="" disabled selected hidden>
-                        Select {label}
+                        {placeholder}
                     </option>
                     {options?.map((option) => (
                         <option key={option.value} defaultValue={typeof (defaultValue) === "string" ? defaultValue === option.value : defaultValue === option.label} value={option.value}>

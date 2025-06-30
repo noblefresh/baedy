@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerAPI } from '@/services/authService'
@@ -13,6 +13,8 @@ import { ImPhone } from "react-icons/im";
 import { FaMap, FaCalendarAlt } from "react-icons/fa";
 import { FaMapLocation } from "react-icons/fa6";
 import { SignInAuth } from '@/hooks/Auth'
+import axios from 'axios'
+import AppSelect from '@/components/organisms/AppSelect'
 
 
 function Page() {
@@ -20,8 +22,26 @@ function Page() {
     const [proccessing, setProccessing] = useState(false)
     const [errMsg, setErrMsg] = useState(false)
     const router = useRouter()
+    const [options,setOptions] = useState([])
 
     const searchParams = useSearchParams()
+
+    const fetchCountries = async () => {
+        axios.get('https://restcountries.com/v3.1/all?fields=name').then(res => {
+
+            const arr = []
+            if (res.status === 200) {
+                res?.data?.forEach(element => {
+                    arr.push({label:element.name.common,value:element.name.common})
+                });
+            }
+            setOptions(arr)
+        })
+    }
+
+    useEffect(() => {
+        fetchCountries()
+    }, [])
 
 
     const register = async (e) => {
@@ -50,10 +70,10 @@ function Page() {
             <AppInput placeholder="e.g 0901827464" name="phone" required icon={<ImPhone />} label="Phone" />
             <AppInput placeholder="e.g email@gmail.com" name="email" type={'mail'} icon={<MdMail />} required label="Email" />
             <div className="grid gap-4 grid-cols-2">
-                <AppInput placeholder="Country" name="country" icon={<FaMap />} defaultValue="Nigeria" disabled required label="Country" />
+                <AppSelect placeholder="Select Country" name="country" icon={<FaMap />} required label="Country" options={options} defaultValue='Nigeria'/>
                 <AppInput placeholder="State" name="state" icon={<MdExplore />} required label="State" />
             </div>
-            <input type="hidden" name='referral_by' value={searchParams.get('referral_code') ? searchParams.get('referral_code') : '' } />
+            <input type="hidden" name='referral_by' value={searchParams.get('referral_code') ? searchParams.get('referral_code') : ''} />
             <AppInput placeholder="City" name="city" icon={<FaMapLocation />} required label="City" />
             <AppInput name="dob" icon={<FaCalendarAlt />} required label="Date of Birth" type={"date"} />
             <AppInput placeholder="Password" name="password" icon={<RiLockStarFill />} required label="Password" type="password" />
