@@ -35,6 +35,9 @@ function Page() {
                     arr.push({label:element.name.common,value:element.name.common})
                 });
             }
+            const sorted = arr.sort((a, b) => a.lable(b, 'en', { sensitivity: 'base' }))
+            console.log(sorted);
+            
             setOptions(arr)
         })
     }

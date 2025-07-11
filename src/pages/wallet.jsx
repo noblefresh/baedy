@@ -22,6 +22,7 @@ import AppSelect from '@/components/organisms/AppSelect'
 import { FaCircleUser } from 'react-icons/fa6'
 import { RiBankLine } from 'react-icons/ri'
 import { useSelector } from 'react-redux'
+import { toast, Toaster } from 'sonner'
 
 function Wallet() {
 
@@ -74,7 +75,7 @@ function Wallet() {
       bankForm.account_name = bankForm.name
       const { data, status } = await addBank(bankForm)
       status && fetchdata() && fetcBankList();
-       setShowModal(false); setAddForm(false);setShowOTP(false)
+      setShowModal(false); setAddForm(false); setShowOTP(false)
     }
     setProccessing(false)
   }
@@ -93,7 +94,12 @@ function Wallet() {
       const payload = serialize(e.target)
       payload.otp = otp
       const { data, status } = await withdrawal(payload)
-      status && fetchdata() && setShowOTP(false) && setShowModal(false) && setAddForm(false);;
+      status && await fetchdata()
+      toast.success(data.message)
+      setShowOTP(false)
+      setShowModal(false)
+      setAddForm(false);
+      status && setOtp('')
     } else {
       if (selectedBank) {
         const { data, status } = await sendOTP({ email: user?.value?.user?.email })
@@ -136,7 +142,8 @@ function Wallet() {
 
   return (
     <>
-      <AppModal mode={showModal} withClose={() => { setShowModal(false); setAddForm(false);setShowOTP(false) }}>
+      <Toaster />
+      <AppModal mode={showModal} withClose={() => { setShowModal(false); setAddForm(false); setShowOTP(false) }}>
         {
           addForm ? (
             <form onSubmit={addMyBankAccount} className="space-y-7">
@@ -195,6 +202,7 @@ function Wallet() {
                         focusStyle={'outline-none ring-0 border border-gray-400'}
                         renderInput={(props) => <input name='otp' {...props} />}
                       />
+                      { }
                     </div>
                   </div>
 
