@@ -27,16 +27,20 @@ function Page() {
     const searchParams = useSearchParams()
 
     const fetchCountries = async () => {
-        axios.get('https://restcountries.com/v3.1/all?fields=name').then(res => {
+        await axios.get('https://restcountries.com/v3.1/all?fields=name').then(res => {
 
             const arr = []
+            
             if (res.status === 200) {
                 res?.data?.forEach(element => {
                     arr.push({label:element.name.common,value:element.name.common})
                 });
             }
-            const sorted = arr.sort((a, b) => a.lable(b, 'en', { sensitivity: 'base' }))
-            console.log(sorted);
+
+            // console.log(arr);
+            
+            // const sorted = arr.sort((a, b) => a?.lable(b, 'en', { sensitivity: 'base' }))
+            // console.log(sorted);
             
             setOptions(arr)
         })
