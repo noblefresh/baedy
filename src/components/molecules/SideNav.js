@@ -11,6 +11,9 @@ import { ImExit } from "react-icons/im";
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { SignOut } from '@/hooks/Auth';
+import { FaShop } from 'react-icons/fa6';
+import { IoStorefrontOutline } from 'react-icons/io5';
+import { IconOrder } from '../Icon';
 
 
 function SideNav({ active }) {
@@ -58,6 +61,22 @@ function SideNav({ active }) {
                                 text={"Profile"}
                                 icon={<FaUserAlt />}
                             />
+                        </div>
+                        <div className="divition"></div>
+                        <div>
+                            <div className='p-3'>Shop</div>
+                            <div>
+                                <AppLink
+                                    active={active}
+                                    text={"Products"}
+                                    icon={<IoStorefrontOutline />}
+                                />
+                                <AppLink
+                                    active={active}
+                                    text={"Orders"}
+                                    icon={<IconOrder />}
+                                />
+                            </div>
                         </div>
                         <div className="divition"></div>
                         <div>

@@ -5,6 +5,7 @@ import appLogo from "@asset/Images/appLogo.png"
 import { useSelector } from 'react-redux';
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Link from 'next/link';
+import { IoMdCart } from 'react-icons/io';
 
 function TopBar({ title, toggleNaav }) {
 
@@ -16,6 +17,9 @@ function TopBar({ title, toggleNaav }) {
             <div className="flex-grow flex items-center w-full">
                 <div className="flex-grow font-bold"><span className='hidden md:block'>{title}</span></div>
                 <div className="flex items-center gap-3">
+                    <Link href='/products/cart'>
+                        <div className="text-xl text-gray-500"><IoMdCart /></div>
+                    </Link>
                     <div className="text-xl text-gray-500"><FaBell /></div>
                     <div className="flex items-center gap-3">
                         <Link href="/profile">
