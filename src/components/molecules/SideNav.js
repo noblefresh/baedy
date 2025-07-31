@@ -11,9 +11,8 @@ import { ImExit } from "react-icons/im";
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { SignOut } from '@/hooks/Auth';
-import { FaShop } from 'react-icons/fa6';
+import { GiShoppingBag } from "react-icons/gi";
 import { IoStorefrontOutline } from 'react-icons/io5';
-import { IconOrder } from '../Icon';
 
 
 function SideNav({ active }) {
@@ -74,7 +73,7 @@ function SideNav({ active }) {
                                 <AppLink
                                     active={active}
                                     text={"Orders"}
-                                    icon={<IconOrder />}
+                                    icon={<GiShoppingBag />}
                                 />
                             </div>
                         </div>
