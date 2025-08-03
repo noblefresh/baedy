@@ -1,11 +1,27 @@
 import AppLayout from '@/components/layouts/appLayout'
 import ProductChip from '@/components/organisms/ProductChip'
 import TimeComp from '@/components/organisms/TimeComp'
+import { fetchActiveProducts } from '@/services/authService'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CgShoppingCart } from "react-icons/cg";
 
 function index() {
+
+
+    const [products, setProducts] = useState([])
+
+    const fetchProducts = async () => {
+        const { status, data } = await fetchActiveProducts()
+        status && setProducts(data?.data)
+    }
+
+
+    useEffect(() => {
+        fetchProducts()
+    }, [])
+
+
     return (
         <AppLayout active="products" title={(
             <div className='flex items-center divide-x-2 *:px-3'>
@@ -25,8 +41,8 @@ function index() {
                 </Link>
             </div>
             <div className="grid grid-cols-2 p-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {Array.from({ length: 12 }).map((_, i) => (
-                    <ProductChip key={i} />
+                {products.map((_, i) => (
+                    <ProductChip data={_} key={i} />
                 ))}
             </div>
         </AppLayout>

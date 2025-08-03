@@ -1,5 +1,6 @@
 import { combineReducers ,legacy_createStore} from "redux";
 import User from "./reducers/UsersReducer";
+import Cart from './reducers/Cart'
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
@@ -10,5 +11,5 @@ const config = {
 }
 
 export default legacy_createStore(
-    persistReducer(config,combineReducers({User}))
+    persistReducer(config,combineReducers({User,Cart}))
 );

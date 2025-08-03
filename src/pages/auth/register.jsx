@@ -37,11 +37,6 @@ function Page() {
                 });
             }
 
-            // console.log(arr);
-            
-            // const sorted = arr.sort((a, b) => a?.lable(b, 'en', { sensitivity: 'base' }))
-            // console.log(sorted);
-            
             setOptions(arr)
         })
     }

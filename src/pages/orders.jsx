@@ -1,8 +1,26 @@
 import AppLayout from '@/components/layouts/appLayout'
 import TimeComp from '@/components/organisms/TimeComp'
-import React from 'react'
+import { numberFormat } from '@/hooks/utils'
+import { fetchOrders } from '@/services/authService'
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
 
 function Orders() {
+
+    const [myOrders, setMyOrder] = useState([])
+
+
+    const fetchOrderFN = async () => {
+        const { status, data } = await fetchOrders()
+        console.log(data);
+        status && setMyOrder(data?.data)
+    }
+
+    useEffect(() => {
+        fetchOrderFN()
+    }, [])
+
+
     return (
         <AppLayout active="orders" title='Shop'>
             <div className="p-3">
@@ -11,20 +29,20 @@ function Orders() {
 
             <div className="px-3 space-y-4">
                 {
-                    Array.from({ length: 2 }).map((_, i) => (
+                    myOrders.map((_, i) => (
                         <div className="border border-white divide-y *:p-3 divide-white rounded-lg bg-white/30" key={i}>
                             <div className="md:grid-cols-4 grid gap-4">
                                 <div className="">
                                     <div className="font-bold">Order Number</div>
-                                    <div className="">SM0019915</div>
+                                    <div className="">{_?.order_id}</div>
                                 </div>
                                 <div className="">
                                     <div className="font-bold">Date Placed</div>
-                                    <div className="">July 10, 2025</div>
+                                    <div className="">{_?.created_at.split('T')[0]}</div>
                                 </div>
                                 <div className="">
                                     <div className="font-bold">Total Amount</div>
-                                    <div className="">₦26,500</div>
+                                    <div className="">₦{numberFormat(_?.price)}</div>
                                 </div>
                                 <div className="flex justify-end">
                                     <button className="px-7 cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Write a Review </button>
@@ -32,20 +50,22 @@ function Orders() {
                             </div>
                             <div className="md:grid grid-cols-5">
                                 <div className="md:col-span-3 items-center flex gap-5">
-                                    <div className="">
-                                        <div className="h-32 w-32 rounded-lg overflow-hidden bg-white/40"></div>
+                                    <div className="-space-y-28">
+                                        <div className="h-32 w-32 shadow-md border rounded-lg overflow-hidden bg-white/40">
+                                            <Image alt='#' src={_?.product?.images[0]} width={100} height={100} className='w-full h-full' />
+                                        </div>
                                     </div>
                                     <div className="space-y-7">
-                                        <div className="font-bold text-lg">SmartFit Wireless Earbud</div>
+                                        <div className="font-bold text-lg">{_?.product?.name}</div>
                                         <div className="text-sm"> Order In Progress</div>
                                     </div>
                                 </div>
                                 <div className="md:col-span-2 flex justify-between">
                                     <div className="space-y-5 text-center">
                                         <div className="">QTY</div>
-                                        <div className="">1</div>
+                                        <div className="">{_?.qty}</div>
                                     </div>
-                                    <div className="text-xl font-bold">₦22,000</div>
+                                    <div className="text-xl font-bold">₦{numberFormat(_?.product?.price)}</div>
                                 </div>
                             </div>
                         </div>
