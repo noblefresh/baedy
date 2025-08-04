@@ -199,7 +199,7 @@ function checkout() {
                                 <CartSum />
                                 <div className="">
                                     <div className="flex gap-3">
-                                        <button onClick={() => formHook.submit()} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {confirmCheckout ? 'Checkout' : 'Proceed'} </button>
+                                        <button disabled={formHook.proccessing} onClick={() => formHook.submit()} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {confirmCheckout ? 'Checkout' : 'Proceed'} </button>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@ function checkout() {
                 ) : (
                     <div className="text-center max-w-sm mx-auto py-24 space-y-5">
                         <div className="text-lg">Your Cart is Empty</div>
-                        <button onClick={() => router.replace('/products')} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> Start Shopping </button>
+                        <button onClick={() => router.replace('/orders')} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> View Orders </button>
                     </div>
                 )
             }
