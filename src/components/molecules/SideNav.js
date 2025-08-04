@@ -11,6 +11,8 @@ import { ImExit } from "react-icons/im";
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { SignOut } from '@/hooks/Auth';
+import { GiShoppingBag } from "react-icons/gi";
+import { IoStorefrontOutline } from 'react-icons/io5';
 
 
 function SideNav({ active }) {
@@ -58,6 +60,22 @@ function SideNav({ active }) {
                                 text={"Profile"}
                                 icon={<FaUserAlt />}
                             />
+                        </div>
+                        <div className="divition"></div>
+                        <div>
+                            <div className='p-3'>Shop</div>
+                            <div>
+                                <AppLink
+                                    active={active}
+                                    text={"Products"}
+                                    icon={<IoStorefrontOutline />}
+                                />
+                                <AppLink
+                                    active={active}
+                                    text={"Orders"}
+                                    icon={<GiShoppingBag />}
+                                />
+                            </div>
                         </div>
                         <div className="divition"></div>
                         <div>

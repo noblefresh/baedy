@@ -19,7 +19,7 @@ export const withdrawal = (payload) => apiWithAuth.post("/app/wallet/withdraw", 
 export const fetchpayStack = () => apiWithAuth.post("/app/wallet/paystack_banks").then(getApiResponse).catch(getErrorResponse)
 export const fetchAccountName = (payload) => apiWithAuth.post("/app/wallet/fetch_account_name", payload).then(getApiResponse).catch(getErrorResponse)
 
-export const giftUser = (payload) => apiWithAuth.post("/app/wallet/gift_user",payload).then(getApiResponse).catch(getErrorResponse)
+export const giftUser = (payload) => apiWithAuth.post("/app/wallet/gift_user", payload).then(getApiResponse).catch(getErrorResponse)
 
 
 export const subscribeUser = (payload) => apiWithAuth.post("/app/subscription/subscribe", payload).then(getApiResponse).catch(getErrorResponse)
@@ -32,8 +32,20 @@ export const fetchBirthdays = () => apiWithAuth.post("/app/birthday/fetch_birthd
 
 
 export const fetchProfile = () => apiWithAuth.post("/app/profile/fetch").then(getApiResponse).catch(getErrorResponse)
-export const updateProfile = (payload) => apiWithAuth.post("/app/profile/update",payload).then(getApiResponse).catch(getErrorResponse)
+export const updateProfile = (payload) => apiWithAuth.post("/app/profile/update", payload).then(getApiResponse).catch(getErrorResponse)
 export const changeAvatar = () => apiWithAuth.post("/app/profile/change_avatar").then(getApiResponse).catch(getErrorResponse)
-export const updatePassword = (payload) => apiWithAuth.post("/app/profile/update_password",payload).then(getApiResponse).catch(getErrorResponse)
+export const updatePassword = (payload) => apiWithAuth.post("/app/profile/update_password", payload).then(getApiResponse).catch(getErrorResponse)
 
 export const deleteAccount = () => apiWithAuth.post("/app/profile/delete_account").then(getApiResponse).catch(getErrorResponse)
+
+
+
+
+export const fetchActiveProducts = () => apiWithAuth.post("/app/shop/fetch_active_products").then(getApiResponse).catch(getErrorResponse)
+export const fetchAllProducts = () => apiWithAuth.post("/app/shop/fetch_product").then(getApiResponse).catch(getErrorResponse)
+export const fetchOrders = () => apiWithAuth.post("app/shop/fetch_orders").then(getApiResponse).catch(getErrorResponse)
+export const rateOrder = (formData) => apiWithAuth.post("app/shop/rate_order", formData).then(getApiResponse).catch(getErrorResponse)
+export const processOrder = (formData) => apiWithAuth.post("/app/shop/process_order", formData).then(getApiResponse).catch(getErrorResponse)
+
+
+// 

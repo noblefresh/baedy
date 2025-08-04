@@ -5,10 +5,12 @@ import appLogo from "@asset/Images/appLogo.png"
 import { useSelector } from 'react-redux';
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Link from 'next/link';
+import { IoMdCart } from 'react-icons/io';
 
 function TopBar({ title, toggleNaav }) {
 
     const user = useSelector((state) => state.User);
+    const cart = useSelector((state) => state?.Cart?.items)
 
     return (
         <div className="flex gap-52 items-center w-full backdrop-blur-3xl bg-gray-200/40 border border-gray-200 p-2 md:p-5 rounded-xl">
@@ -16,6 +18,12 @@ function TopBar({ title, toggleNaav }) {
             <div className="flex-grow flex items-center w-full">
                 <div className="flex-grow font-bold"><span className='hidden md:block'>{title}</span></div>
                 <div className="flex items-center gap-3">
+                    <Link href='/products/cart'>
+                        <div className="text-xl text-gray-500 relative">
+                            {cart.length > 0 && <div className='text-[8px] absolute -right-2 bottom-2 py-0.5 px-1.5 text-center bg-red-500 text-white rounded-full'>{cart.length}</div>}
+                            <IoMdCart />
+                        </div>
+                    </Link>
                     <div className="text-xl text-gray-500"><FaBell /></div>
                     <div className="flex items-center gap-3">
                         <Link href="/profile">

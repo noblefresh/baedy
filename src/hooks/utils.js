@@ -18,4 +18,13 @@ function convertToAmPm(timeStr) {
 }
 
 
-export { convertMinutesToHours, convertToAmPm, copyToClipboard };
+function numberFormat(params) {
+    const el = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(params)
+    return el
+}
+
+
+export { convertMinutesToHours, convertToAmPm, copyToClipboard, numberFormat };
