@@ -46,6 +46,3 @@ export const fetchAllProducts = () => apiWithAuth.post("/app/shop/fetch_product"
 export const fetchOrders = () => apiWithAuth.post("app/shop/fetch_orders").then(getApiResponse).catch(getErrorResponse)
 export const rateOrder = (formData) => apiWithAuth.post("app/shop/rate_order", formData).then(getApiResponse).catch(getErrorResponse)
 export const processOrder = (formData) => apiWithAuth.post("/app/shop/process_order", formData).then(getApiResponse).catch(getErrorResponse)
-
-
-// 

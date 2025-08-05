@@ -57,7 +57,7 @@ function Orders() {
                                     </div>
                                     <div className="space-y-7">
                                         <div className="font-bold text-lg">{_?.product?.name}</div>
-                                        <div className="text-sm"> Order In Progress</div>
+                                        <div className="text-sm flex items-center gap-2"> Order <div className={`text-xs px-2 py-1 rounded-sm ${_?.status === 'processing' ? 'bg-yellow-400/30 text-yellow-500' :_?.status === 'in-transit'? 'bg-blue-400/30 text-blue-500' : _?.status === 'cancelled' ? 'bg-red-400/30 text-red-500' : 'bg-green-400/30 text-green-500'}`}>{_?.status}</div></div>
                                     </div>
                                 </div>
                                 <div className="md:col-span-2 flex justify-between">
