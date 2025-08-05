@@ -178,10 +178,10 @@ function checkout() {
                                         <AppInput onChange={(e) => { formHook.value.email = e.target.value }} error={formHook?.error?.email && formHook?.error?.email} placeholder="email@mail.com" required icon={<IoMail />} label="Email" />
                                         <div className="sm:grid grid-cols-2 gap-4">
                                             <AppSelect onChange={(e) => { formHook.value.delivery_country = e.target.value }} error={formHook?.error?.delivery_country && formHook?.error?.delivery_country} placeholder="Select Country" name="country" icon={<FaMap />} required label="Country" options={options} defaultValue='Nigeria' />
-                                            <AppInput onChange={(e) => { formHook.value.delivery_state = e.target.value }} error={formHook?.error?.delivery_state && formHook?.error?.delivery_state} placeholder="*******" required icon={<IoMdCompass />} label="State" />
+                                            <AppInput onChange={(e) => { formHook.value.delivery_state = e.target.value }} error={formHook?.error?.delivery_state && formHook?.error?.delivery_state} placeholder="Enter State" required icon={<IoMdCompass />} label="State" />
                                         </div>
-                                        <AppInput onChange={(e) => { formHook.value.delivery_city = e.target.value }} placeholder="*******" error={formHook?.error?.delivery_city && formHook?.error?.delivery_city} required icon={<PiCityFill />} label="City" />
-                                        <AppInput onChange={(e) => { formHook.value.delivery_address = e.target.value }} placeholder="********" error={formHook?.error?.delivery_address && formHook?.error?.delivery_address} required icon={<PiCityFill />} label="Address" />
+                                        <AppInput onChange={(e) => { formHook.value.delivery_city = e.target.value }} placeholder="Enter City" error={formHook?.error?.delivery_city && formHook?.error?.delivery_city} required icon={<PiCityFill />} label="City" />
+                                        <AppInput onChange={(e) => { formHook.value.delivery_address = e.target.value }} placeholder="Enter Address" error={formHook?.error?.delivery_address && formHook?.error?.delivery_address} required icon={<PiCityFill />} label="Address" />
                                     </div>
                                 )
                             }
