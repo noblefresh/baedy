@@ -35,10 +35,11 @@ function AppInput({ label, error, maxLength, checked, type, disabled, required, 
         <div className="text-[16px] relative rounded-lg">
 
           {
-            type !== "checkbox" && type !== "radio" && type !== "textarea" && (
-              <div className="absolute w-9 h-full flex items-center justify-center pl-1.5 text-gray-500">{icon}</div>
+            type !== "checkbox" && type !== "radio" && (
+              <div className="absolute w-9 h-full flex top-4 justify-center pl-1.5 text-gray-500">{icon}</div>
             )
           }
+
 
           {type === "checkbox" || type === "radio" ? (
             <div className="flex text-sm">
