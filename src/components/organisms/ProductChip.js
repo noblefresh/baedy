@@ -34,7 +34,7 @@ function ProductChip({ data }) {
 
     return (
         <div className='rounded-lg overflow-hidden bg-gray-50 border border-white'>
-            <Link href={`products/${data?.id}`}>
+            <Link href={`products/${data?.slug}`}>
                 <div>
                     <div className="h-56 rounded-lg relative">
                         <Image width={100} height={100} className='h-full w-full' src={data?.images[0]} alt='IMG' />

@@ -9,6 +9,7 @@ import Image from "next/image";
 import SideNav from "../molecules/SideNav";
 import Link from "next/link";
 import TopBar from "../organisms/TopBar";
+import { Toaster } from "sonner";
 
 
 
@@ -53,6 +54,7 @@ function AppLayout({ children, title, active }) {
     } else {
       return (
         <div className="relative">
+          <Toaster />
           <div className="w-96 fixed -top-36 -right-36 h-96 rounded-full bg-orange-400"></div>
           <div className="w-96 fixed  top-72 -left-36 h-96 rounded-full bg-orange-400"></div>
           <div className="w-[60vh] h-[60vh] fixed -bottom-52 right-12 rounded-full bg-orange-400"></div>
