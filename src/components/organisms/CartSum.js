@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux'
 
 function CartSum() {
     const [sum, setSum] = useState(0)
-    const cart = useSelector((state) => state?.Cart?.items)
+    const itemsArray = useSelector((state) => state?.Cart)
 
     const getSum = () => {
+        const cart = Object.values(itemsArray?.items)
         let sm = 0
-        cart.forEach(element => {
+        cart.length > 0 && cart.forEach(element => {
             sm += (element.qty * element.price)
         });
         setSum(sm)
@@ -18,7 +19,7 @@ function CartSum() {
 
     useEffect(() => {
         getSum()
-    }, [])
+    }, [itemsArray])
 
 
     return (

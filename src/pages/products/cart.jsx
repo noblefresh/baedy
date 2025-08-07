@@ -4,7 +4,7 @@ import CartSum from '@/components/organisms/CartSum'
 import TimeComp from '@/components/organisms/TimeComp'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SlArrowLeft } from 'react-icons/sl'
 import { useSelector } from 'react-redux'
 
@@ -12,7 +12,16 @@ function cart() {
 
     const router = useRouter()
 
-    const cart = useSelector((state) => state?.Cart?.items)
+    const cartList = useSelector((state) => state?.Cart)
+
+    const [cart, setCartList] = useState(null)
+
+    useEffect(() => {
+        console.log(Object.values(cartList?.items));
+        setCartList([])
+        setCartList(Object.values(cartList?.items))
+    }, [cartList])
+
 
 
     return (
@@ -35,11 +44,11 @@ function cart() {
 
 
             {
-                cart.length > 0 ? (
+                cart !== null && cart?.length > 0 ? (
                     <div className="px-3 space-y-5">
                         <div className="space-y-5">
                             {
-                                cart.map((_, i) => (
+                                cart?.map((_, i) => (
                                     <CartChip data={_} key={i} />
                                 ))
                             }

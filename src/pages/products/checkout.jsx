@@ -7,7 +7,7 @@ import CheckoutChip from '@/components/organisms/CheckoutChip'
 import TimeComp from '@/components/organisms/TimeComp'
 import UseFormHandler from '@/hooks/useFormHandler'
 import { numberFormat } from '@/hooks/utils'
-import { processOrder } from '@/services/authService'
+import { fetchWallet, processOrder } from '@/services/authService'
 import { clearCart } from '@/Store/reducers/Cart'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -21,15 +21,19 @@ import { MdLocalPhone } from 'react-icons/md'
 import { PiCityFill } from 'react-icons/pi'
 import { SlArrowLeft } from 'react-icons/sl'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'sonner'
 
 function checkout() {
 
     const router = useRouter()
     const [confirmCheckout, setConfirm] = useState(false)
     const [successModal, setSuccess] = useState(false)
-    const cart = useSelector((state) => state?.Cart?.items)
+    const itemsArray = useSelector((state) => state?.Cart)
+    const cart = Object.values(itemsArray?.items)
     const [options, setOptions] = useState([])
     const dispatch = useDispatch()
+
+    const [walletInfo, setWalletInfo] = useState({})
 
     const fetchCountries = async () => {
         await axios.get('https://restcountries.com/v3.1/all?fields=name').then(res => {
@@ -43,6 +47,8 @@ function checkout() {
             }
             setOptions(arr)
         })
+        const { data, status } = await fetchWallet()
+        setWalletInfo(data?.data);
     }
 
     const formHook = UseFormHandler({
@@ -70,8 +76,13 @@ function checkout() {
             value.cart = cart
             if (confirmCheckout) {
                 const { status, data } = await processOrder(value)
-                dispatch(clearCart())
-                status && setSuccess(true)
+                if (status) {
+
+                    dispatch(clearCart())
+                    status && setSuccess(true)
+                } else {
+                    toast.error(data?.message)
+                }
             } else {
                 setConfirm(true)
             }
@@ -96,7 +107,7 @@ function checkout() {
                 <div className="space-y-6 text-center">
                     <div className='text-8xl flex items-center justify-center text-amber-500'><FiStar /></div>
                     <div className='text-xl font-bold'>Payment made successfully</div>
-                    <button onClick={() => router.replace('/products')} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> Continue Shopping </button>
+                    <button onClick={() => router.replace('/orders')} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> View Orders </button>
                 </div>
             </AppModal>
 
@@ -162,7 +173,14 @@ function checkout() {
                                             <div className="">
                                                 <div className="p-3 border border-white rounded-lg">
                                                     <div className="text-sm text-gray-300">Available Balance</div>
-                                                    <div className="font-extrabold text-2xl">₦225,000</div>
+                                                    <div className="font-extrabold text-2xl">&#8358;{
+                                                        walletInfo?.wallet?.balance != null
+                                                            ? new Intl.NumberFormat('en-US', {
+                                                                minimumFractionDigits: 2,
+                                                                maximumFractionDigits: 2
+                                                            }).format(walletInfo?.wallet.balance)
+                                                            : '0.00'
+                                                    }</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,7 +226,7 @@ function checkout() {
                 ) : (
                     <div className="text-center max-w-sm mx-auto py-24 space-y-5">
                         <div className="text-lg">Your Cart is Empty</div>
-                        <button onClick={() => router.replace('/orders')} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> View Orders </button>
+                        <button onClick={() => router.replace('/products')} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> Continue Shopping </button>
                     </div>
                 )
             }

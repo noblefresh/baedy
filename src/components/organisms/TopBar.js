@@ -10,7 +10,8 @@ import { IoMdCart } from 'react-icons/io';
 function TopBar({ title, toggleNaav }) {
 
     const user = useSelector((state) => state.User);
-    const cart = useSelector((state) => state?.Cart?.items)
+    const itemsArray = useSelector((state) => state?.Cart?.items)
+    const cart = Object.values(itemsArray)
 
     return (
         <div className="flex gap-52 items-center w-full backdrop-blur-3xl bg-gray-200/40 border border-gray-200 p-2 md:p-5 rounded-xl">
