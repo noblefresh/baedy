@@ -16,7 +16,8 @@ import { SlArrowLeft } from "react-icons/sl";
 import { useDispatch, useSelector } from 'react-redux';
 
 function index() {
-    const carts = useSelector((state) => state?.Cart?.items)
+    const itemsArray = useSelector((state) => state?.Cart?.items)
+    const carts = Object.values(itemsArray)
     const router = useRouter()
     const { slug } = router.query;
     const dispatch = useDispatch()
@@ -32,7 +33,7 @@ function index() {
     }
 
 
-    console.log(useSelector((state) => state?.Cart?.items), product?.id);
+    // console.log(useSelector((state) => state?.Cart?.items), product?.id);
 
 
 
@@ -121,18 +122,15 @@ function index() {
                         <div>
                             <div className="flex items-center gap-7">
                                 {
-                                    result ? (
+
+                                    result !== undefined ? (
                                         <div>
                                             <button disabled className="px-5 w-full md:w-auto cursor-pointer text-xs disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-2">In cart</button>
-                                            {/* <div className='flex items-center gap-2'>
-                                                <div className={`cursor-pointer p-2 rounded-lg ${result.qty > 1 && 'bg-white'}`} onClick={() => deductQty(result.qty > 1 ? result.qty - 1 : 1)}><FiMinus /></div>
-                                                <div className='border border-gray-200 rounded-lg px-3 py-1 select-none'>{result.qty}</div>
-                                                <div className='cursor-pointer bg-white rounded-lg p-2' onClick={addToCartFN}><GoPlus /></div>
-                                            </div> */}
                                         </div>
                                     ) : (
-                                        <button onClick={addToCartFN} className="px-5 cursor-pointer text-xs disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-2">Add To Cart</button>
+                                        <button onClick={addToCartFN} className="px-5 w-full md:w-auto cursor-pointer text-xs disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-2">Add To Cart</button>
                                     )
+
                                 }
                             </div>
                         </div>

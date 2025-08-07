@@ -28,7 +28,7 @@ function BirthdayCard({ data, month }) {
             setAmount(true)
             setGiftModal(false)
         } else {
-toast.error(res.message)
+            toast.error(res.message)
         }
 
         setProccessingFund(false)
