@@ -132,7 +132,7 @@ function Orders() {
                                 </div>
                                 <div className="">
                                     <div className="font-bold">Total Amount</div>
-                                    <div className="">₦{numberFormat(_?.price)}</div>
+                                    <div className="">₦{numberFormat(_?.qty * _?.price)}</div>
                                 </div>
                                 <div className="flex justify-end">
                                     <button onClick={() => setReview(_)} className="px-7 cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3">Write a Review </button>
@@ -155,7 +155,7 @@ function Orders() {
                                         <div className="">QTY</div>
                                         <div className="">{_?.qty}</div>
                                     </div>
-                                    <div className="text-xl font-bold">₦{numberFormat(_?.product?.price)}</div>
+                                    <div className="text-xl font-bold">₦{numberFormat(_?.qty *  _?.product?.price)}</div>
                                 </div>
                             </div>
                         </div>
