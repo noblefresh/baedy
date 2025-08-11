@@ -270,7 +270,7 @@ function Wallet() {
           <div className="font-extrabold text-center text-2xl">Fund Account</div>
           <div className="space-y-5">
             <div className="">
-              <AppInput placeholder="Min. 1000" name="amount" icon={<div>&#8358;</div>} type="number" required label="Enter Amount" />
+              <AppInput placeholder="Min. 20,000" name="amount" icon={<div>&#8358;</div>} type="number" required label="Enter Amount" />
             </div>
             <div className="">
               <div className="space-y-4">

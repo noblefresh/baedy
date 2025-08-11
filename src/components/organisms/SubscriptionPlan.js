@@ -37,48 +37,6 @@ function SubscriptionPlan({ text }) {
         }
 
         setProccessingFund(false)
-
-
-
-        // const options = {
-        //     method: 'POST',
-        //     url: 'https://secure.vend-o.com/api/gateway/payment',
-        //     headers: { accept: 'application/json', 'content-type': 'application/json' },
-        //     data: {
-        //         external_references: { transaction_reference: 'ret' },
-        //         payment_details: {
-        //             payment_method: 'card',
-        //             card_number: '4111111111111111',
-        //             expiration_month: '09',
-        //             expiration_year: '2029',
-        //             cvv: '110',
-        //             name_on_card: 'Marcus McNamara'
-        //         },
-        //         customer_details: {
-        //             first_name: 'Marcus',
-        //             last_name: ' McNamara',
-        //             language: 'en',
-        //             address: '999 Mainstreet',
-        //             city: 'Miami',
-        //             state: 'FL',
-        //             country: 'US',
-        //             email: 'macus@somedomainxyzm.net'
-        //         },
-        //         subscription_schedule: { reactivate_subscription: false },
-        //         mit: false,
-        //         preauth_only: false,
-        //         non_recurring: false,
-        //         api_secret: '001b794cc23f056e13d6718d54b9150063452c9378c4bbf9cd3bb58417cc51c6',
-        //         is_test: 1,
-        //         merchant_id: 10199,
-        //         site_id: 1,
-        //         amount: 34,
-        //         currency: 'usd'
-        //     }
-        // };
-
-        // axios.request(options).then(res => console.log(res.data)).catch(err => console.error(err));
-
     }
 
 
