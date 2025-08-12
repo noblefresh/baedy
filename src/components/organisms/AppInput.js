@@ -92,7 +92,7 @@ function AppInput({ label, error, maxLength, checked, type, disabled, required, 
             <input
               name={name}
               required={required}
-              type={inputType}
+              type={type}
               value={value}
               disabled={disabled}
               placeholder={placeholder}
