@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { FiStar } from "react-icons/fi";
 import { HiBadgeCheck } from "react-icons/hi";
 import { toast } from 'sonner'
+import moment from 'moment'
 
 function BirthdayCard({ data, month }) {
 
@@ -15,6 +16,14 @@ function BirthdayCard({ data, month }) {
     const [showAmount, setAmount] = useState(false)
     const user = useSelector((state) => state.User?.value?.user)
     const [proccessingFund, setProccessingFund] = useState(false)
+
+    const isNegative = (num) => {
+        return typeof num === 'number' && !isNaN(num) && num < 0;
+    }
+
+    const now = moment();
+    const inputTime = moment(data?.latest_subscription?.end_date);
+    const minutes = now.diff(inputTime, 'minutes');
 
 
     const submit = async (e) => {
@@ -110,13 +119,13 @@ function BirthdayCard({ data, month }) {
                     <div className='h-44 rounded-2xl overflow-hidden relative bg-amber-50/40'>
                         <Image alt='user images' src={data?.avatar} layout="fill" objectFit="cover" />
                         {
-                            (user?.id !== data?.id && data?.subscription?.length > 0) && <div onClick={() => setGiftModal(true)} className='bg-amber-400 cursor-pointer absolute bottom-0 text-xs right-0 rounded-lg text-white p-2'>Send Gift</div>
+                            (user?.id !== data?.id && isNegative(minutes)) && <div onClick={() => setGiftModal(true)} className='bg-amber-400 cursor-pointer absolute bottom-0 text-xs right-0 rounded-lg text-white p-2'>Send Gift</div>
                         }
                     </div>
                     <div className='text-gray-400 space-y-1'>
                         <div className='flex gap-3'>
                             <div>Celebrant</div>
-                            <div className='font-bold text-black'>{data?.fname} {data?.lname} {data?.subscription?.length > 0 && <span className='inline-block relative top-0.5 text-amber-400'><HiBadgeCheck size={17} /></span>}</div>
+                            <div className='font-bold text-black'>{data?.fname} {data?.lname} {isNegative(minutes) && <span className='inline-block relative top-0.5 text-amber-400'><HiBadgeCheck size={17} /></span>}</div>
                         </div>
                         <div className='flex gap-3'>
                             <div>Birthday Date</div>

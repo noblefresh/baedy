@@ -74,12 +74,12 @@ function SubscriptionPlan({ text }) {
                             </div>
                             <div className="text-center text-sm space-y-5 px-5">
                                 <div className='space-y-4 text-xs'>
-                                    <div>Welcome to the ultimate subscription-based celebration experience! Form just &#8358;20,000 and above per month</div>
+                                    <div>Welcome to the ultimate subscription-based celebration experience! from just &#8358;20,000 and above per month</div>
                                     <div>Your wallet will be charged</div>
                                 </div>
                                 <div className='text-red-500'>{errMsg}</div>
                                 <div>
-                                    <AppInput required name='amount' icon={<div className='font-bold text-2xl absolute -top-2'> &#8358;</div>} />
+                                    <AppInput type='number' required name='amount' icon={<div className='font-bold text-2xl absolute -top-2'> &#8358;</div>} />
                                 </div>
                             </div>
                             <div>

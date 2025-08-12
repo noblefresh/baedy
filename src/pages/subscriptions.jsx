@@ -14,8 +14,6 @@ function Subscriptions() {
 
   const fetchSubscribtionInfo = async () => {
     const { data, status } = await fetchSubscribtions()
-    console.log(data);
-
     status && setSubscription(data?.data);
   }
 
