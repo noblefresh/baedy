@@ -19,6 +19,7 @@ function SubscriptionPlan({ text }) {
     const [proccessingFund, setProccessingFund] = useState(false)
     const [successModal, setSuccessModal] = useState(false)
     const [errMsg, setErrmsg] = useState('')
+    const [inpVal, setInpVal] = useState(1)
 
     const router = useRouter()
 
@@ -79,7 +80,24 @@ function SubscriptionPlan({ text }) {
                                 </div>
                                 <div className='text-red-500'>{errMsg}</div>
                                 <div>
-                                    <AppInput type='number' required name='amount' icon={<div className='font-bold text-2xl absolute -top-2'> &#8358;</div>} />
+
+                                    <AppInput
+                                        onChange={(e) => {
+                                            if (!/[0-9]/.test(e.key) &&
+                                                e.key !== 'Backspace' &&
+                                                e.key !== 'Delete' &&
+                                                e.key !== 'Tab' &&
+                                                e.key !== 'ArrowLeft' &&
+                                                e.key !== 'ArrowRight') {
+                                                if (inpVal === 0 && e.target?.value) {
+                                                    setInpVal(e.target?.value.split('')[1])
+                                                } else {
+                                                    e.target?.value !== '' ? setInpVal(e.target?.value) : (e.target?.value.length < 1 && setInpVal(inpVal.length > 0 ? 0 : inpVal))
+                                                }
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        type='number' value={inpVal} required name='amount' icon={<div className='font-bold text-2xl absolute -top-2'> &#8358;</div>} />
                                 </div>
                             </div>
                             <div>
