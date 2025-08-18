@@ -125,9 +125,13 @@ function SubscriptionPlan({ text }) {
                                 <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>1</div>
                                 <div className='pl-16 space-y-6'>
                                     <div className='space-y-3'>
-                                        <div className='font-bold'>1. Bronze (#20,000-50,000 naira /month):</div>
-                                        <div className='text-sm'>◦ ⁠birthday gift from us.</div>
-                                        <div className='text-sm'>◦⁠⁠ Birthday shoutouts across all of our platforms to let people send you gift money during your birthday.</div>
+                                        <div className='font-bold'>1. Bronze Tier:</div>
+                                        <div className='text-sm'>◦ Monthly Subscription Amount: ₦20,000 or ₦50,000 (users choose one fixed amount per subscription cycle).</div>
+                                        <div className='text-sm'>◦ Eligibility Requirement: Consistent monthly subscriptions for at least 3 consecutive months immediately before your birthday month.</div>
+                                        <div className='text-sm'>◦ Rewards (Choose one option during your birthday month or any personal celebration):</div>
+                                        <div className='text-sm'>◦ Gifts and Shoutouts: Receive birthday gifts from us (e.g., personalized items ) and public birthday shoutouts and showing of your account number across all social media platforms to celebrate you and for people to send you gift money.</div>
+                                        <div className='text-sm'>◦ Chance to participate in our monthly birthday picnics, games and party activities and win prices.</div>
+                                        <div className='text-sm'>◦ Cashback Alternative: Receive 50% of your total subscription payments for the qualifying 3+ months as a cash gift during your birthday (e.g., if you subscribed ₦50,000/month for 3 months = ₦150,000 total, you’d get ₦75,000 cashback).</div>
                                     </div>
                                 </div>
                             </div>
@@ -135,10 +139,12 @@ function SubscriptionPlan({ text }) {
                                 <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>2</div>
                                 <div className='pl-16 space-y-6'>
                                     <div className='space-y-3'>
-                                        <div className='font-bold'>Silver (100,000–200,000 naira/monthly)</div>
-                                        <div className='text-sm'>◦ ⁠birthday and party celebrations access each month.</div>
-                                        <div className='text-sm'>◦ ⁠⁠birthday gifts (e.g., custom cakes, money gift)</div>
-                                        <div className='text-sm'>◦ birthday shoutouts across all our platforms for people to send you gifts money(your account number will be posted along)</div>
+                                        <div className='font-bold'>2. Silver Tier</div>
+                                        <div className='text-sm'>◦ Monthly Subscription Amount: ₦100,000 to ₦200,000 (users choose one fixed amount within this range per subscription cycle).</div>
+                                        <div className='text-sm'>◦ Eligibility Requirement: Consistent monthly subscriptions for at least 3 consecutive months immediately before your birthday month.</div>
+                                        <div className='text-sm'>◦ Rewards (Choose one option during your birthday month or any personal celebration):</div>
+                                        <div className='text-sm'>◦ Events and Shoutouts: Access to an exclusive birthday party or picnic during your birthday month. Plus, enhanced birthday shoutouts across all our social media platforms, encouraging followers to send you gifts or money transfers.</div>
+                                        <div className='text-sm'>◦ Cashback Alternative: Receive 50% of your total subscription payments for the qualifying 3+ months as a cash gift during your birthday(e.g., if you subscribed ₦150,000/month for 3 months = ₦450,000 total, you’d get ₦225,000 cashback) and free shoutouts in social media with your account number.</div>
                                     </div>
                                 </div>
                             </div>
@@ -146,31 +152,33 @@ function SubscriptionPlan({ text }) {
                             <div className='relative'>
                                 <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>3</div>
                                 <div className='pl-16 space-y-3'>
-                                    <div className='font-bold'>Gold(300k above/naira monthly  )</div>
-                                    <div className='text-sm'>(users must have subscriped for over 3 months in advance to receive the benefits)</div>
-                                    <div className='text-sm'>◦ Premium gifts during your birthday or any celebrations in a year (e.g., tech gadgets, spa dates)</div>
-                                    <div className='text-sm'>◦ Personalized birthday/celebration planning for you during your birthday or any celebration.</div>
-                                    <div className='text-sm'>◦ VIP club/ birthday party invitations during your birthday month.</div>
-                                    <div className='text-sm'>◦ VIP picnics/beach Access in Lagos during your birthday month.</div>
-                                    <div className='text-sm'>◦ Users in other cities will receive premium gifts and spa or VIP hair cuts in any location during their birthday or any celebrations</div>
-                                    <div className='text-sm'>◦ VIP birthday shoutouts and posting your account number accross all our platforms in social media to let people send you  gift money.</div>
+                                    <div className='font-bold'>3. Gold Tier</div>
+                                    <div className='text-sm'>◦ Monthly Subscription Amount: ₦300,000 to ₦500,000 (users choose one fixed amount within this range per subscription cycle)/</div>
+                                    <div className='text-sm'>◦ Eligibility Requirement: Consistent monthly subscriptions for at least 3 consecutive months immediately before your birthday month.</div>
+                                    <div className='text-sm'>◦ Rewards (Choose one option during your birthday month or any personal celebration):</div>
+                                    <div className='text-sm'>◦ Premium Perks and VIP Access: Receive high-value premium gifts (e.g., gadgets, spa dates, or luxury experiences). Get VIP invitations to a club/birthday party or exclusive picnics/beach access in Lagos during your birthday month. Plus, VIP birthday shoutouts across all our social media platforms, including posting your account details (with your consent) to allow followers to send direct gift money transfers.</div>
+                                    <div className='text-sm'>◦ Cashback Alternative: Receive 50% of your total subscription payments for the qualifying 3+ months as a cash gift during your birthday (e.g., if you subscribed ₦400,000/month for 3 months = ₦1,200,000 total, you’d get ₦600,000 cashback) and free shoutouts in social media with your account number.</div>
                                 </div>
                             </div>
                             <div className='relative'>
                                 <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>4</div>
                                 <div className='pl-16 space-y-6'>
                                     <div className='space-y-3'>
-                                        <div className='font-bold'> ⁠Daimond Level. ( 1million naira above/monthly):</div>
-                                        <div>(users must have subscribed for 6 months in advance before their birthday to receive the benefits)</div>
-                                        <div className='text-sm'>◦ All expense trip to China for vacation during your birthday or any celebrations for 5days.</div>
-                                        <div className='text-sm'>◦⁠⁠ business tour in China to visit factories or visit to scenic places in China.</div>
-                                        <div className='text-sm'>◦⁠⁠ VIP club party invitation at a popular big club in China Guangzhou.</div>
-                                        <div className='text-sm'>◦⁠⁠ VIP Picnic/beach party access</div>
-                                        <div className='text-sm'>◦⁠⁠ Big VIP birthday shoutouts across all our pages and platforms to let people wish you happy and send you money gift.</div>
-                                        <div className='text-sm'>◦⁠⁠ ⁠⁠Birthday or any celebration shoutout in any popular blogs on Instagram (if you want)</div>
-                                        <div className='text-sm'>◦⁠⁠ ⁠Premium birthday gifts from us.</div>
-                                        <div className='text-sm'>◦⁠⁠ in the case you couldn’t make it to China during your birthday month we will send you 50% of your subscribed money/your saved money in the wallet on our website during your birthday)</div>
+                                        <div className='font-bold'>4. Diamond Tier</div>
+                                        <div className='text-sm'>◦⁠⁠ Monthly Subscription Amount: ₦1,000,000 or more (users choose one fixed amount per subscription cycle).</div>
+                                        <div className='text-sm'>◦⁠⁠ Eligibility Requirement: Consistent monthly subscriptions for at least 6 consecutive months immediately before your birthday month or chosen celebration.</div>
+                                        <div className='text-sm'>◦⁠⁠ Rewards (Choose one option during your birthday month or any personal celebration):</div>
+                                        <div className='text-sm'>◦⁠⁠ Luxury China Experience and VIP Perks: An all-expenses-paid 5-day vacation trip to China, including a business tour to visit factories or scenic destinations in China and a VIP club party invitation at a popular club in Guangzhou, China. Plus, premium VIP birthday shoutouts across all our social media platforms and select major blogs, encouraging followers to wish you a happy birthday and send gift money transfers.</div>
+                                        <div className='text-sm'>◦⁠⁠ Cashback Alternative: Receive 50% of your total subscription payments for the qualifying 6+ months as a cash gift during your birthday (e.g., if you subscribed ₦1,000,000/month for 6 months = ₦6,000,000 total, you’d get ₦3,000,000 cashback) and free shoutouts plus VIP access to any monthly picnics/party in Nigeria incase you don’t get the visa to travel to China.</div>
                                     </div>
+                                </div>
+                            </div>
+                            <div className='col-span-2 space-y-4'>
+                                <div className='font-bold'>Additional Program Details</div>
+                                <div className='space-y-3'>
+                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>How to Claim Rewards:</span> Eligible users will be notified via email or app 30 days before their birthday or chosen celebration. Choose your reward option (gifts/events vs. cashback) at that time. Cashback is paid via bank transfer or preferred method. For Diamond tier, travel arrangements are coordinated with the user, subject to availability and visa requirements.</div>
+                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Terms and Conditions:</span> Subscriptions must be paid in full and on time each month. If a subscription lapses, the eligibility counter (3 or 6 months) resets. Rewards are non-transferable. Event locations for Gold tier are limited to Lagos; Diamond tier travel is limited to China. We reserve the right to modify the program with notice.</div>
+                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Why Join?:</span> Celebrate your special day with exclusive rewards, from personalized gifts to luxury international experiences, or opt for generous cashback to make your celebration truly yours!</div>
                                 </div>
                             </div>
                         </div>
