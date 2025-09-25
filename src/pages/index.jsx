@@ -22,7 +22,7 @@ function Index() {
 
   const [giftModal, setGiftModal] = useState(false)
   const [dashboardData, setDashboardData] = useState({});
-
+  const [err, setErr] = useState('')
   const [showAmount, setAmount] = useState(false)
   const [proccessingFund, setProccessingFund] = useState(false)
   const [shoutouts, setShouts] = useState([])
@@ -56,12 +56,14 @@ function Index() {
 
   const submit = async (e) => {
     e.preventDefault();
+    setErr('')
     setProccessingFund(true)
     let payload = serialize(e.target)
     payload.user_id = giftModal?.user?.id
     const { status, data: res } = await giftUser(payload)
     status && setAmount(true) && setAmount(true) && setGiftModal({})
     setProccessingFund(false)
+    !status && setErr(res?.message)
   }
 
 
@@ -101,9 +103,12 @@ function Index() {
                   </div>
                   <div>Please enter the amount to send</div>
                   <div>
-                    <div className='w-40 items-center justify-center border border-white/50 flex gap-1 rounded-lg p-2 mx-auto font-extrabold text-4xl'>
+                    <div className={`w-40 items-center justify-center border ${err ? 'border-red-600/50' : 'border-white/50'}  flex gap-1 rounded-lg p-2 mx-auto font-extrabold text-4xl`}>
                       &#8358;  <input name='amount' required className='w-full outline-0 ring-0 focus-within:outline-0' placeholder='50,000' type='tel' />
                     </div>
+                    {
+                      err && <div className='text-red-500 text-xs'>{err}</div>
+                    }
                   </div>
                   <div>Receiver: {giftModal?.user?.fname} {giftModal?.user?.lname}</div>
                   <div>
