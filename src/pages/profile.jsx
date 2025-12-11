@@ -11,6 +11,7 @@ import { TfiAngleLeft } from "react-icons/tfi";
 import { useDispatch, useSelector } from "react-redux";
 import serialize from "@/hooks/Serialize";
 import { updateProfile } from "@/services/authService";
+
 import { SignInAuth } from "@/hooks/Auth";
 import Image from "next/image";
 import { API_BASE_URL, TOKEN } from "@/services/httpService";
@@ -86,7 +87,7 @@ function Profile() {
 
   const getShareUrl = () => {
     if (typeof window !== 'undefined') {
-      return `${window.location.origin}/profile?user=${user?.id || user?.email}`;
+      return `${window.location.origin}?shared_profile=${user?.referral_id || user?.email}`;
     }
     return '';
   };
