@@ -87,7 +87,7 @@ function Profile() {
 
   const getShareUrl = () => {
     if (typeof window !== 'undefined') {
-      return `${window.location.origin}/profile?user=${user?.id || user?.email}`;
+      return `${window.location.origin}?shared_profile=${user?.referral_id || user?.email}`;
     }
     return '';
   };
