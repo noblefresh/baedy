@@ -92,6 +92,7 @@ function Profile() {
     return '';
   };
 
+  
   const getShareText = () => {
     return `Hey friends & family! 🎂 It's my birthday! Send love and gift money via my Bigdaymi profile: ${getShareUrl()}. Check out my pic—it's easy, secure, and means so much! Thanks for celebrating! 🥳 #BigdaymiBirthday #GiftMe`;
   };
