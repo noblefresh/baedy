@@ -11,6 +11,7 @@ import { TfiAngleLeft } from "react-icons/tfi";
 import { useDispatch, useSelector } from "react-redux";
 import serialize from "@/hooks/Serialize";
 import { updateProfile } from "@/services/authService";
+
 import { SignInAuth } from "@/hooks/Auth";
 import Image from "next/image";
 import { API_BASE_URL, TOKEN } from "@/services/httpService";
