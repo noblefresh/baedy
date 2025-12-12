@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import moment from 'moment'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setSharedProfile } from "@/Store/reducers/SharedProfile";
 import thanks from "@asset/Images/thankshand.png"
 import { Session } from "@/hooks/Auth";
 import Image from "next/image";
@@ -22,6 +23,7 @@ import { Toaster } from "sonner";
 
 
 function AppLayout({ children, title, active }) {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.User);
   const isAuthenticated = Session(user);
   const [greetings, setTime] = useState(false)
@@ -53,10 +55,10 @@ function AppLayout({ children, title, active }) {
       const searchParams = new URLSearchParams(window.location.search);
       const sharedBigdaymiProfile = searchParams.get('shared_profile');
       if (sharedBigdaymiProfile && sharedBigdaymiProfile.length > 0) {
-        localStorage.setItem('sharedBigdaymiProfile', sharedBigdaymiProfile);
+        dispatch(setSharedProfile(sharedBigdaymiProfile));
       }
     }
-  }, [])
+  }, [dispatch])
 
   if (isAuthenticated.status === "unauthenticated") {
     router.push("/auth/login");
