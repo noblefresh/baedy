@@ -202,21 +202,21 @@ function SideNav({ active }) {
                 </div>
                 <div>
                   <div className="flex justify-center items-center gap-2">
-                    Receiver:
+                    {/* Receiver: */}
                     <div className="flex items-center gap-2">
                       <Image
                         src={userInfo?.avatar}
                         alt="avatar"
                         width={100}
                         height={100}
-                        className="w-7 h-7 rounded-full"
+                        className="w-16 h-16 rounded-full"
                       />
                       <div className="text-sm font-bold">
                         {userInfo?.fname} {userInfo?.lname}
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-center items-center gap-2">
+                  <div className="flex pt-2 justify-center text-xs items-center gap-2">
                     Birthday Date:
                     <div className="flex items-center gap-2">
                       <div className="text-sm font-bold">

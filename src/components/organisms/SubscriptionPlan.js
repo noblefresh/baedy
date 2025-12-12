@@ -6,8 +6,6 @@ import { fetchSubscribtions, subscribeUser } from '@/services/authService'
 import { useRouter } from 'next/navigation'
 import AppModal from './AppModal'
 import { FaRegStar } from "react-icons/fa";
-
-import axios from 'axios';
 import AppInput from './AppInput'
 import serialize from '@/hooks/Serialize'
 
