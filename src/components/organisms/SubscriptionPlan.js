@@ -120,7 +120,7 @@ function SubscriptionPlan({ text }) {
                         </div>
                     </div>
                     <div>
-                        <div className='bg-white lg:grid grid-cols-2 gap-5 gap-y-8 p-4 rounded-2xl'>
+                        {/* <div className='bg-white lg:grid grid-cols-2 gap-5 gap-y-8 p-4 rounded-2xl'>
                             <div className='relative'>
                                 <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>1</div>
                                 <div className='pl-16 space-y-6'>
@@ -179,6 +179,74 @@ function SubscriptionPlan({ text }) {
                                     <div className='text-sm'>◦⁠⁠ <span className='font-bold'>How to Claim Rewards:</span> Eligible users will be notified via email or app 30 days before their birthday or chosen celebration. Choose your reward option (gifts/events vs. cashback) at that time. Cashback is paid via bank transfer or preferred method. For Diamond tier, travel arrangements are coordinated with the user, subject to availability and visa requirements.</div>
                                     <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Terms and Conditions:</span> Subscriptions must be paid in full and on time each month. If a subscription lapses, the eligibility counter (3 or 6 months) resets. Rewards are non-transferable. Event locations for Gold tier are limited to Lagos; Diamond tier travel is limited to China. We reserve the right to modify the program with notice.</div>
                                     <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Why Join?:</span> Celebrate your special day with exclusive rewards, from personalized gifts to luxury international experiences, or opt for generous cashback to make your celebration truly yours!</div>
+                                </div>
+                            </div>
+                        </div> */}
+
+                        <div className='bg-white lg:grid grid-cols-2 gap-5 gap-y-8 p-4 rounded-2xl'>
+                            <div className='relative'>
+                                <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>1</div>
+                                <div className='pl-16 space-y-6'>
+                                    <div className='space-y-3'>
+                                        <div className='font-bold'>1. VIP Tag on Your Profile</div>
+                                        <div className='text-sm'>◦ Stand out with a premium VIP badge displayed prominently on your profile on our website platform.                                        .</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='relative'>
+                                <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>2</div>
+                                <div className='pl-16 space-y-6'>
+                                    <div className='space-y-3'>
+                                        <div className='text-sm'>◦ Send Gift Button on Your Profile Picture, Enable a dedicated “Send Gift” button right on your profile picture, allowing friends to easily send you monetary gifts during your birthday or any celebration.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='relative'>
+                                <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>3</div>
+                                <div className='pl-16 space-y-3'>
+                                    <div className='font-bold'>3. Personalized Birthday Link</div>
+                                    <div className='text-sm'>◦ Share a custom birthday link with friends and family to join the fun, celebrate together, and send you gifts seamlessly.</div>
+                                </div>
+                            </div>
+                            <div className='relative'>
+                                <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>4</div>
+                                <div className='pl-16 space-y-6'>
+                                    <div className='space-y-3'>
+                                        <div className='text-sm'>◦⁠⁠ Monthly Picnic & Party Participation, Get the chance to join our exclusive birthday monthly picnics, games, and party activities—plus opportunities to win exciting prizes</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='relative'>
+                                <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>5</div>
+                                <div className='pl-16 space-y-3'>
+                                    <div className='text-sm'>◦ Birthday shoutouts on our website platform and Baedy app and also on social media platforms/blogs(attached with your account number for people to send you birthday gift money wishes) </div>
+                                </div>
+                            </div>
+                            <div className='relative'>
+                                <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>6</div>
+                                <div className='pl-16 space-y-6'>
+                                    <div className='space-y-3'>
+                                        <div className='text-sm'>◦⁠⁠ Receive a gift from the platform on your birthday or any celebration.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='relative col-span-2'>
+                                <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>7</div>
+                                <div className='pl-16 space-y-6'>
+                                    <div className='space-y-3'>
+                                        <div className='font-bold'>7. ⁠Annual Cash Back Reward</div>
+                                        <div className='text-sm'>◦⁠⁠ Receive 70% of your subscription/savings money back as cash on your birthday or chosen celebration, once a year. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-span-2 space-y-4'>
+                                <div className='font-bold'>Additional Program Details</div>
+                                <div className='space-y-3'>
+                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>How to Claim Rewards:</span> Eligible users will be notified via email or the app 30 days before their birthday or chosen celebration. Cashback is paid via bank transfer or preferred method.</div>
+                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Terms and Conditions:</span> 50,000 naira minimum monthly subscriptions must be paid in full and on time each month. If a subscription lapses, the eligibility counter (3 months ) resets. Rewards are non-transferable. Those who want to get a larger amount during their birthday or any celebration in a year can subscribe with a big amount above 50,000 naira. For example, if you subscribe with 100,000 naira every month for 12 months till your birthday you will get 840,000 naira, that&apos;s 70% of your 100,000 in 12 months.</div>
+                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Why Join?:</span> Celebrate your special day with exclusive rewards, from personalized gifts to luxury experiences, or opt for generous cashback to make your celebration truly yours!</div>
                                 </div>
                             </div>
                         </div>
