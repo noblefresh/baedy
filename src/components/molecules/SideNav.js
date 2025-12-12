@@ -8,7 +8,8 @@ import { HiMiniUserGroup } from "react-icons/hi2";
 import { BsFillGridFill } from "react-icons/bs";
 import { IoIosCard } from "react-icons/io";
 import { ImExit } from "react-icons/im";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearSharedProfile } from '@/Store/reducers/SharedProfile';
 import { useRouter } from 'next/router';
 import { SignOut } from '@/hooks/Auth';
 import { GiShoppingBag } from "react-icons/gi";
@@ -24,15 +25,10 @@ import { toast } from 'sonner'
 function SideNav({ active }) {
     const dispatch = useDispatch()
     const router = useRouter()
+    const sharedProfile = useSelector((state) => state.SharedProfile?.referralId)
     const [userInfo, setUserInfo] = useState(null)
     const [proccessingFund, setProccessingFund] = useState(false)
     const [giftModal, setGiftModal] = useState(false)
-    useEffect(() => {
-        if (localStorage.getItem('sharedBigdaymiProfile')) {
-            setGiftModal(true)
-            getUserInfo()
-        }
-    }, [])
     const [showAmount, setAmount] = useState(false)
 
     const siOut = () => {
@@ -41,11 +37,20 @@ function SideNav({ active }) {
     }
 
     const getUserInfo = async () => {
-        const { status, data: res } = await shareProfile({ referral_id: localStorage.getItem('sharedBigdaymiProfile') })
+        if (!sharedProfile) return;
+        const { status, data: res } = await shareProfile({ referral_id: sharedProfile })
         if (status) {
             setUserInfo(res.data)
         }
     }
+
+    useEffect(() => {
+        if (sharedProfile) {
+            setGiftModal(true)
+            getUserInfo()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sharedProfile])
 
     const submit = async (e) => {
         e.preventDefault();
@@ -57,7 +62,7 @@ function SideNav({ active }) {
             setAmount(true)
             setAmount(true)
             setGiftModal(false)
-            localStorage.removeItem('sharedBigdaymiProfile')
+            dispatch(clearSharedProfile())
         } else {
             toast.error(res.message)
         }
@@ -79,7 +84,7 @@ function SideNav({ active }) {
                             </div>
                         </AppModal>
                     ) : (
-                        <AppModal mode={giftModal} withClose={() => { setGiftModal(false); setAmount(false); localStorage.removeItem('sharedBigdaymiProfile') }} >
+                        <AppModal mode={giftModal} withClose={() => { setGiftModal(false); setAmount(false); dispatch(clearSharedProfile()) }} >
                             <form onSubmit={submit}>
                                 <div className='space-y-6 text-center'>
                                     <div>
