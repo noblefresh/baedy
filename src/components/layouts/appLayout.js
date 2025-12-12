@@ -20,6 +20,7 @@ import { Toaster } from "sonner";
 //   description: 'Welcome to the home page',
 // };
 
+
 function AppLayout({ children, title, active }) {
   const user = useSelector((state) => state.User);
   const isAuthenticated = Session(user);
@@ -44,6 +45,17 @@ function AppLayout({ children, title, active }) {
       setShowNav(false)
     })
     getTime(user?.value?.user?.created_at)
+  }, [user?.value?.user?.created_at])
+
+  useEffect(() => {
+    // Handle shared profile query parameter
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      const sharedBigdaymiProfile = searchParams.get('shared_profile');
+      if (sharedBigdaymiProfile && sharedBigdaymiProfile.length > 0) {
+        localStorage.setItem('sharedBigdaymiProfile', sharedBigdaymiProfile);
+      }
+    }
   }, [])
 
   if (isAuthenticated.status === "unauthenticated") {

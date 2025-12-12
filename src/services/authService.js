@@ -12,6 +12,7 @@ export const setNewPassword = (formData) => apiWithOutAuth.post("/recover/create
 
 export const fetchDashBoardData = () => apiWithAuth.post("/app/dashboard/fetch").then(getApiResponse).catch(getErrorResponse);
 export const payment = (payload) => apiWithAuth.post("/app/wallet/initialize-paystack", payload).then(getApiResponse).catch(getErrorResponse)
+export const shareProfile = (payload) => apiWithAuth.post("/app/share", payload).then(getApiResponse).catch(getErrorResponse)
 export const fetchWallet = () => apiWithAuth.get("/app/wallet/fetch").then(getApiResponse).catch(getErrorResponse)
 export const addBank = (payload) => apiWithAuth.post("/app/wallet/add_bank_account", payload).then(getApiResponse).catch(getErrorResponse)
 export const fetchBank = () => apiWithAuth.post("/app/wallet/fetch_bank").then(getApiResponse).catch(getErrorResponse)

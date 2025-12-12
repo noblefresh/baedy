@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import img from "@asset/Images/sideimg.png"
 import Image from 'next/image'
 import AppLink from '../organisms/AppLink'
@@ -13,89 +13,171 @@ import { useRouter } from 'next/router';
 import { SignOut } from '@/hooks/Auth';
 import { GiShoppingBag } from "react-icons/gi";
 import { IoStorefrontOutline } from 'react-icons/io5';
+import AppModal from '../organisms/AppModal';
+import { FiStar } from 'react-icons/fi';
+import serialize from '@/hooks/Serialize';
+import giftimg from "@asset/Images/giftimg.png"
+import { giftUser, shareProfile } from '@/services/authService'
+import { toast } from 'sonner'
 
 
 function SideNav({ active }) {
     const dispatch = useDispatch()
     const router = useRouter()
+    const [userInfo, setUserInfo] = useState(null)
+    const [proccessingFund, setProccessingFund] = useState(false)
+    const [giftModal, setGiftModal] = useState(false)
+    useEffect(() => {
+        if (localStorage.getItem('sharedBigdaymiProfile')) {
+            setGiftModal(true)
+            getUserInfo()
+        }
+    }, [])
+    const [showAmount, setAmount] = useState(false)
 
     const siOut = () => {
         SignOut(dispatch)
         router.push("/")
     }
 
+    const getUserInfo = async () => {
+        const { status, data: res } = await shareProfile({ referral_id: localStorage.getItem('sharedBigdaymiProfile') })
+        if (status) {
+            setUserInfo(res.data)
+        }
+    }
+
+    const submit = async (e) => {
+        e.preventDefault();
+        setProccessingFund(true)
+        let payload = serialize(e.target)
+        payload.user_id = userInfo?.id
+        const { status, data: res } = await giftUser(payload)
+        if (status) {
+            setAmount(true)
+            setAmount(true)
+            setGiftModal(false)
+            localStorage.removeItem('sharedBigdaymiProfile')
+        } else {
+            toast.error(res.message)
+        }
+        setProccessingFund(false)
+    }
+
+
     return (
-        <div className='md:px-5 md:py-2 h-full'>
-            <div className='flex flex-col h-full bg-gray-50/80 border backdrop-blur-lg border-gray-200 overflow-hidden rounded-xl'>
-                <div className='flex-grow'>
-                    <div className='space-y-4'>
-                        <div>
-                            <AppLink
-                                active={active}
-                                text={"Home"}
-                                icon={<BsFillGridFill />}
-                            />
-                            <AppLink
-                                active={active}
-                                text={"Birthday Event"}
-                                icon={<FaCalendarAlt />}
-                            />
-                            <AppLink
-                                active={active}
-                                text={"Wallet"}
-                                icon={<PiWalletFill />}
-                            />
-                            <AppLink
-                                active={active}
-                                text={"Subscriptions"}
-                                icon={<IoIosCard />}
-                            />
-                            <AppLink
-                                active={active}
-                                text={"Referral"}
-                                icon={<HiMiniUserGroup />}
-                            />
-                            <AppLink
-                                active={active}
-                                text={"Profile"}
-                                icon={<FaUserAlt />}
-                            />
-                        </div>
-                        <div className="divition"></div>
-                        <div>
-                            <div className='p-3'>Shop</div>
+        <>
+            <div className='fixed z-50'>
+                {
+                    showAmount ? (
+                        <AppModal mode={showAmount}>
+                            <div className="space-y-6 text-center">
+                                <div className='text-8xl flex items-center justify-center text-amber-500'><FiStar /></div>
+                                <div className='text-xl font-bold'>Gift sent successfully</div>
+                                <div className='text-gray-400 text-sm'>Thank You</div>
+                                <button onClick={() => { setGiftModal(false); setAmount(false) }} className="flex-grow w-full cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> Done </button>
+                            </div>
+                        </AppModal>
+                    ) : (
+                        <AppModal mode={giftModal} withClose={() => { setGiftModal(false); setAmount(false); localStorage.removeItem('sharedBigdaymiProfile') }} >
+                            <form onSubmit={submit}>
+                                <div className='space-y-6 text-center'>
+                                    <div>
+                                        <Image alt="Thank" src={giftimg} width={100} height={100} className="w-2/4 mx-auto pointer-events-none" />
+                                    </div>
+                                    <div>Please enter the amount to send</div>
+                                    <div>
+                                        <div className='w-40 items-center justify-center border border-white/50 flex gap-1 rounded-lg p-2 mx-auto font-extrabold text-4xl'>
+                                            &#8358;  <input name='amount' required className='w-full outline-0 ring-0 focus-within:outline-0' placeholder='50,000' type='tel' />
+                                        </div>
+                                    </div>
+                                    <div>Receiver: {userInfo?.fname} {userInfo?.lname}</div>
+                                    <div>
+                                        <div className="flex gap-3">
+                                            <button disabled={proccessingFund} className="flex-grow cursor-pointer disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"> {proccessingFund ? "Proccessing..." : "Send Gift"}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </AppModal>
+                    )
+                }
+            </div>
+
+
+            <div className='md:px-5 md:py-2 h-full'>
+                <div className='flex flex-col h-full bg-gray-50/80 border backdrop-blur-lg border-gray-200 overflow-hidden rounded-xl'>
+                    <div className='flex-grow'>
+                        <div className='space-y-4'>
                             <div>
                                 <AppLink
                                     active={active}
-                                    text={"Products"}
-                                    icon={<IoStorefrontOutline />}
+                                    text={"Home"}
+                                    icon={<BsFillGridFill />}
                                 />
                                 <AppLink
                                     active={active}
-                                    text={"Orders"}
-                                    icon={<GiShoppingBag />}
+                                    text={"Birthday Event"}
+                                    icon={<FaCalendarAlt />}
+                                />
+                                <AppLink
+                                    active={active}
+                                    text={"Wallet"}
+                                    icon={<PiWalletFill />}
+                                />
+                                <AppLink
+                                    active={active}
+                                    text={"Subscriptions"}
+                                    icon={<IoIosCard />}
+                                />
+                                <AppLink
+                                    active={active}
+                                    text={"Referral"}
+                                    icon={<HiMiniUserGroup />}
+                                />
+                                <AppLink
+                                    active={active}
+                                    text={"Profile"}
+                                    icon={<FaUserAlt />}
                                 />
                             </div>
-                        </div>
-                        <div className="divition"></div>
-                        <div>
-                            <AppLink
-                                active={active}
-                                text={"Settings"}
-                                icon={<FaCog />}
-                            />
-                            <div onClick={siOut} className='flex cursor-pointer px-3 py-2 text-gray-500 items-center gap-1'>
-                                <ImExit />
-                                <div>Log Out</div>
+                            <div className="divition"></div>
+                            <div>
+                                <div className='p-3'>Shop</div>
+                                <div>
+                                    <AppLink
+                                        active={active}
+                                        text={"Products"}
+                                        icon={<IoStorefrontOutline />}
+                                    />
+                                    <AppLink
+                                        active={active}
+                                        text={"Orders"}
+                                        icon={<GiShoppingBag />}
+                                    />
+                                </div>
+                            </div>
+                            <div className="divition"></div>
+                            <div>
+                                <AppLink
+                                    active={active}
+                                    text={"Settings"}
+                                    icon={<FaCog />}
+                                />
+                                <div onClick={siOut} className='flex cursor-pointer px-3 py-2 text-gray-500 items-center gap-1'>
+                                    <ImExit />
+                                    <div>Log Out</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className=''>
-                    <Image alt='img' src={img} className='w-full' />
+                    <div className=''>
+                        <Image alt='img' src={img} className='w-full' />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+        
     )
 }
 
