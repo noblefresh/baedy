@@ -92,7 +92,7 @@ function Profile() {
     return '';
   };
 
-  
+
   const getShareText = () => {
     return `Hey friends & family! 🎂 It's my birthday! Send love and gift money via my Bigdaymi profile: ${getShareUrl()}. Check out my pic—it's easy, secure, and means so much! Thanks for celebrating! 🥳 #BigdaymiBirthday #GiftMe`;
   };
@@ -119,13 +119,13 @@ function Profile() {
 
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(getShareUrl());
+      await navigator.clipboard.writeText(getShareText());
       setLinkCopied(true);
       setTimeout(() => setLinkCopied(false), 2000);
     } catch (err) {
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
-      textArea.value = getShareUrl();
+      textArea.value = getShareText();
       document.body.appendChild(textArea);
       textArea.select();
       document.execCommand('copy');
@@ -240,7 +240,7 @@ function Profile() {
                     onClick={shareProfile}
                     className="px-7 cursor-pointer text-xs disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"
                   >
-                    Share Profile
+                    Share birthday link
                   </div>
                 </div>
               )}
@@ -356,7 +356,7 @@ function Profile() {
       <AppModal mode={showShareModal} withClose={() => setShowShareModal(false)}>
         <div className="space-y-4">
           <div className="text-center">
-            <h3 className="text-xl font-bold">Share Profile</h3>
+            <h3 className="text-xl font-bold">Share birthday link</h3>
             <p className="text-sm text-gray-600 mt-1">Share {user?.fname}'s profile with others</p>
           </div>
           
