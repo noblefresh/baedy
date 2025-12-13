@@ -281,6 +281,7 @@ function SideNav({ active }) {
                 <AppLink
                   active={active}
                   text={"Profile"}
+                  extraText={<div className="text-[8px] shadow-sm text-black bg-white px-2 py-1 rounded-md">Birthday Link</div>}
                   icon={<FaUserAlt />}
                 />
               </div>

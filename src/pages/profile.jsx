@@ -5,12 +5,20 @@ import React, { useState, useEffect } from "react";
 import { MdMail, MdExplore } from "react-icons/md";
 import { HiUser } from "react-icons/hi2";
 import { ImPhone, ImSpinner } from "react-icons/im";
-import { FaMap, FaCalendarAlt, FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaLink } from "react-icons/fa";
+import {
+  FaMap,
+  FaCalendarAlt,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaWhatsapp,
+  FaLink,
+} from "react-icons/fa";
 import { FaMapLocation } from "react-icons/fa6";
 import { TfiAngleLeft } from "react-icons/tfi";
 import { useDispatch, useSelector } from "react-redux";
 import serialize from "@/hooks/Serialize";
-import { updateProfile } from "@/services/authService";
+import { fetchDashBoardData, updateProfile } from "@/services/authService";
 
 import { SignInAuth } from "@/hooks/Auth";
 import Image from "next/image";
@@ -26,7 +34,7 @@ function Profile() {
   const [linkCopied, setLinkCopied] = useState(false);
   const uzer = useSelector((state) => state.User.value);
   const user = uzer?.user;
-
+  const [dashboardData, setDashboardData] = useState({});
   const [selectedUpdateImage, setSelectedUpdateImage] = useState(user?.avatar);
   const [savingImg, setSavingImg] = useState(false);
   const [changed, setChanged] = useState(false);
@@ -34,7 +42,7 @@ function Profile() {
   const headers = { Authorization: TOKEN };
 
   useEffect(() => {
-    setCanShare(typeof navigator !== 'undefined' && navigator.share);
+    setCanShare(typeof navigator !== "undefined" && navigator.share);
   }, []);
 
   const uploadUpdateImg = async (e) => {
@@ -43,6 +51,11 @@ function Profile() {
       setSelectedUpdateImage(e.target.files[0]);
       updateAvatar(e);
     }
+  };
+
+  const fetchData = async () => {
+    const { status, data } = await fetchDashBoardData();
+    status && setDashboardData(data?.data);
   };
 
   const updateAvatar = async (e) => {
@@ -86,35 +99,42 @@ function Profile() {
   };
 
   const getShareUrl = () => {
-    if (typeof window !== 'undefined') {
-      return `${window.location.origin}?shared_profile=${user?.referral_id || user?.email}`;
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}?shared_profile=${
+        user?.referral_id || user?.email
+      }`;
     }
-    return '';
+    return "";
   };
-
 
   const getShareText = () => {
     return `Hey friends & family! 🎂 It's my birthday! Send love and gift money via my Bigdaymi profile: ${getShareUrl()}. Check out my pic—it's easy, secure, and means so much! Thanks for celebrating! 🥳 #BigdaymiBirthday #GiftMe`;
   };
 
   const shareToFacebook = () => {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}&quote=${encodeURIComponent(getShareText())}`;
-    window.open(url, '_blank', 'width=600,height=400');
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      getShareUrl()
+    )}&quote=${encodeURIComponent(getShareText())}`;
+    window.open(url, "_blank", "width=600,height=400");
   };
 
   const shareToTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}&url=${encodeURIComponent(getShareUrl())}`;
-    window.open(url, '_blank', 'width=600,height=400');
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      getShareText()
+    )}&url=${encodeURIComponent(getShareUrl())}`;
+    window.open(url, "_blank", "width=600,height=400");
   };
 
   const shareToLinkedIn = () => {
-    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrl())}&summary=${encodeURIComponent(getShareText())}`;
-    window.open(url, '_blank', 'width=600,height=400');
+    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+      getShareUrl()
+    )}&summary=${encodeURIComponent(getShareText())}`;
+    window.open(url, "_blank", "width=600,height=400");
   };
 
   const shareToWhatsApp = () => {
     const url = `https://wa.me/?text=${encodeURIComponent(getShareText())}`;
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   };
 
   const copyToClipboard = async () => {
@@ -124,11 +144,11 @@ function Profile() {
       setTimeout(() => setLinkCopied(false), 2000);
     } catch (err) {
       // Fallback for older browsers
-      const textArea = document.createElement('textarea');
+      const textArea = document.createElement("textarea");
       textArea.value = getShareText();
       document.body.appendChild(textArea);
       textArea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(textArea);
       setLinkCopied(true);
       setTimeout(() => setLinkCopied(false), 2000);
@@ -146,7 +166,7 @@ function Profile() {
         setShowShareModal(false);
       } catch (err) {
         // User cancelled or error occurred
-        console.log('Error sharing:', err);
+        console.log("Error sharing:", err);
       }
     } else {
       // Fallback to copy if Web Share API is not available
@@ -236,12 +256,15 @@ function Profile() {
                   >
                     Edit Profile
                   </button>
-                  <div
-                    onClick={shareProfile}
-                    className="px-7 cursor-pointer text-xs disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"
-                  >
-                    Share birthday link
-                  </div>
+
+                  {dashboardData?.count_active_subscriptions > 0 && (
+                    <div
+                      onClick={shareProfile}
+                      className="px-7 cursor-pointer text-xs disabled:cursor-none disabled:bg-amber-500/35 shadow-md bg-amber-500 text-white rounded-lg py-3"
+                    >
+                      Share birthday link
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -353,13 +376,18 @@ function Profile() {
         </div>
       </div>
 
-      <AppModal mode={showShareModal} withClose={() => setShowShareModal(false)}>
+      <AppModal
+        mode={showShareModal}
+        withClose={() => setShowShareModal(false)}
+      >
         <div className="space-y-4">
           <div className="text-center">
             <h3 className="text-xl font-bold">Share birthday link</h3>
-            <p className="text-sm text-gray-600 mt-1">Share {user?.fname}'s profile with others</p>
+            <p className="text-sm text-gray-600 mt-1">
+              Share {user?.fname}'s profile with others
+            </p>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-3">
             {canShare && (
               <button
@@ -370,7 +398,7 @@ function Profile() {
                 <span className="text-xs font-medium">Share</span>
               </button>
             )}
-            
+
             <button
               onClick={shareToFacebook}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -378,7 +406,7 @@ function Profile() {
               <FaFacebook className="text-2xl" />
               <span className="text-xs font-medium">Facebook</span>
             </button>
-            
+
             <button
               onClick={shareToTwitter}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"
@@ -386,7 +414,7 @@ function Profile() {
               <FaTwitter className="text-2xl" />
               <span className="text-xs font-medium">Twitter</span>
             </button>
-            
+
             <button
               onClick={shareToLinkedIn}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
@@ -394,7 +422,7 @@ function Profile() {
               <FaLinkedin className="text-2xl" />
               <span className="text-xs font-medium">LinkedIn</span>
             </button>
-            
+
             <button
               onClick={shareToWhatsApp}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
@@ -402,13 +430,15 @@ function Profile() {
               <FaWhatsapp className="text-2xl" />
               <span className="text-xs font-medium">WhatsApp</span>
             </button>
-            
+
             <button
               onClick={copyToClipboard}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
             >
               <FaLink className="text-2xl" />
-              <span className="text-xs font-medium">{linkCopied ? 'Copied!' : 'Copy Link'}</span>
+              <span className="text-xs font-medium">
+                {linkCopied ? "Copied!" : "Copy Link"}
+              </span>
             </button>
           </div>
         </div>
