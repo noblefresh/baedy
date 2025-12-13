@@ -111,9 +111,10 @@ function SubscriptionPlan({ text }) {
                 </div>
                 <div className='space-y-7'>
                     <div className='space-y-4'>
-                        <div>Our platform redefines milestone celebrations—birthdays, weddings, graduations, and anniversaries—through a subscription-based program that offers exclusive events and financial rewards.</div>
+                        <div>Bigdaymi Baedy Birthday Celebration Subscription Benefits</div>
                         <div>
-                            <div className='font-bold'>Subscription Tiers & Rewards</div>
+                        {/* <div className='font-bold'>Subscription Tiers & Rewards</div> */}
+                            <div className='font-bold'>Celebrate your special day with exclusive perks! Here’s your organized list of subscription benefits:                            </div>
                             {/* <div>Users subscribe with a minimum &#8358;50,000 Naira monthly payment, with the flexibility to contribute additional funds to their platform wallet for their chosen celebration. Subscribers enjoy monthly birthday parties, picnics, receive a gift during their celebration from the platform and a 90% payout of their saved funds during their celebration, with the platform retaining 10% as a service fee.</div> */}
                         </div>
                     </div>
@@ -211,7 +212,7 @@ function SubscriptionPlan({ text }) {
                                 <div className='absolute bg-amber-500 px-5 py-1 rounded-md -left-4 text-white '>4</div>
                                 <div className='pl-16 space-y-6'>
                                     <div className='space-y-3'>
-                                        <div className='text-sm'>◦⁠⁠ Monthly Picnic & Party Participation, Get the chance to join our exclusive birthday monthly picnics, games, and party activities—plus opportunities to win exciting prizes</div>
+                                        <div className='text-sm'>◦ ⁠Monthly Picnic & Party Participation, Get the chance to join our exclusive birthday monthly picnics, games, and party activities—plus opportunities to win exciting prizes</div>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +231,7 @@ function SubscriptionPlan({ text }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className='relative col-span-2'>
+                            {/* <div className='relative col-span-2'>
                                 <div className='absolute bg-amber-700 px-5 py-1 rounded-md -left-4 text-white '>7</div>
                                 <div className='pl-16 space-y-6'>
                                     <div className='space-y-3'>
@@ -238,12 +239,12 @@ function SubscriptionPlan({ text }) {
                                         <div className='text-sm'>◦⁠⁠ Receive 70% of your subscription/savings money back as cash on your birthday or chosen celebration, once a year. </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className='col-span-2 space-y-4'>
                                 <div className='font-bold'>Additional Program Details</div>
                                 <div className='space-y-3'>
-                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>How to Claim Rewards:</span> Eligible users will be notified via email or the app 30 days before their birthday or chosen celebration. Cashback is paid via bank transfer or preferred method.</div>
-                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Terms and Conditions:</span> 50,000 naira minimum monthly subscriptions must be paid in full and on time each month. If a subscription lapses, the eligibility counter (3 months ) resets. Rewards are non-transferable. Those who want to get a larger amount during their birthday or any celebration in a year can subscribe with a big amount above 50,000 naira. For example, if you subscribe with 100,000 naira every month for 12 months till your birthday you will get 840,000 naira, that&apos;s 70% of your 100,000 in 12 months.</div>
+                                    {/* <div className='text-sm'>◦⁠⁠ <span className='font-bold'>How to Claim Rewards:</span> Eligible users will be notified via email or the app 30 days before their birthday or chosen celebration. Cashback is paid via bank transfer or preferred method.</div>
+                                    <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Terms and Conditions:</span> 50,000 naira minimum monthly subscriptions must be paid in full and on time each month. If a subscription lapses, the eligibility counter (3 months ) resets. Rewards are non-transferable. Those who want to get a larger amount during their birthday or any celebration in a year can subscribe with a big amount above 50,000 naira. For example, if you subscribe with 100,000 naira every month for 12 months till your birthday you will get 840,000 naira, that&apos;s 70% of your 100,000 in 12 months.</div> */}
                                     <div className='text-sm'>◦⁠⁠ <span className='font-bold'>Why Join?:</span> Celebrate your special day with exclusive rewards, from personalized gifts to luxury experiences, or opt for generous cashback to make your celebration truly yours!</div>
                                 </div>
                             </div>
