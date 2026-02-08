@@ -41,10 +41,6 @@ function Profile() {
   const [canShare, setCanShare] = useState(false);
   const headers = { Authorization: TOKEN };
 
-  useEffect(() => {
-    setCanShare(typeof navigator !== "undefined" && navigator.share);
-  }, []);
-
   const uploadUpdateImg = async (e) => {
     setChanged(true);
     if (e.target.files && e.target.files.length > 0) {
@@ -57,6 +53,11 @@ function Profile() {
     const { status, data } = await fetchDashBoardData();
     status && setDashboardData(data?.data);
   };
+
+  useEffect(() => {
+    setCanShare(typeof navigator !== "undefined" && navigator.share);
+    fetchData();
+  }, []);
 
   const updateAvatar = async (e) => {
     console.log(e.target.files[0]);
